@@ -1,0 +1,14 @@
+R0 = 0x00000007␊
+R1 = 0xfffffff9␊
+R2 = 0xc601ff28␊
+R3 = 0x00000003␊
+R12 = 0x00000000␊
+LR [R14] = 0x00000007  subroutine call return address␊
+PC [R15] = 0x20004fc0  program counter␊
+PSR = 0x080003a1␊
+BFAR = 0xe000ed38␊
+CFSR = 0x00000400␊
+HFSR = 0x40000000␊
+DFSR = 0x0000000b␊
+AFSR = 0x00000000␊
+SCB_SHCSR = 0x00000000␊
