@@ -20,6 +20,9 @@
 #define 			MONTH(hrtc, format) 	mRTC_GetMonth(hrtc, format)
 #define 			YEAR(hrtc, format) 		mRTC_GetYear(hrtc, format)
 
+#define 			TIME_BUFFER_LENGTH		12
+#define 			DATE_BUFFER_LENGTH		14
+
 void				mRTC_Begin(RTC_HandleTypeDef* hrtc);
 uint8_t				mRTC_GetSecond(RTC_HandleTypeDef* hrtc, uint32_t Format);
 uint8_t				mRTC_GetMinute(RTC_HandleTypeDef* hrtc, uint32_t Format);

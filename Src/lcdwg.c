@@ -19,8 +19,12 @@ static uint16_t hiWaterMark;
 static uint8_t updateLcd;
 
 const tFont* fontMenu;
+const tFont* fontDigital;
 uint8_t shiftRow;
 uint8_t lcdMode;
+
+
+extern uint8_t ticksBlink;
 
 void LcdInit(void) {
 
@@ -715,95 +719,135 @@ void LcdMenuSelect(void) {
 }
 
 void LcdDrawOneItem(void) {
-/* 	rect_t rec; */
-/* 	stateElement* parElem = 0; */
-/* 	stateElement* parElem1 = 0; */
-/* 	uint8_t rowHeight, i; */
-/* 	uint8_t x, y, width, height; */
-/* 	uint8_t chr = ' '; */
-/* 	const tFont* itemFont; */
-/* 	char* ch; */
-/* 	int16_t* data; */
-/* 	if (CurrState->Parent != (void*) &NULL_ENTRY) */
-/* 		parElem = CurrState->Parent; */
-/* 	if (parElem->Parent != (void*) &NULL_ENTRY) */
-/* 		parElem1 = parElem->Parent; */
-/* 	rowHeight = fontMenu->chars[0].image->height + 4;  // висота рядка */
-/* 	RECT_SET(rec, 0, 0, LCD_X_RES - 1, rowHeight); */
-/* 	LcdClear(); */
-/* 	#<{(| Текст діда |)}># */
-/* 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem1->Text); */
-/* 	LcdDrawFrame(0, LCD_X_RES - 1, rowHeight, LCD_Y_RES - 1, lcdMode); */
-/* 	y = rowHeight + 3; */
-/* 	RECT_SET(rec, 1, y, LCD_X_RES - 3, rowHeight); */
-/* 	#<{(| Текст тата |)}># */
-/* 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem->Text); */
-/* 	y += rowHeight; */
-/* 	#<{(| Відображення дня тиждня під час показу дати|)}># */
-/* 	if (CurrState == (stateElement*) &itemDate) { */
-/* 		RECT_SET(rec, 1, y, LCD_X_RES - 3, rowHeight); */
-/* 		chr = WeekDay(timeBufferInt[YEAR], timeBufferInt[MONTH], timeBufferInt[DAY]); */
-/* 		LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, dayOfWeek[chr]); */
-/* 		y += rowHeight; */
-/* 	} */
-/* 	if (CurrState->data->flag != 0) { */
-/* 		if (CurrState->data->data != 0) { */
-/* 			itemFont = *CurrState->data->font; */
-/* 			#<{(| Якщо дані містять текст |)}># */
-/* 			if (CurrState->data->flag & MENU_ITEM_TEXT) { */
-/* 				ch = CurrState->data->data;  //визначаємо вказівник на текст */
-/* 			} else { */
-/* 				#<{(| Якщо цифрова інформація |)}># */
-/* 				data = CurrState->data->data;  // вибираємо значення */
-/* 				chr = (CurrState->data->flag & COMMA) ? COMMA : NO_COMMA; */
-/* 				variableToLcd(data, chr);  // перетворємо значення для відображення на дисплеї */
-/* 				ch = diagnosticChar;  //масив з перетвореним значенням	 */
-/* 			} */
-/* 			width = 0; */
-/* 			//Визначаємо довжину слова з проміжками між символами */
-/* 			for (i = 0; i < (CurrState->data->flag & 0x1F) && ch[i] != 0; i++) { */
-/* 				chr = ch[i] - itemFont->chars[0].code; */
-/* 				width += itemFont->chars[chr].image->width; */
-/* 			} */
-/* 			#<{(| Додаємо проміжки між буквами (їх на один менше , ніж символів) |)}># */
-/* 			width += (CurrState->data->flag & 0x1F) - 1; */
-/* 			#<{(| Визначаємо координати розміщення тексту |)}># */
-/* 			x = (LCD_X_RES - width) / 2; */
-/* 			height = itemFont->chars[0].image->height; */
-/* 			y = (LCD_Y_RES - height - y - 1) / 2 + y; */
-/* 			for (i = 0; i < (CurrState->data->flag & 0x1F) && ch[i] != 0; i++) { */
-/* 				#<{(| Для меню налаштувань параметра (годиника , дати) */
-/* 				 * визначаємо позицію параметра для налаштування  */
-/* 				 * з коду тексту поточного меню  */
-/* 				 * і робимо його блимаючим |)}># */
-/* 				if (CurrState->data->flag & MENU_ITEM_SETTING) { */
-/* 					height = CurrState->Text[2] - '0'; */
-/* 					rowHeight = CurrState->Text[3] - '0'; */
-/* 					if (i == height || i == rowHeight) { */
-/* 						if (ticksBlink) */
-/* 							chr = ' '; */
-/* 						else */
-/* 							chr = ch[i]; */
-/* 					} else */
-/* 						chr = ch[i]; */
-/* 				} else */
-/* 					chr = ch[i];  // для всіх інших звичайне відображення */
-/* 				width = LcdDrawChar(x, y, *itemFont, lcdMode, chr); */
-/* 				x = x + width + 1; */
-/* 			} */
-/* 			#<{(| Дописуємо текст після цифрового значення |)}># */
-/* 			if (CurrState->Text != NULL_TEXT && (CurrState->data->flag & MENU_ITEM_SETTING) == 0) { */
-/* 				height = (fontMenu->chars[0].image->height * 2) + 3; */
-/* 				y = y + itemFont->chars[0].image->height - height; */
-/* 				RECT_SET(rec, x, y, LCD_X_RES - x, height); */
-/* 				LcdDrawStrTwoRow(rec, *fontMenu, (char*) &CurrState->Text); */
-/* 			} */
-/* 		} */
-/* 	} */
+	rect_t rec;
+	stateElement* parElem = 0;
+	stateElement* parElem1 = 0;
+	uint8_t rowHeight, i;
+	uint8_t x, y, width, height;
+	uint8_t chr = ' ';
+	const tFont* itemFont;
+	char* ch = 0;
+	/* int16_t* data; */
+	if (CurrState->Parent != (void*) &NULL_ENTRY)
+		parElem = CurrState->Parent;
+	if (parElem->Parent != (void*) &NULL_ENTRY)
+		parElem1 = parElem->Parent;
+	rowHeight = fontMenu->chars[0].image->height + 4;  // висота рядка
+	RECT_SET(rec, 0, 0, LCD_X_RES - 1, rowHeight);
+	LcdClear();
+	/* Текст діда */
+	LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem1->Text);
+	LcdDrawFrame(0, LCD_X_RES - 1, rowHeight, LCD_Y_RES - 1, lcdMode);
+	y = rowHeight + 3;
+	RECT_SET(rec, 1, y, LCD_X_RES - 3, rowHeight);
+	/* Текст тата */
+	LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem->Text);
+	y += rowHeight;
+	/* Відображення дня тиждня під час показу дати*/
+	/* if (CurrState == (stateElement*) &itemDate) { */
+	/* 	RECT_SET(rec, 1, y, LCD_X_RES - 3, rowHeight); */
+	/* 	chr = WeekDay(timeBufferInt[YEAR], timeBufferInt[MONTH], timeBufferInt[DAY]); */
+	/* 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, dayOfWeek[chr]); */
+	/* 	y += rowHeight; */
+	/* } */
+	if (CurrState->data->flag != 0) {
+		if (CurrState->data->data != 0) {
+			itemFont = *CurrState->data->font;
+			/* Якщо дані містять текст */
+			if (CurrState->data->flag & MENU_ITEM_TEXT) {
+				ch = CurrState->data->data;  //визначаємо вказівник на текст
+			} else {
+				/* Якщо цифрова інформація */
+				/* data = CurrState->data->data;  // вибираємо значення */
+				chr = (CurrState->data->flag & COMMA) ? COMMA : NO_COMMA;
+				/* variableToLcd(data, chr);  // перетворємо значення для відображення на дисплеї */
+				/* ch = diagnosticChar;  //масив з перетвореним значенням	 */
+			}
+			width = 0;
+			//Визначаємо довжину слова з проміжками між символами
+			for (i = 0; i < (CurrState->data->flag & 0x1F) && ch[i] != 0; i++) {
+				chr = ch[i] - itemFont->chars[0].code;
+				width += itemFont->chars[chr].image->width;
+			}
+			/* Додаємо проміжки між буквами (їх на один менше , ніж символів) */
+			width += (CurrState->data->flag & 0x1F) - 1;
+			/* Визначаємо координати розміщення тексту */
+			x = (LCD_X_RES - width) / 2;
+			height = itemFont->chars[0].image->height;
+			y = (LCD_Y_RES - height - y - 1) / 2 + y;
+			for (i = 0; i < (CurrState->data->flag & 0x1F) && ch[i] != 0; i++) {
+				/* Для меню налаштувань параметра (годиника , дати)
+				 * визначаємо позицію параметра для налаштування 
+				 * з коду тексту поточного меню 
+				 * і робимо його блимаючим */
+				if (CurrState->data->flag & MENU_ITEM_SETTING) {
+					height = CurrState->Text[2] - '0';
+					rowHeight = CurrState->Text[3] - '0';
+					if (i == height || i == rowHeight) {
+						if (ticksBlink)
+							chr = ' ';
+						else
+							chr = ch[i];
+					} else
+						chr = ch[i];
+				} else
+					chr = ch[i];  // для всіх інших звичайне відображення
+				width = LcdDrawChar(x, y, *itemFont, lcdMode, chr);
+				x = x + width + 1;
+			}
+			/* Дописуємо текст після цифрового значення */
+			if (CurrState->Text != NULL_TEXT && (CurrState->data->flag & MENU_ITEM_SETTING) == 0) {
+				height = (fontMenu->chars[0].image->height * 2) + 3;
+				y = y + itemFont->chars[0].image->height - height;
+				RECT_SET(rec, x, y, LCD_X_RES - x, height);
+				LcdDrawStrTwoRow(rec, *fontMenu, (char*) &CurrState->Text);
+			}
+		}
+	}
 }
 
 void LcdSetClock(void) {
 	/* timeCounter = RTC_GetCounter(); */
 	/* RTC_TimeToLcd(); */
 	LcdDrawOneItem();
+}
+
+/**
+ * @name LcdDrawStrTooRow
+ * @param rec -> rectangle for draw
+ * @param str -> pointer to string
+ */
+void LcdDrawStrTwoRow(rect_t rec, tFont font, char* str) {
+	/* uint8_t x, y, length, width; */
+	/* lengStr_t ls; */
+	/* #<{(| Визначаємо довжину тексту в пікселах |)}># */
+	/* LcdGetStrWidth(&ls, font, str); */
+	/* y = rec.y + rec.height - font.chars[0].image->height;  // позиція -y для нижнього рядка тексту */
+	/* length = ls.length1;  // довжина нижнього тексту при одному рядку */
+	/* if (ls.length2) {  // якщо два рядки  */
+	/* 	y -= (font.chars[0].image->height + 3);  // зсуваємо позицію -у вгору */
+	/* 	x = rec.x + ((rec.length - ls.length1) / 2);  // і визначаємо позицію -х */
+	/* 	while (*str != '\n') {  // виводимо текст до символу '\n' */
+	/* 		width = LcdDrawChar(x, y, font, lcdMode, *str); */
+	/* 		x = x + width + 1; */
+	/* 		str++; */
+	/* 	} */
+	/* 	#<{(| Визначаємо довжину лінії для розділу рядків |)}># */
+	/* 	#<{(| Вибираємо по більшій довжині тексту з двох рядків |)}># */
+	/* 	if (ls.length1 > ls.length2) */
+	/* 		length = ls.length1; */
+	/* 	else */
+	/* 		length = ls.length2; */
+	/* 	x = rec.x + ((rec.length - length) / 2); */
+	/* 	y += (font.chars[0].image->height + 1); */
+	/* 	LcdDrawLine(x, x + length, y, y, lcdMode); */
+	/* 	length = ls.length2;  // довжина тексту нижнього рядка при двох рядках тексту */
+	/* 	y += 2;  // позиція -у для нижнього рядка */
+	/* } */
+	/* x = rec.x + ((rec.length - length) / 2); */
+	/* while (*str) { */
+	/* 	width = LcdDrawChar(x, y, font, lcdMode, *str); */
+	/* 	x = x + width + 1; */
+	/* 	str++; */
+	/* } */
 }

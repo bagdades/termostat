@@ -56,12 +56,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t aShowTime[12] = {0};
-uint8_t aShowDate[14] = {0};
+uint8_t aShowTime[TIME_BUFFER_LENGTH] = {0};
+uint8_t aShowDate[DATE_BUFFER_LENGTH] = {0};
 RTC_TimeTypeDef sTime;
 RTC_DateTypeDef sDate;
 uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];
 uint8_t nSensors;
+uint8_t ticksBlink = 0;
 /* uint8_t keyPressed; */
 extern uint8_t resultMeasureOutside[3];
 extern uint8_t resultMeasureInside[3];
@@ -291,6 +292,9 @@ void LedBlink1(void)
 void LedBlink2(void)
 {
 	HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+	if (ticksBlink == 0) 
+		ticksBlink = 1;
+	else ticksBlink = 0;
 }
 /* USER CODE END 4 */
 

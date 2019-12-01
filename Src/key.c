@@ -6,9 +6,16 @@
  */
 
 #include "key.h"
+#include <stdio.h>
 /* #include "menu.h" */
 
 extern stateElement startState;
+extern stateElement setDay;
+extern uint8_t aShowTime[TIME_BUFFER_LENGTH];
+extern uint8_t aShowDate[DATE_BUFFER_LENGTH];
+extern RTC_TimeTypeDef sTime;
+extern RTC_DateTypeDef sDate;
+extern RTC_HandleTypeDef hrtc;
 uint8_t keyPressed;
 /**
  * @name KeyInit
@@ -64,7 +71,6 @@ void KeyHand(void) {
 		switch (keyPressed) {
 		case _UP:
 			keyPressed = 0;
-			/* pFunc = (FuncPtr)(&CurrState->HandUp); */
 			pFunc = CurrState->HandUp;
 			if (pFunc == (void*) 0)
 				break;
@@ -72,7 +78,6 @@ void KeyHand(void) {
 			break;
 		case _DOWN:
 			keyPressed = 0;
-			/* pFunc = (FuncPtr)(&CurrState->HandDown); */
 			pFunc = CurrState->HandDown;
 			if (pFunc == (void*) 0)
 				break;
@@ -80,8 +85,6 @@ void KeyHand(void) {
 			break;
 		case _LEFT:
 			keyPressed = 0;
-			/* HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin); */
-			/* pFunc = (FuncPtr)(&CurrState->HandLeft); */
 			pFunc = CurrState->HandLeft;
 			if (pFunc == (void*) 0)
 				break;
@@ -89,8 +92,6 @@ void KeyHand(void) {
 			break;
 		case _RIGHT:
 			keyPressed = 0;
-			/* HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin); */
-			/* pFunc = (FuncPtr)(&CurrState->HandRight); */
 			pFunc = CurrState->HandRight;
 			if (pFunc == (void*) 0)
 				break;
@@ -110,59 +111,157 @@ void KeyHand(void) {
 }
 
 void KeySetUpTimeDate(void) {
-	/* uint32_t counterValue; */
-	/* uint8_t idx = CurrState->Text[0] - '0'; */
-	/* uint8_t value = CurrState->Text[1] - '0'; */
-	/* if (CurrState == (stateElement*) &setDay) { */
-	/* 	if (timeBufferInt[MONTH] == 4 || timeBufferInt[MONTH] == 6 */
-	/* 			|| timeBufferInt[MONTH] == 9 || timeBufferInt[MONTH] == 11) */
-	/* 		value = 30; */
-	/* 	else if (timeBufferInt[MONTH] == 2) { */
-	/* 		if (CheckLeap(timeBufferInt[YEAR])) */
-	/* 			value = 29; */
-	/* 		else */
-	/* 			value = 28; */
-	/* 	} else */
-	/* 		value = 31; */
-	/* } */
-	/* if (timeBufferInt[idx] < value) */
-	/* 	timeBufferInt[idx]++; */
-	/* else if (timeBufferInt[idx] >= value) { */
-	/* 	timeBufferInt[idx] = 0; */
-	/* 	if (CurrState == (stateElement*) &setDay */
-	/* 			|| CurrState == (stateElement*) &setMonth) */
-	/* 		timeBufferInt[idx] = 1; */
-	/* } */
-	/* counterValue = (timeBufferInt[HOUR] * 3600) + (timeBufferInt[MIN] * 60) */
-	/* 		+ timeBufferInt[SEC]; */
-	/* RTC_SetCounter(counterValue); */
+	uint8_t idx = CurrState->Text[0] - '0';
+	uint8_t value = CurrState->Text[1] - '0';
+	mRTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+	mRTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+	if (CurrState == (stateElement*) &setDay) {
+		if (sDate.Month == 4 || sDate.Month == 6
+				|| sDate.Month == 9 || sDate.Month == 11)
+			value = 30;
+		else if (sDate.Month == 2) {
+			if (CheckLeap(sDate.Month))
+				value = 29;
+			else
+				value = 28;
+		} else
+			value = 31;
+	}
+	switch (idx) 
+	{
+		case 0:
+			if (sTime.Hours < value) 
+				sTime.Hours++;
+			else if(sTime.Hours >= value)
+				sTime.Hours = 0;
+			mRTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+			sprintf((char*)aShowTime, "%.2d:%.2d:%.2d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+			break;
+		case 1:
+			if (sTime.Minutes < value) 
+				sTime.Minutes++;
+			else if(sTime.Minutes >= value)
+				sTime.Minutes = 0;
+			mRTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+			sprintf((char*)aShowTime, "%.2d:%.2d:%.2d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+			break;
+		case 2:
+			if (sTime.Seconds < value) 
+				sTime.Seconds++;
+			else if(sTime.Seconds >= value)
+				sTime.Seconds = 0;
+			mRTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+			sprintf((char*)aShowTime, "%.2d:%.2d:%.2d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+			break;
+		case 3:
+			if(sDate.Date < value)
+				sDate.Date++;
+			else if(sDate.Date >= value)
+				sDate.Date = 1;
+			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			break;
+		case 4:
+			if(sDate.Month < value)
+				sDate.Month++;
+			else if(sDate.Month >= value)
+				sDate.Month = 1;
+			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			break;
+		case 5:
+			if(sDate.Year < 99)
+				sDate.Year++;
+			else if(sDate.Year >= 99)
+				sDate.Year = 1;
+			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			break;
+		default:
+			break;
+	}
 }
+
 void KeySetDownTimeDate(void) {
-	/* uint32_t counterValue; */
-	/* uint8_t idx = CurrState->Text[0] - '0'; */
-	/* uint8_t value = CurrState->Text[1] - '0'; */
-	/* if (CurrState == (stateElement*) &setDay) { */
-	/* 	if (timeBufferInt[MONTH] == 4 || timeBufferInt[MONTH] == 6 */
-	/* 			|| timeBufferInt[MONTH] == 9 || timeBufferInt[MONTH] == 11) */
-	/* 		value = 30; */
-	/* 	else if (timeBufferInt[MONTH] == 2) { */
-	/* 		if (CheckLeap(timeBufferInt[YEAR])) */
-	/* 			value = 29; */
-	/* 		else */
-	/* 			value = 28; */
-	/* 	} else */
-	/* 		value = 31; */
-	/* } */
-	/* timeBufferInt[idx]--; */
-	/* if (timeBufferInt[idx] < 1 */
-	/* 		&& (CurrState == (stateElement*) &setDay */
-	/* 				|| CurrState == (stateElement*) &setMonth)) */
-	/* 	timeBufferInt[idx] = value; */
-	/* if (timeBufferInt[idx] < 0) */
-	/* 	timeBufferInt[idx] = value; */
-	/* if (CurrState == (stateElement*) &setSec) */
-	/* 	timeBufferInt[idx] = 0; */
-	/* counterValue = (timeBufferInt[HOUR] * 3600) + (timeBufferInt[MIN] * 60) */
-	/* 		+ timeBufferInt[SEC]; */
-	/* RTC_SetCounter(counterValue); */
+	uint8_t idx = CurrState->Text[0] - '0';
+	uint8_t value = CurrState->Text[1] - '0';
+	mRTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+	mRTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+	if (CurrState == (stateElement*) &setDay) {
+		if (sDate.Month == 4 || sDate.Month == 6
+				|| sDate.Month == 9 || sDate.Month == 11)
+			value = 30;
+		else if (sDate.Month == 2) {
+			if (CheckLeap(sDate.Year))
+				value = 29;
+			else
+				value = 28;
+		} else
+			value = 31;
+	}
+	switch (idx) 
+	{
+		case 0:
+			sTime.Hours--;
+			if(sTime.Hours == 255)
+				sTime.Hours = value;
+			mRTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+			sprintf((char*)aShowTime, "%.2d:%.2d:%.2d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+			break;
+		case 1:
+			sTime.Minutes--;
+			if(sTime.Minutes == 255)
+				sTime.Minutes = value;
+			mRTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+			sprintf((char*)aShowTime, "%.2d:%.2d:%.2d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+			break;
+		case 2:
+			sTime.Seconds--;
+			if(sTime.Seconds == 255)
+				sTime.Seconds = value;
+			mRTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+			sprintf((char*)aShowTime, "%.2d:%.2d:%.2d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+			break;
+		case 3:
+			sDate.Date--;
+			if(sDate.Date < 1)
+				sDate.Date = value;
+			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			break;
+		case 4:
+			sDate.Month--;
+			if(sDate.Month < 1)
+				sDate.Month = value;
+			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			break;
+		case 5:
+			sDate.Year--;
+			if(sDate.Year < 1)
+				sDate.Year = 1;
+			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			break;
+		default:
+			break;
+	}
+}
+
+/**
+ * @brief  Checks whether the passed year is Leap or not.
+ * @param  None
+ * @retval : 1: leap year
+ *   0: not leap year
+ */
+uint8_t CheckLeap(uint8_t year) {
+	uint16_t yearFull = 2000 + year;
+	if ((yearFull % 400) == 0)
+		return LEAP;
+	else if ((yearFull % 100) == 0)
+		return NOT_LEAP;
+	else if ((yearFull % 4) == 0)
+		return LEAP;
+	else
+		return NOT_LEAP;
 }

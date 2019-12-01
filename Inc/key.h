@@ -12,6 +12,8 @@
 #include "gpio.h"
 #include "inttypes.h"
 #include "menu.h"
+#include "m_rtc_2001.h"
+#include "init.h"
 
 /*------------------KEY---------------------------------------*/
 /* #define KEY_UP    		0 */
@@ -22,6 +24,8 @@
 
 #define DELAY_SHORT 2
 #define DELAY_LONG  30
+#define LEAP 		1
+#define NOT_LEAP 	0
 
 enum keyPress{
 		_UP=1,
@@ -37,5 +41,6 @@ void KeyScan(void);
 void KeyHand(void);
 void KeySetUpTimeDate(void);
 void KeySetDownTimeDate(void);
+uint8_t CheckLeap(uint8_t year);
 
 #endif /* KEY_H_ */

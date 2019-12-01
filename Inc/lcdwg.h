@@ -73,6 +73,7 @@
 #define COMMA						0x80
 #define NO_COMMA					0
 #define MENU_ITEM_TEXT				0x40
+#define MENU_ITEM_SETTING			0x20
 
 typedef enum
 {
@@ -104,6 +105,11 @@ typedef struct{
 	uint8_t length;
 	uint8_t height;
 }rect_t;
+
+typedef struct{
+	uint8_t length1;
+	uint8_t length2;
+}lengStr_t;
 
 #define RECT_SET(rect,_x,_y,l,h) { (rect).x = (_x); (rect).y = (_y); (rect).length = (l); (rect).height = (h); }
 
@@ -137,5 +143,6 @@ void LcdMenuList(void);
 void LcdMenuSelect(void);
 void LcdDrawOneItem(void);
 void LcdSetClock(void);
+void LcdDrawStrTwoRow(rect_t rec, tFont font, char* str);
 
 #endif /* LCDWG_H_ */

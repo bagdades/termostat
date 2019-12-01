@@ -5738,7 +5738,9 @@ ChangeState	Inc/menu.h	/^void ChangeState	(stateElement* NewState);$/;"	p	signat
 ChangeState	Src/menu.c	/^void ChangeState(stateElement* NewState){$/;"	f	signature:(stateElement* NewState)
 Channel	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  HAL_TIM_ActiveChannel       Channel;       \/*!< Active channel                    *\/$/;"	m	struct:__TIM_HandleTypeDef	access:public
 ChannelIndex	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h	/^  uint32_t               ChannelIndex;                                                \/*!< DMA Channel Index                      *\/  $/;"	m	struct:__DMA_HandleTypeDef	access:public
-Child	Inc/menu.h	/^	void *Child;$/;"	m	struct:__anon290	access:public
+CheckLeap	Inc/key.h	/^uint8_t CheckLeap(uint8_t year);$/;"	p	signature:(uint8_t year)
+CheckLeap	Src/key.c	/^uint8_t CheckLeap(uint8_t year) {$/;"	f	signature:(uint8_t year)
+Child	Inc/menu.h	/^	void *Child;$/;"	m	struct:__anon291	access:public
 ClearInputFilter	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t ClearInputFilter;     \/*!< TIM Clear Input filter$/;"	m	struct:__anon11	access:public
 ClearInputPolarity	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t ClearInputPolarity;   \/*!< TIM Clear Input polarity$/;"	m	struct:__anon11	access:public
 ClearInputPrescaler	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t ClearInputPrescaler;  \/*!< TIM Clear Input prescaler$/;"	m	struct:__anon11	access:public
@@ -6257,6 +6259,7 @@ DAC_WAVE_TRIANGLE	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	234
 DADDR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint16_t DADDR;                \/*!< Device address register,                   Address offset: 0x4C *\/$/;"	m	struct:__anon75	access:public
 DATAAddress	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h	/^  uint32_t DATAAddress; \/*!< DATAAddress: Address of the option byte DATA to be programmed$/;"	m	struct:__anon4	access:public
 DATAData	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h	/^  uint8_t DATAData;     \/*!< DATAData: Data to be stored in the option byte DATA$/;"	m	struct:__anon4	access:public
+DATE_BUFFER_LENGTH	Inc/m_rtc_2001.h	24;"	d
 DAUTHCTRL	Drivers/CMSIS/Include/core_armv8mbl.h	/^  __IOM uint32_t DAUTHCTRL;              \/*!< Offset: 0x014 (R\/W)  Debug Authentication Control Register *\/$/;"	m	struct:__anon156	access:public
 DAUTHCTRL	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IOM uint32_t DAUTHCTRL;              \/*!< Offset: 0x014 (R\/W)  Debug Authentication Control Register *\/$/;"	m	struct:__anon264	access:public
 DAUTHCTRL	Drivers/CMSIS/Include/core_cm23.h	/^  __IOM uint32_t DAUTHCTRL;              \/*!< Offset: 0x014 (R\/W)  Debug Authentication Control Register *\/$/;"	m	struct:__anon115	access:public
@@ -6378,8 +6381,8 @@ DCRSR	Drivers/CMSIS/Include/core_cm7.h	/^  __OM  uint32_t DCRSR;                
 DCRSR	Drivers/CMSIS/Include/core_sc300.h	/^  __OM  uint32_t DCRSR;                  \/*!< Offset: 0x004 ( \/W)  Debug Core Register Selector Register *\/$/;"	m	struct:__anon97	access:public
 DEBUG	Makefile	/^DEBUG = 1$/;"	m
 DELAY_H_	Inc/delay.h	9;"	d
-DELAY_LONG	Inc/key.h	24;"	d
-DELAY_SHORT	Inc/key.h	23;"	d
+DELAY_LONG	Inc/key.h	26;"	d
+DELAY_SHORT	Inc/key.h	25;"	d
 DEMCR	Drivers/CMSIS/Include/core_armv8mbl.h	/^  __IOM uint32_t DEMCR;                  \/*!< Offset: 0x00C (R\/W)  Debug Exception and Monitor Control Register *\/$/;"	m	struct:__anon156	access:public
 DEMCR	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IOM uint32_t DEMCR;                  \/*!< Offset: 0x00C (R\/W)  Debug Exception and Monitor Control Register *\/$/;"	m	struct:__anon264	access:public
 DEMCR	Drivers/CMSIS/Include/core_cm23.h	/^  __IOM uint32_t DEMCR;                  \/*!< Offset: 0x00C (R\/W)  Debug Exception and Monitor Control Register *\/$/;"	m	struct:__anon115	access:public
@@ -10453,11 +10456,11 @@ HallSensor_MspDeInitCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.
 HallSensor_MspDeInitCallback	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c	/^  htim->HallSensor_MspDeInitCallback(htim);$/;"	p	file:
 HallSensor_MspInitCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  void (* HallSensor_MspInitCallback)(struct __TIM_HandleTypeDef *htim);        \/*!< TIM Hall Sensor Msp Init Callback                       *\/$/;"	m	struct:__TIM_HandleTypeDef	access:public
 HallSensor_MspInitCallback	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c	/^    htim->HallSensor_MspInitCallback(htim);$/;"	p	file:
-HandDown	Inc/menu.h	/^	FuncPtr HandDown;$/;"	m	struct:__anon290	access:public
-HandLcd	Inc/menu.h	/^	FuncPtr HandLcd;$/;"	m	struct:__anon290	access:public
-HandLeft	Inc/menu.h	/^	FuncPtr HandLeft;$/;"	m	struct:__anon290	access:public
-HandRight	Inc/menu.h	/^	FuncPtr HandRight;$/;"	m	struct:__anon290	access:public
-HandUp	Inc/menu.h	/^	FuncPtr HandUp;$/;"	m	struct:__anon290	access:public
+HandDown	Inc/menu.h	/^	FuncPtr HandDown;$/;"	m	struct:__anon291	access:public
+HandLcd	Inc/menu.h	/^	FuncPtr HandLcd;$/;"	m	struct:__anon291	access:public
+HandLeft	Inc/menu.h	/^	FuncPtr HandLeft;$/;"	m	struct:__anon291	access:public
+HandRight	Inc/menu.h	/^	FuncPtr HandRight;$/;"	m	struct:__anon291	access:public
+HandUp	Inc/menu.h	/^	FuncPtr HandUp;$/;"	m	struct:__anon291	access:public
 HardFault_Handler	Inc/stm32f1xx_it.h	/^void HardFault_Handler(void);$/;"	p	signature:(void)
 HardFault_Handler	Src/stm32f1xx_it.c	/^void HardFault_Handler(void)$/;"	f	signature:(void)
 HardFault_IRQn	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  HardFault_IRQn              = -13,    \/*!< 3 Cortex-M3 Hard Fault Interrupt                     *\/$/;"	e	enum:__anon50
@@ -11676,6 +11679,7 @@ LCD_Y_RES_REAL	Inc/lcdwg.h	39;"	d
 LCKR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t LCKR;$/;"	m	struct:__anon65	access:public
 LDFLAGS	Makefile	/^LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)\/$(TARGET).map,--cref -Wl,--gc-sections$/;"	m
 LDSCRIPT	Makefile	/^LDSCRIPT = STM32F103C8Tx_FLASH.ld$/;"	m
+LEAP	Inc/key.h	27;"	d
 LED1_GPIO_Port	Inc/main.h	62;"	d
 LED1_Pin	Inc/main.h	61;"	d
 LED2_GPIO_Port	Inc/main.h	64;"	d
@@ -11760,6 +11764,8 @@ LcdDrawPixel	Inc/lcdwg.h	/^uint8_t LcdDrawPixel	(uint8_t x,uint8_t y,lcdMode_t m
 LcdDrawPixel	Src/lcdwg.c	/^uint8_t LcdDrawPixel(uint8_t x, uint8_t y, lcdMode_t mode) {$/;"	f	signature:(uint8_t x, uint8_t y, lcdMode_t mode)
 LcdDrawRect	Inc/lcdwg.h	/^uint8_t LcdDrawRect		(rect_t rect,lcdMode_t mode);$/;"	p	signature:(rect_t rect,lcdMode_t mode)
 LcdDrawRect	Src/lcdwg.c	/^uint8_t LcdDrawRect(rect_t rect, lcdMode_t mode) {$/;"	f	signature:(rect_t rect, lcdMode_t mode)
+LcdDrawStrTwoRow	Inc/lcdwg.h	/^void LcdDrawStrTwoRow(rect_t rec, tFont font, char* str);$/;"	p	signature:(rect_t rec, tFont font, char* str)
+LcdDrawStrTwoRow	Src/lcdwg.c	/^void LcdDrawStrTwoRow(rect_t rec, tFont font, char* str) {$/;"	f	signature:(rect_t rec, tFont font, char* str)
 LcdDrawString	Inc/lcdwg.h	/^void LcdDrawString		(uint8_t x,uint8_t y,tFont font,lcdMode_t mode,const char* string);$/;"	p	signature:(uint8_t x,uint8_t y,tFont font,lcdMode_t mode,const char* string)
 LcdDrawString	Src/lcdwg.c	/^void LcdDrawString(uint8_t x, uint8_t y, tFont font, lcdMode_t mode,$/;"	f	signature:(uint8_t x, uint8_t y, tFont font, lcdMode_t mode, const char* string)
 LcdDrawText	Inc/lcdwg.h	/^uint8_t LcdDrawText		(rect_t rect,uint8_t lcdFlags,tFont font,lcdMode_t mode,const char* str);$/;"	p	signature:(rect_t rect,uint8_t lcdFlags,tFont font,lcdMode_t mode,const char* str)
@@ -11843,6 +11849,7 @@ MCO1_PIN	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	91;"	d	file:
 MCR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t MCR;$/;"	m	struct:__anon57	access:public
 MCU	Makefile	/^MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)$/;"	m
 MENU_H_	Inc/menu.h	9;"	d
+MENU_ITEM_SETTING	Inc/lcdwg.h	76;"	d
 MENU_ITEM_TEXT	Inc/lcdwg.h	75;"	d
 MENU_MODE_LIST	Inc/lcdwg.h	/^	MENU_MODE_LIST = 0,$/;"	e	enum:__anon287
 MENU_MODE_SELECT	Inc/lcdwg.h	/^	MENU_MODE_SELECT$/;"	e	enum:__anon287
@@ -12468,6 +12475,7 @@ NOR_ONGOING	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	838;"	d
 NOR_SUCCESS	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	837;"	d
 NOR_StatusTypedef	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	836;"	d
 NOR_TIMEOUT	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	840;"	d
+NOT_LEAP	Inc/key.h	28;"	d
 NO_COMMA	Inc/lcdwg.h	74;"	d
 NSACR	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IOM uint32_t NSACR;                  \/*!< Offset: 0x08C (R\/W)  Non-Secure Access Control Register *\/$/;"	m	struct:__anon252	access:public
 NSACR	Drivers/CMSIS/Include/core_cm33.h	/^  __IOM uint32_t NSACR;                  \/*!< Offset: 0x08C (R\/W)  Non-Secure Access Control Register *\/$/;"	m	struct:__anon125	access:public
@@ -12744,7 +12752,7 @@ NVIC_USER_IRQ_OFFSET	Drivers/CMSIS/Include/core_cm7.h	1844;"	d
 NVIC_USER_IRQ_OFFSET	Drivers/CMSIS/Include/core_sc000.h	727;"	d
 NVIC_USER_IRQ_OFFSET	Drivers/CMSIS/Include/core_sc300.h	1442;"	d
 NbPages	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h	/^  uint32_t NbPages;     \/*!< NbPages: Number of pagess to be erased.$/;"	m	struct:__anon3	access:public
-Next	Inc/menu.h	/^	void *Next;$/;"	m	struct:__anon290	access:public
+Next	Inc/menu.h	/^	void *Next;$/;"	m	struct:__anon291	access:public
 NonMaskableInt_IRQn	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  NonMaskableInt_IRQn         = -14,    \/*!< 2 Non Maskable Interrupt                             *\/$/;"	e	enum:__anon50
 NullState	Src/menu.c	/^stateElement NullState={(void*)0,(void*)0,(void*)0,(void*)0,(void*)0,(void*)0,(void*)0,(void*)0,(void*)0,(stateData_t*)0, {0x00}};$/;"	v
 Number	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h	/^  uint8_t                Number;                \/*!< Specifies the number of the region to protect. $/;"	m	struct:__anon43	access:public
@@ -13225,7 +13233,7 @@ PWR_TypeDef	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^} PWR_Type
 PWR_WAKEUP_PIN1	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h	118;"	d
 PageAddress	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h	/^  uint32_t PageAddress; \/*!< PageAdress: Initial FLASH page address to erase when mass erase is disabled$/;"	m	struct:__anon3	access:public
 Parent	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h	/^  void                  *Parent;                                                      \/*!< Parent object state                    *\/  $/;"	m	struct:__DMA_HandleTypeDef	access:public
-Parent	Inc/menu.h	/^	void *Parent;$/;"	m	struct:__anon290	access:public
+Parent	Inc/menu.h	/^	void *Parent;$/;"	m	struct:__anon291	access:public
 Parity	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  uint32_t Parity;                    \/*!< Specifies the parity mode.$/;"	m	struct:__anon25	access:public
 PendSV_Handler	Inc/stm32f1xx_it.h	/^void PendSV_Handler(void);$/;"	p	signature:(void)
 PendSV_Handler	Src/stm32f1xx_it.c	/^void PendSV_Handler(void)$/;"	f	signature:(void)
@@ -13256,7 +13264,7 @@ PreemptPriorityBits	Drivers/CMSIS/Include/core_cm4.h	/^  uint32_t PreemptPriorit
 PreemptPriorityBits	Drivers/CMSIS/Include/core_cm7.h	/^  uint32_t PreemptPriorityBits;$/;"	l
 PreemptPriorityBits	Drivers/CMSIS/Include/core_sc300.h	/^  uint32_t PreemptPriorityBits;$/;"	l
 Prescaler	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t Prescaler;         \/*!< Specifies the prescaler value used to divide the TIM clock.$/;"	m	struct:__anon5	access:public
-Previous	Inc/menu.h	/^	void *Previous;$/;"	m	struct:__anon290	access:public
+Previous	Inc/menu.h	/^	void *Previous;$/;"	m	struct:__anon291	access:public
 Priority	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h	/^  uint32_t Priority;                  \/*!< Specifies the software priority for the DMAy Channelx.$/;"	m	struct:__anon18	access:public
 PriorityGroup	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c	/^  NVIC_DecodePriority(NVIC_GetPriority(IRQn), PriorityGroup, pPreemptPriority, pSubPriority);$/;"	l
 PriorityGroupTmp	Drivers/CMSIS/Include/core_armv8mbl.h	/^  uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL);   \/* only values 0..7 are used          *\/$/;"	l
@@ -14091,7 +14099,7 @@ RDP_KEY_Pos	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	9701;"	d
 RDTR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t RDTR;$/;"	m	struct:__anon55	access:public
 READ_BIT	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h	182;"	d
 READ_REG	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h	188;"	d
-RECT_SET	Inc/lcdwg.h	108;"	d
+RECT_SET	Inc/lcdwg.h	114;"	d
 REGULAR_CHANNELS	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	68;"	d
 REGULAR_GROUP	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	58;"	d
 REGULAR_INJECTED_GROUP	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	60;"	d
@@ -17326,6 +17334,7 @@ TIM4_BASE	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	589;"	d
 TIM4_IRQn	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  TIM4_IRQn                   = 30,     \/*!< TIM4 global Interrupt                                *\/$/;"	e	enum:__anon50
 TIM9_IRQHandler	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	10205;"	d
 TIM9_IRQn	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	10186;"	d
+TIME_BUFFER_LENGTH	Inc/m_rtc_2001.h	23;"	d
 TIME_COUNTER	Inc/m_rtc_2001.h	13;"	d
 TIMEx_DMACommutationCplt	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h	/^void TIMEx_DMACommutationCplt(DMA_HandleTypeDef *hdma);$/;"	p	signature:(DMA_HandleTypeDef *hdma)
 TIMEx_DMACommutationCplt	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c	/^void TIMEx_DMACommutationCplt(DMA_HandleTypeDef *hdma)$/;"	f	signature:(DMA_HandleTypeDef *hdma)
@@ -18832,7 +18841,7 @@ Tamper1EventCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  vo
 Tamper1EventCallback	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc_ex.c	/^      hrtc->Tamper1EventCallback(hrtc);$/;"	p	file:
 TempOut	Inc/ds18b20.h	/^void TempOut(uint8_t* resultMeasure);$/;"	p	signature:(uint8_t* resultMeasure)
 TempOut	Src/ds18b20.c	/^void TempOut(uint8_t* resultMeasure) {$/;"	f	signature:(uint8_t* resultMeasure)
-Text	Inc/menu.h	/^	char Text[];$/;"	m	struct:__anon290	access:public
+Text	Inc/menu.h	/^	char Text[];$/;"	m	struct:__anon291	access:public
 Trigger	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h	/^  uint32_t Trigger;   \/*!< The Exti Trigger to be configured. This parameter$/;"	m	struct:__anon40	access:public
 Trigger	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h	/^  uint32_t Trigger;                     \/*!< Specifies the Tamper Trigger.$/;"	m	struct:__anon37	access:public
 TriggerCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  void (* TriggerCallback)(struct __TIM_HandleTypeDef *htim);                   \/*!< TIM Trigger Callback                                    *\/$/;"	m	struct:__TIM_HandleTypeDef	access:public
@@ -25196,33 +25205,35 @@ __anon288::height	Inc/lcdwg.h	/^	uint8_t height;$/;"	m	struct:__anon288	access:p
 __anon288::length	Inc/lcdwg.h	/^	uint8_t length;$/;"	m	struct:__anon288	access:public
 __anon288::x	Inc/lcdwg.h	/^	uint8_t x;$/;"	m	struct:__anon288	access:public
 __anon288::y	Inc/lcdwg.h	/^	uint8_t y;$/;"	m	struct:__anon288	access:public
-__anon289::data	Inc/menu.h	/^	void* data;$/;"	m	struct:__anon289	access:public
-__anon289::flag	Inc/menu.h	/^	uint8_t flag;$/;"	m	struct:__anon289	access:public
-__anon289::font	Inc/menu.h	/^	const tFont** font;$/;"	m	struct:__anon289	access:public
-__anon289::icon	Inc/menu.h	/^	tImage* icon;$/;"	m	struct:__anon289	access:public
-__anon289::text	Inc/menu.h	/^	char* text;$/;"	m	struct:__anon289	access:public
+__anon289::length1	Inc/lcdwg.h	/^	uint8_t length1;$/;"	m	struct:__anon289	access:public
+__anon289::length2	Inc/lcdwg.h	/^	uint8_t length2;$/;"	m	struct:__anon289	access:public
 __anon28::Mode	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h	/^  uint32_t Mode;      \/*!< Specifies the operating mode for the selected pins.$/;"	m	struct:__anon28	access:public
 __anon28::Pin	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h	/^  uint32_t Pin;       \/*!< Specifies the GPIO pins to be configured.$/;"	m	struct:__anon28	access:public
 __anon28::Pull	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h	/^  uint32_t Pull;      \/*!< Specifies the Pull-up or Pull-Down activation for the selected pins.$/;"	m	struct:__anon28	access:public
 __anon28::Speed	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h	/^  uint32_t Speed;     \/*!< Specifies the speed for the selected pins.$/;"	m	struct:__anon28	access:public
-__anon290::Child	Inc/menu.h	/^	void *Child;$/;"	m	struct:__anon290	access:public
-__anon290::HandDown	Inc/menu.h	/^	FuncPtr HandDown;$/;"	m	struct:__anon290	access:public
-__anon290::HandLcd	Inc/menu.h	/^	FuncPtr HandLcd;$/;"	m	struct:__anon290	access:public
-__anon290::HandLeft	Inc/menu.h	/^	FuncPtr HandLeft;$/;"	m	struct:__anon290	access:public
-__anon290::HandRight	Inc/menu.h	/^	FuncPtr HandRight;$/;"	m	struct:__anon290	access:public
-__anon290::HandUp	Inc/menu.h	/^	FuncPtr HandUp;$/;"	m	struct:__anon290	access:public
-__anon290::Next	Inc/menu.h	/^	void *Next;$/;"	m	struct:__anon290	access:public
-__anon290::Parent	Inc/menu.h	/^	void *Parent;$/;"	m	struct:__anon290	access:public
-__anon290::Previous	Inc/menu.h	/^	void *Previous;$/;"	m	struct:__anon290	access:public
-__anon290::Text	Inc/menu.h	/^	char Text[];$/;"	m	struct:__anon290	access:public
-__anon290::data	Inc/menu.h	/^	stateData_t* data;$/;"	m	struct:__anon290	access:public
-__anon291::data	Inc/font.h	/^	 const uint8_t *data;$/;"	m	struct:__anon291	access:public
-__anon291::height	Inc/font.h	/^	 uint8_t height;$/;"	m	struct:__anon291	access:public
-__anon291::width	Inc/font.h	/^	 uint8_t width;$/;"	m	struct:__anon291	access:public
-__anon292::code	Inc/font.h	/^	  long int code;$/;"	m	struct:__anon292	access:public
-__anon292::image	Inc/font.h	/^	  const tImage *image;$/;"	m	struct:__anon292	access:public
-__anon293::chars	Inc/font.h	/^	  const tChar *chars;$/;"	m	struct:__anon293	access:public
-__anon293::length	Inc/font.h	/^	  int length;$/;"	m	struct:__anon293	access:public
+__anon290::data	Inc/menu.h	/^	void* data;$/;"	m	struct:__anon290	access:public
+__anon290::flag	Inc/menu.h	/^	uint8_t flag;$/;"	m	struct:__anon290	access:public
+__anon290::font	Inc/menu.h	/^	const tFont** font;$/;"	m	struct:__anon290	access:public
+__anon290::icon	Inc/menu.h	/^	tImage* icon;$/;"	m	struct:__anon290	access:public
+__anon290::text	Inc/menu.h	/^	char* text;$/;"	m	struct:__anon290	access:public
+__anon291::Child	Inc/menu.h	/^	void *Child;$/;"	m	struct:__anon291	access:public
+__anon291::HandDown	Inc/menu.h	/^	FuncPtr HandDown;$/;"	m	struct:__anon291	access:public
+__anon291::HandLcd	Inc/menu.h	/^	FuncPtr HandLcd;$/;"	m	struct:__anon291	access:public
+__anon291::HandLeft	Inc/menu.h	/^	FuncPtr HandLeft;$/;"	m	struct:__anon291	access:public
+__anon291::HandRight	Inc/menu.h	/^	FuncPtr HandRight;$/;"	m	struct:__anon291	access:public
+__anon291::HandUp	Inc/menu.h	/^	FuncPtr HandUp;$/;"	m	struct:__anon291	access:public
+__anon291::Next	Inc/menu.h	/^	void *Next;$/;"	m	struct:__anon291	access:public
+__anon291::Parent	Inc/menu.h	/^	void *Parent;$/;"	m	struct:__anon291	access:public
+__anon291::Previous	Inc/menu.h	/^	void *Previous;$/;"	m	struct:__anon291	access:public
+__anon291::Text	Inc/menu.h	/^	char Text[];$/;"	m	struct:__anon291	access:public
+__anon291::data	Inc/menu.h	/^	stateData_t* data;$/;"	m	struct:__anon291	access:public
+__anon292::data	Inc/font.h	/^	 const uint8_t *data;$/;"	m	struct:__anon292	access:public
+__anon292::height	Inc/font.h	/^	 uint8_t height;$/;"	m	struct:__anon292	access:public
+__anon292::width	Inc/font.h	/^	 uint8_t width;$/;"	m	struct:__anon292	access:public
+__anon293::code	Inc/font.h	/^	  long int code;$/;"	m	struct:__anon293	access:public
+__anon293::image	Inc/font.h	/^	  const tImage *image;$/;"	m	struct:__anon293	access:public
+__anon294::chars	Inc/font.h	/^	  const tChar *chars;$/;"	m	struct:__anon294	access:public
+__anon294::length	Inc/font.h	/^	  int length;$/;"	m	struct:__anon294	access:public
 __anon2::Commutation_Delay	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h	/^  uint32_t Commutation_Delay;   \/*!< Specifies the pulse value to be loaded into the Capture Compare Register.$/;"	m	struct:__anon2	access:public
 __anon2::IC1Filter	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h	/^  uint32_t IC1Filter;           \/*!< Specifies the input capture filter.$/;"	m	struct:__anon2	access:public
 __anon2::IC1Polarity	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h	/^  uint32_t IC1Polarity;         \/*!< Specifies the active edge of the input signal.$/;"	m	struct:__anon2	access:public
@@ -25957,8 +25968,8 @@ aPLLMULFactorTable	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  c
 aPredivFactorTable	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	/^  const uint8_t aPredivFactorTable[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};$/;"	l
 aPredivFactorTable	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  const uint8_t aPredivFactorTable[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};$/;"	l
 aPredivFactorTable	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  const uint8_t aPredivFactorTable[2] = {1, 2};$/;"	l
-aShowDate	Src/main.c	/^uint8_t aShowDate[14] = {0};$/;"	v
-aShowTime	Src/main.c	/^uint8_t aShowTime[12] = {0};$/;"	v
+aShowDate	Src/main.c	/^uint8_t aShowDate[DATE_BUFFER_LENGTH] = {0};$/;"	v
+aShowTime	Src/main.c	/^uint8_t aShowTime[TIME_BUFFER_LENGTH] = {0};$/;"	v
 ace	Src/m_rtc_2001.c	/^	uint32_t ace, counter_time, time;$/;"	l
 address	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c	/^  uint32_t address = 0U;$/;"	l
 addresstmp	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint32_t addresstmp = 0U;$/;"	l
@@ -26043,10 +26054,12 @@ ch	Drivers/CMSIS/Include/core_cm33.h	/^  int32_t ch = -1;                       
 ch	Drivers/CMSIS/Include/core_cm4.h	/^  int32_t ch = -1;                           \/* no character available *\/$/;"	l
 ch	Drivers/CMSIS/Include/core_cm7.h	/^  int32_t ch = -1;                           \/* no character available *\/$/;"	l
 ch	Drivers/CMSIS/Include/core_sc300.h	/^  int32_t ch = -1;                           \/* no character available *\/$/;"	l
-chars	Inc/font.h	/^	  const tChar *chars;$/;"	m	struct:__anon293	access:public
+ch	Src/lcdwg.c	/^	char* ch = 0;$/;"	l
+chars	Inc/font.h	/^	  const tChar *chars;$/;"	m	struct:__anon294	access:public
+chr	Src/lcdwg.c	/^	uint8_t chr = ' ';$/;"	l
 chr	Src/lcdwg.c	/^	uint8_t chr;$/;"	l
 clk_cycle_start	Inc/dwt_stm32_delay.h	/^  uint32_t clk_cycle_start = DWT->CYCCNT;$/;"	l
-code	Inc/font.h	/^	  long int code;$/;"	m	struct:__anon292	access:public
+code	Inc/font.h	/^	  long int code;$/;"	m	struct:__anon293	access:public
 column	Src/lcdwg.c	/^	uint8_t row, column;$/;"	l
 config	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t config = 0x00u;$/;"	l
 configregister	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  __IO uint32_t *configregister; \/* Store the address of CRL or CRH register based on pin number *\/$/;"	l
@@ -26080,9 +26093,9 @@ crc8	Src/crc8.c	/^uint8_t	crc8 ( uint8_t *data_in, uint16_t number_of_bytes_to_r
 cs	Src/lcdwg.c	/^	lcdCS_t cs = LCD_CS1;$/;"	l
 currItem	Src/lcdwg.c	/^	uint8_t currItem = 1;$/;"	l
 d	Src/m_rtc_2001.c	/^	uint8_t b, d, m;$/;"	l
-data	Inc/font.h	/^	 const uint8_t *data;$/;"	m	struct:__anon291	access:public
-data	Inc/menu.h	/^	stateData_t* data;$/;"	m	struct:__anon290	access:public
-data	Inc/menu.h	/^	void* data;$/;"	m	struct:__anon289	access:public
+data	Inc/font.h	/^	 const uint8_t *data;$/;"	m	struct:__anon292	access:public
+data	Inc/menu.h	/^	stateData_t* data;$/;"	m	struct:__anon291	access:public
+data	Inc/menu.h	/^	void* data;$/;"	m	struct:__anon290	access:public
 data	Src/crc8.c	/^   uint8_t  data;$/;"	l
 dateData	Src/menu.c	/^stateData_t dateData;$/;"	v
 day	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t year = 0U, month = 0U, day = 0U;$/;"	l
@@ -26094,10 +26107,11 @@ dmarequest	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t dm
 err	Src/onewire.c	/^	uint8_t err;$/;"	l
 errorflags	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t errorflags = 0x00U;$/;"	l
 feedback_bit	Src/crc8.c	/^   uint8_t  feedback_bit;$/;"	l
-flag	Inc/menu.h	/^	uint8_t flag;$/;"	m	struct:__anon289	access:public
+flag	Inc/menu.h	/^	uint8_t flag;$/;"	m	struct:__anon290	access:public
 flag_it	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c	/^  uint32_t flag_it = hdma->DmaBaseAddress->ISR;$/;"	l
 flags	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint32_t flags = 0U;$/;"	l
-font	Inc/menu.h	/^	const tFont** font;$/;"	m	struct:__anon289	access:public
+font	Inc/menu.h	/^	const tFont** font;$/;"	m	struct:__anon290	access:public
+fontDigital	Src/lcdwg.c	/^const tFont* fontDigital;$/;"	v
 fontMenu	Src/lcdwg.c	/^const tFont* fontMenu;$/;"	v
 frequency	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  uint32_t temp_reg = 0U, frequency = 0U;$/;"	l
 gSensorIDs	Src/main.c	/^uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];$/;"	v
@@ -26110,11 +26124,12 @@ hard_fault_handler_c	Src/stm32f1xx_it.c	/^void hard_fault_handler_c(uint32_t * h
 hdma	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  DMA_HandleTypeDef           *hdma[7];      \/*!< DMA Handlers array$/;"	m	struct:__TIM_HandleTypeDef	access:public
 hdmarx	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  DMA_HandleTypeDef             *hdmarx;          \/*!< UART Rx DMA Handle parameters      *\/$/;"	m	struct:__UART_HandleTypeDef	access:public
 hdmatx	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  DMA_HandleTypeDef             *hdmatx;          \/*!< UART Tx DMA Handle parameters      *\/$/;"	m	struct:__UART_HandleTypeDef	access:public
-height	Inc/font.h	/^	 uint8_t height;$/;"	m	struct:__anon291	access:public
+height	Inc/font.h	/^	 uint8_t height;$/;"	m	struct:__anon292	access:public
 height	Inc/lcdwg.h	/^	uint8_t height;$/;"	m	struct:__anon288	access:public
 height	Src/lcdwg.c	/^	uint8_t height = font.chars[0].image->height;$/;"	l
 height	Src/lcdwg.c	/^	uint8_t height = font.chars[chr].image->height;$/;"	l
 height	Src/lcdwg.c	/^	uint8_t height = image.height;$/;"	l
+height	Src/lcdwg.c	/^	uint8_t x, y, width, height;$/;"	l
 hiWaterMark	Src/lcdwg.c	/^static uint16_t hiWaterMark;$/;"	v	file:
 high1	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint16_t high1 = 0U, high2 = 0U, low = 0U;$/;"	l
 high1	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint16_t high1 = 0U, low = 0U;$/;"	l
@@ -26141,16 +26156,18 @@ i	Src/lcdwg.c	/^	uint8_t i, j, n, m;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t i, j;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t i, n = 0;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t i;$/;"	l
+i	Src/lcdwg.c	/^	uint8_t rowHeight, i;$/;"	l
 i	Src/main.c	/^	uint8_t i;$/;"	l
 i	Src/onewire.c	/^	uint8_t i = 8, j;$/;"	l
 i	Src/onewire.c	/^	uint8_t i, j, next_diff;$/;"	l
 i	Src/onewire.c	/^	uint8_t i;$/;"	l
 i	Src/scheduler.c	/^	uint8_t i; $/;"	l
 i	Src/scheduler.c	/^	uint8_t i;$/;"	l
-icon	Inc/menu.h	/^	tImage* icon;$/;"	m	struct:__anon289	access:public
+icon	Inc/menu.h	/^	tImage* icon;$/;"	m	struct:__anon290	access:public
 id	Src/main.c	/^	uint8_t id[OW_ROMCODE_SIZE];$/;"	l
+idx	Src/key.c	/^	uint8_t idx = CurrState->Text[0] - '0';$/;"	l
 ii	Src/scheduler.c	/^	uint8_t ii;$/;"	l
-image	Inc/font.h	/^	  const tImage *image;$/;"	m	struct:__anon292	access:public
+image	Inc/font.h	/^	  const tImage *image;$/;"	m	struct:__anon293	access:public
 image_data_Arial25b_0x20	Inc/Arial25b.h	/^static const uint8_t image_data_Arial25b_0x20[57] = {$/;"	v
 image_data_Arial25b_0x21	Inc/Arial25b.h	/^static const uint8_t image_data_Arial25b_0x21[16] = {$/;"	v
 image_data_Arial25b_0x22	Inc/Arial25b.h	/^static const uint8_t image_data_Arial25b_0x22[41] = {$/;"	v
@@ -26550,6 +26567,7 @@ index	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint8_t index =
 iocurrent	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t iocurrent;$/;"	l
 ioposition	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t ioposition;$/;"	l
 isrflags	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t isrflags   = READ_REG(huart->Instance->SR);$/;"	l
+itemFont	Src/lcdwg.c	/^	const tFont* itemFont;$/;"	l
 j	Src/lcdwg.c	/^	uint8_t _x, _y, i, j, bit;$/;"	l
 j	Src/lcdwg.c	/^	uint8_t i, j, n, m, bit;$/;"	l
 j	Src/lcdwg.c	/^	uint8_t i, j, n, m;$/;"	l
@@ -26566,9 +26584,12 @@ lcdCacheIdx	Src/lcdwg.c	/^static uint16_t lcdCacheIdx;$/;"	v	file:
 lcdDI_t	Inc/lcdwg.h	/^} lcdDI_t;$/;"	t	typeref:enum:__anon284
 lcdMode	Src/lcdwg.c	/^uint8_t lcdMode;$/;"	v
 lcdMode_t	Inc/lcdwg.h	/^}lcdMode_t;$/;"	t	typeref:enum:__anon285
-length	Inc/font.h	/^	  int length;$/;"	m	struct:__anon293	access:public
+lengStr_t	Inc/lcdwg.h	/^}lengStr_t;$/;"	t	typeref:struct:__anon289
+length	Inc/font.h	/^	  int length;$/;"	m	struct:__anon294	access:public
 length	Inc/lcdwg.h	/^	uint8_t length;$/;"	m	struct:__anon288	access:public
 length	Src/lcdwg.c	/^	uint8_t length = 0;$/;"	l
+length1	Inc/lcdwg.h	/^	uint8_t length1;$/;"	m	struct:__anon289	access:public
+length2	Inc/lcdwg.h	/^	uint8_t length2;$/;"	m	struct:__anon289	access:public
 linepos	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c	/^  uint32_t linepos;$/;"	l
 linesize	Drivers/CMSIS/Include/core_cm7.h	/^     int32_t linesize = 32;                \/* in Cortex-M7 size of cache line is fixed to 8 words (32 bytes) *\/$/;"	l
 llr	Drivers/CMSIS/Include/cmsis_armclang.h	/^  } llr;$/;"	l
@@ -26698,6 +26719,8 @@ pSubPriority	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c	/^  NVIC_De
 pTIM_CallbackTypeDef	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  \/*!< pointer to the TIM callback function *\/$/;"	t
 pTxBuffPtr	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  uint8_t                       *pTxBuffPtr;      \/*!< Pointer to UART Tx transfer Buffer *\/$/;"	m	struct:__UART_HandleTypeDef	access:public
 pUART_CallbackTypeDef	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^typedef  void (*pUART_CallbackTypeDef)(UART_HandleTypeDef *huart);  \/*!< pointer to an UART callback function *\/$/;"	t
+parElem	Src/lcdwg.c	/^	stateElement* parElem = 0;$/;"	l
+parElem1	Src/lcdwg.c	/^	stateElement* parElem1 = 0;$/;"	l
 parElement	Src/lcdwg.c	/^	stateElement* parElement;$/;"	l
 pc	Src/stm32f1xx_it.c	/^enum {r0, r1, r2 ,r3, r12, lr, pc, psr};$/;"	e	enum:__anon1	file:
 pclk	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t pclk;$/;"	l
@@ -26776,6 +26799,7 @@ rnrOffset	Drivers/CMSIS/Include/mpu_armv8.h	/^    uint32_t rnrOffset = rnr % MPU
 row	Src/lcdwg.c	/^	uint8_t row, column;$/;"	l
 rowElement	Src/lcdwg.c	/^	stateElement* rowElement;$/;"	l
 rowEnd	Src/lcdwg.c	/^	uint8_t rowEnd;$/;"	l
+rowHeight	Src/lcdwg.c	/^	uint8_t rowHeight, i;$/;"	l
 rowHeight	Src/lcdwg.c	/^	uint8_t rowHeight;  \/\/in pixel$/;"	l
 rowWordSize	Drivers/CMSIS/Include/mpu_armv7.h	/^  const uint32_t rowWordSize = sizeof(ARM_MPU_Region_t)\/4U;$/;"	l
 rowWordSize	Drivers/CMSIS/Include/mpu_armv8.h	/^  const uint32_t rowWordSize = sizeof(ARM_MPU_Region_t)\/4U;$/;"	l
@@ -26830,8 +26854,8 @@ stacked_r1	Src/stm32f1xx_it.c	/^	unsigned int stacked_r1;$/;"	l
 stacked_r12	Src/stm32f1xx_it.c	/^	unsigned int stacked_r12;$/;"	l
 stacked_r2	Src/stm32f1xx_it.c	/^	unsigned int stacked_r2;$/;"	l
 stacked_r3	Src/stm32f1xx_it.c	/^	unsigned int stacked_r3;$/;"	l
-stateData_t	Inc/menu.h	/^} stateData_t;$/;"	t	typeref:struct:__anon289
-stateElement	Inc/menu.h	/^}stateElement ;$/;"	t	typeref:struct:__anon290
+stateData_t	Inc/menu.h	/^} stateData_t;$/;"	t	typeref:struct:__anon290
+stateElement	Inc/menu.h	/^}stateElement ;$/;"	t	typeref:struct:__anon291
 status	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c	/^  HAL_StatusTypeDef status  = HAL_OK;$/;"	l
 status	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c	/^  HAL_StatusTypeDef status = HAL_OK;$/;"	l
 status	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c	/^  HAL_StatusTypeDef status = HAL_OK;$/;"	l
@@ -26849,9 +26873,9 @@ stime	Src/m_rtc_2001.c	/^	RTC_TimeTypeDef stime = {0U};$/;"	l
 subzero	Src/ds18b20.c	/^	uint8_t subzero = res_meas[0];$/;"	l
 subzero	Src/ds18b20.c	/^	uint8_t subzero, cel, cel_frac_bits;$/;"	l
 sysclockfreq	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	/^  uint32_t sysclockfreq = 0U;$/;"	l
-tChar	Inc/font.h	/^  } tChar;$/;"	t	typeref:struct:__anon292
-tFont	Inc/font.h	/^  } tFont;$/;"	t	typeref:struct:__anon293
-tImage	Inc/font.h	/^ } tImage;$/;"	t	typeref:struct:__anon291
+tChar	Inc/font.h	/^  } tChar;$/;"	t	typeref:struct:__anon293
+tFont	Inc/font.h	/^  } tFont;$/;"	t	typeref:struct:__anon294
+tImage	Inc/font.h	/^ } tImage;$/;"	t	typeref:struct:__anon292
 task	Inc/scheduler.h	/^}task;$/;"	t	typeref:struct:_task
 taskArray	Src/scheduler.c	/^static volatile task taskArray[MAXTASKS];$/;"	v	file:
 temp	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c	/^  uint32_t temp;$/;"	l
@@ -26864,7 +26888,8 @@ tempLcd	Src/ds18b20.c	/^uint8_t tempLcd[] = { ' ', '0', '0', ',', '0', 0 };$/;"	
 temp_reg	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  uint32_t temp_reg = 0U, frequency = 0U;$/;"	l
 temp_reg	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  uint32_t tickstart = 0U, temp_reg = 0U;$/;"	l
 test_Image	Inc/font.h	/^  static const tImage test_Image = { image_data_test_Image, 20, 10};$/;"	v
-text	Inc/menu.h	/^	char* text;$/;"	m	struct:__anon289	access:public
+text	Inc/menu.h	/^	char* text;$/;"	m	struct:__anon290	access:public
+ticksBlink	Src/main.c	/^uint8_t ticksBlink = 0;$/;"	v
 tickstart	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c	/^  uint32_t tickstart = HAL_GetTick();$/;"	l
 tickstart	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c	/^  uint32_t tickstart = 0U;$/;"	l
 tickstart	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint32_t tickstart = HAL_GetTick();$/;"	l
@@ -26950,8 +26975,9 @@ v	Drivers/CMSIS/Include/cmsis_gcc.h	/^  __PACKED_STRUCT T_UINT32_WRITE { uint32_
 v	Drivers/CMSIS/Include/cmsis_gcc.h	/^  struct __attribute__((packed)) T_UINT32 { uint32_t v; };$/;"	m	struct:T_UINT32	access:public
 v	Drivers/CMSIS/Include/cmsis_iccarm.h	/^__packed struct  __iar_u32 { uint32_t v; };$/;"	m	struct:__iar_u32	access:public
 value	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c	/^  uint32_t value = 0;$/;"	l
-varClrBitBB	Inc/lcdwg.h	115;"	d
-varSetBitBB	Inc/lcdwg.h	117;"	d
+value	Src/key.c	/^	uint8_t value = CurrState->Text[1] - '0';$/;"	l
+varClrBitBB	Inc/lcdwg.h	121;"	d
+varSetBitBB	Inc/lcdwg.h	123;"	d
 vectors	Drivers/CMSIS/Include/core_armv8mbl.h	/^  uint32_t *vectors = (uint32_t *)SCB->VTOR;$/;"	l
 vectors	Drivers/CMSIS/Include/core_armv8mml.h	/^  uint32_t *vectors = (uint32_t *)SCB->VTOR;$/;"	l
 vectors	Drivers/CMSIS/Include/core_cm0.h	/^  uint32_t *vectors = (uint32_t *)0x0U;$/;"	l
@@ -27021,11 +27047,13 @@ wait	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c	/^  uint32_t wait = Delay;
 ways	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t ways;$/;"	l
 weekday	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t year = 0U, weekday = 0U;$/;"	l
 weekday	Src/m_rtc_2001.c	/^  uint32_t year = 0U, weekday = 0U;$/;"	l
-width	Inc/font.h	/^	 uint8_t width;$/;"	m	struct:__anon291	access:public
+width	Inc/font.h	/^	 uint8_t width;$/;"	m	struct:__anon292	access:public
 width	Src/lcdwg.c	/^	uint8_t width = 0;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t width = font.chars[chr].image->width;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t width = image.width;$/;"	l
+width	Src/lcdwg.c	/^	uint8_t x, y, width, height;$/;"	l
 x	Inc/lcdwg.h	/^	uint8_t x;$/;"	m	struct:__anon288	access:public
+x	Src/lcdwg.c	/^	uint8_t x, y, width, height;$/;"	l
 xPSR_C_Msk	Drivers/CMSIS/Include/core_armv8mbl.h	305;"	d
 xPSR_C_Msk	Drivers/CMSIS/Include/core_armv8mml.h	398;"	d
 xPSR_C_Msk	Drivers/CMSIS/Include/core_cm0.h	271;"	d
@@ -27223,7 +27251,9 @@ xPSR_Z_Pos	Drivers/CMSIS/Include/core_cm7.h	355;"	d
 xPSR_Z_Pos	Drivers/CMSIS/Include/core_sc000.h	273;"	d
 xPSR_Z_Pos	Drivers/CMSIS/Include/core_sc300.h	281;"	d
 y	Inc/lcdwg.h	/^	uint8_t y;$/;"	m	struct:__anon288	access:public
+y	Src/lcdwg.c	/^	uint8_t x, y, width, height;$/;"	l
 y	Src/m_rtc_2001.c	/^	uint16_t y = hrtc->DateToUpdate.Year + 2000 + 4800 - a;$/;"	l
 year	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t year = 0U, month = 0U, day = 0U;$/;"	l
 year	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t year = 0U, weekday = 0U;$/;"	l
 year	Src/m_rtc_2001.c	/^  uint32_t year = 0U, weekday = 0U;$/;"	l
+yearFull	Src/key.c	/^	uint16_t yearFull = 2000 + year;$/;"	l
