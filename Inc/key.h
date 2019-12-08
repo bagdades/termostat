@@ -41,6 +41,6 @@ void KeyScan(void);
 void KeyHand(void);
 void KeySetUpTimeDate(void);
 void KeySetDownTimeDate(void);
-uint8_t CheckLeap(uint8_t year);
+uint8_t CheckLeap(uint8_t);
 
 #endif /* KEY_H_ */

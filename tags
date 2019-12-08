@@ -5738,7 +5738,7 @@ ChangeState	Inc/menu.h	/^void ChangeState	(stateElement* NewState);$/;"	p	signat
 ChangeState	Src/menu.c	/^void ChangeState(stateElement* NewState){$/;"	f	signature:(stateElement* NewState)
 Channel	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  HAL_TIM_ActiveChannel       Channel;       \/*!< Active channel                    *\/$/;"	m	struct:__TIM_HandleTypeDef	access:public
 ChannelIndex	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h	/^  uint32_t               ChannelIndex;                                                \/*!< DMA Channel Index                      *\/  $/;"	m	struct:__DMA_HandleTypeDef	access:public
-CheckLeap	Inc/key.h	/^uint8_t CheckLeap(uint8_t year);$/;"	p	signature:(uint8_t year)
+CheckLeap	Inc/key.h	/^uint8_t CheckLeap(uint8_t);$/;"	p	signature:(uint8_t)
 CheckLeap	Src/key.c	/^uint8_t CheckLeap(uint8_t year) {$/;"	f	signature:(uint8_t year)
 Child	Inc/menu.h	/^	void *Child;$/;"	m	struct:__anon291	access:public
 ClearInputFilter	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t ClearInputFilter;     \/*!< TIM Clear Input filter$/;"	m	struct:__anon11	access:public
@@ -8656,21 +8656,21 @@ FillZerobss	startup_stm32f103xb.s	/^FillZerobss:$/;"	l
 FlagStatus	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h	/^} FlagStatus, ITStatus;$/;"	t	typeref:enum:__anon77
 Font	Inc/dig.h	/^static const tFont Font = { 27, Font_array };$/;"	v
 Font_0x20	Inc/dig.h	/^static const tImage Font_0x20 = { image_data_Font_0x20, 16, 19};$/;"	v
-Font_0x21	Inc/dig.h	/^static const tImage Font_0x21 = { image_data_Font_0x21, 8, 32};$/;"	v
-Font_0x22	Inc/dig.h	/^static const tImage Font_0x22 = { image_data_Font_0x22, 11, 32};$/;"	v
-Font_0x23	Inc/dig.h	/^static const tImage Font_0x23 = { image_data_Font_0x23, 15, 32};$/;"	v
-Font_0x24	Inc/dig.h	/^static const tImage Font_0x24 = { image_data_Font_0x24, 16, 32};$/;"	v
-Font_0x25	Inc/dig.h	/^static const tImage Font_0x25 = { image_data_Font_0x25, 22, 32};$/;"	v
-Font_0x26	Inc/dig.h	/^static const tImage Font_0x26 = { image_data_Font_0x26, 17, 32};$/;"	v
-Font_0x27	Inc/dig.h	/^static const tImage Font_0x27 = { image_data_Font_0x27, 5, 32};$/;"	v
-Font_0x28	Inc/dig.h	/^static const tImage Font_0x28 = { image_data_Font_0x28, 11, 32};$/;"	v
-Font_0x29	Inc/dig.h	/^static const tImage Font_0x29 = { image_data_Font_0x29, 11, 32};$/;"	v
-Font_0x2a	Inc/dig.h	/^static const tImage Font_0x2a = { image_data_Font_0x2a, 11, 32};$/;"	v
+Font_0x21	Inc/dig.h	/^static const tImage Font_0x21 = { image_data_Font_0x21, 8, 19};$/;"	v
+Font_0x22	Inc/dig.h	/^static const tImage Font_0x22 = { image_data_Font_0x22, 11, 19};$/;"	v
+Font_0x23	Inc/dig.h	/^static const tImage Font_0x23 = { image_data_Font_0x23, 15, 19};$/;"	v
+Font_0x24	Inc/dig.h	/^static const tImage Font_0x24 = { image_data_Font_0x24, 16, 19};$/;"	v
+Font_0x25	Inc/dig.h	/^static const tImage Font_0x25 = { image_data_Font_0x25, 22, 19};$/;"	v
+Font_0x26	Inc/dig.h	/^static const tImage Font_0x26 = { image_data_Font_0x26, 17, 19};$/;"	v
+Font_0x27	Inc/dig.h	/^static const tImage Font_0x27 = { image_data_Font_0x27, 5, 19};$/;"	v
+Font_0x28	Inc/dig.h	/^static const tImage Font_0x28 = { image_data_Font_0x28, 11, 19};$/;"	v
+Font_0x29	Inc/dig.h	/^static const tImage Font_0x29 = { image_data_Font_0x29, 11, 19};$/;"	v
+Font_0x2a	Inc/dig.h	/^static const tImage Font_0x2a = { image_data_Font_0x2a, 11, 19};$/;"	v
 Font_0x2b	Inc/dig.h	/^static const tImage Font_0x2b = { image_data_Font_0x2b, 13, 19};$/;"	v
 Font_0x2c	Inc/dig.h	/^static const tImage Font_0x2c = { image_data_Font_0x2c, 5, 19};$/;"	v
 Font_0x2d	Inc/dig.h	/^static const tImage Font_0x2d = { image_data_Font_0x2d, 7, 19};$/;"	v
 Font_0x2e	Inc/dig.h	/^static const tImage Font_0x2e = { image_data_Font_0x2e, 5, 19};$/;"	v
-Font_0x2f	Inc/dig.h	/^static const tImage Font_0x2f = { image_data_Font_0x2f, 11, 32};$/;"	v
+Font_0x2f	Inc/dig.h	/^static const tImage Font_0x2f = { image_data_Font_0x2f, 11, 20};$/;"	v
 Font_0x30	Inc/dig.h	/^static const tImage Font_0x30 = { image_data_Font_0x30, 15, 19};$/;"	v
 Font_0x31	Inc/dig.h	/^static const tImage Font_0x31 = { image_data_Font_0x31, 14, 19};$/;"	v
 Font_0x32	Inc/dig.h	/^static const tImage Font_0x32 = { image_data_Font_0x32, 16, 19};$/;"	v
@@ -26099,6 +26099,8 @@ data	Inc/menu.h	/^	void* data;$/;"	m	struct:__anon290	access:public
 data	Src/crc8.c	/^   uint8_t  data;$/;"	l
 dateData	Src/menu.c	/^stateData_t dateData;$/;"	v
 day	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t year = 0U, month = 0U, day = 0U;$/;"	l
+dayOfWeek	Src/main.c	/^const char *dayOfWeek[7] = {$/;"	v
+dayWeek	Src/main.c	/^	uint8_t dayWeek = mRTC_GetWeekDay(&hrtc);$/;"	l
 days_elapsed	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t counter_time = 0U, counter_alarm = 0U, days_elapsed = 0U, hours = 0U;$/;"	l
 decicelsius	Src/ds18b20.c	/^	uint16_t decicelsius;$/;"	l
 delay	Inc/scheduler.h	/^	uint16_t delay;$/;"	m	struct:_task	access:public
@@ -26526,21 +26528,21 @@ image_data_Arial9_b_0xfd	Inc/arial9_b.h	/^static const uint8_t image_data_Arial9
 image_data_Arial9_b_0xfe	Inc/arial9_b.h	/^static const uint8_t image_data_Arial9_b_0xfe[11] = {$/;"	v
 image_data_Arial9_b_0xff	Inc/arial9_b.h	/^static const uint8_t image_data_Arial9_b_0xff[7] = {$/;"	v
 image_data_Font_0x20	Inc/dig.h	/^static const uint8_t image_data_Font_0x20[38] = {$/;"	v
-image_data_Font_0x21	Inc/dig.h	/^static const uint8_t image_data_Font_0x21[32] = {$/;"	v
-image_data_Font_0x22	Inc/dig.h	/^static const uint8_t image_data_Font_0x22[44] = {$/;"	v
-image_data_Font_0x23	Inc/dig.h	/^static const uint8_t image_data_Font_0x23[60] = {$/;"	v
-image_data_Font_0x24	Inc/dig.h	/^static const uint8_t image_data_Font_0x24[64] = {$/;"	v
-image_data_Font_0x25	Inc/dig.h	/^static const uint8_t image_data_Font_0x25[88] = {$/;"	v
-image_data_Font_0x26	Inc/dig.h	/^static const uint8_t image_data_Font_0x26[68] = {$/;"	v
-image_data_Font_0x27	Inc/dig.h	/^static const uint8_t image_data_Font_0x27[20] = {$/;"	v
-image_data_Font_0x28	Inc/dig.h	/^static const uint8_t image_data_Font_0x28[44] = {$/;"	v
-image_data_Font_0x29	Inc/dig.h	/^static const uint8_t image_data_Font_0x29[44] = {$/;"	v
-image_data_Font_0x2a	Inc/dig.h	/^static const uint8_t image_data_Font_0x2a[44] = {$/;"	v
+image_data_Font_0x21	Inc/dig.h	/^static const uint8_t image_data_Font_0x21[19] = {$/;"	v
+image_data_Font_0x22	Inc/dig.h	/^static const uint8_t image_data_Font_0x22[27] = {$/;"	v
+image_data_Font_0x23	Inc/dig.h	/^static const uint8_t image_data_Font_0x23[36] = {$/;"	v
+image_data_Font_0x24	Inc/dig.h	/^static const uint8_t image_data_Font_0x24[38] = {$/;"	v
+image_data_Font_0x25	Inc/dig.h	/^static const uint8_t image_data_Font_0x25[53] = {$/;"	v
+image_data_Font_0x26	Inc/dig.h	/^static const uint8_t image_data_Font_0x26[41] = {$/;"	v
+image_data_Font_0x27	Inc/dig.h	/^static const uint8_t image_data_Font_0x27[12] = {$/;"	v
+image_data_Font_0x28	Inc/dig.h	/^static const uint8_t image_data_Font_0x28[27] = {$/;"	v
+image_data_Font_0x29	Inc/dig.h	/^static const uint8_t image_data_Font_0x29[27] = {$/;"	v
+image_data_Font_0x2a	Inc/dig.h	/^static const uint8_t image_data_Font_0x2a[27] = {$/;"	v
 image_data_Font_0x2b	Inc/dig.h	/^static const uint8_t image_data_Font_0x2b[31] = {$/;"	v
 image_data_Font_0x2c	Inc/dig.h	/^static const uint8_t image_data_Font_0x2c[12] = {$/;"	v
 image_data_Font_0x2d	Inc/dig.h	/^static const uint8_t image_data_Font_0x2d[17] = {$/;"	v
 image_data_Font_0x2e	Inc/dig.h	/^static const uint8_t image_data_Font_0x2e[12] = {$/;"	v
-image_data_Font_0x2f	Inc/dig.h	/^static const uint8_t image_data_Font_0x2f[44] = {$/;"	v
+image_data_Font_0x2f	Inc/dig.h	/^static const uint8_t image_data_Font_0x2f[28] = {$/;"	v
 image_data_Font_0x30	Inc/dig.h	/^static const uint8_t image_data_Font_0x30[36] = {$/;"	v
 image_data_Font_0x31	Inc/dig.h	/^static const uint8_t image_data_Font_0x31[34] = {$/;"	v
 image_data_Font_0x32	Inc/dig.h	/^static const uint8_t image_data_Font_0x32[38] = {$/;"	v

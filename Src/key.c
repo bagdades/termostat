@@ -159,7 +159,7 @@ void KeySetUpTimeDate(void) {
 			else if(sDate.Date >= value)
 				sDate.Date = 1;
 			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			sprintf((char*)aShowDate, "%.2d/%.2d/%.2d", sDate.Date, sDate.Month, sDate.Year);
 			break;
 		case 4:
 			if(sDate.Month < value)
@@ -167,7 +167,7 @@ void KeySetUpTimeDate(void) {
 			else if(sDate.Month >= value)
 				sDate.Month = 1;
 			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			sprintf((char*)aShowDate, "%.2d/%.2d/%.2d", sDate.Date, sDate.Month, sDate.Year);
 			break;
 		case 5:
 			if(sDate.Year < 99)
@@ -175,7 +175,7 @@ void KeySetUpTimeDate(void) {
 			else if(sDate.Year >= 99)
 				sDate.Year = 1;
 			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			sprintf((char*)aShowDate, "%.2d/%.2d/%.2d", sDate.Date, sDate.Month, sDate.Year);
 			break;
 		default:
 			break;
@@ -227,21 +227,21 @@ void KeySetDownTimeDate(void) {
 			if(sDate.Date < 1)
 				sDate.Date = value;
 			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			sprintf((char*)aShowDate, "%.2d/%.2d/%.2d", sDate.Date, sDate.Month, sDate.Year);
 			break;
 		case 4:
 			sDate.Month--;
 			if(sDate.Month < 1)
 				sDate.Month = value;
 			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			sprintf((char*)aShowDate, "%.2d/%.2d/%.2d", sDate.Date, sDate.Month, sDate.Year);
 			break;
 		case 5:
 			sDate.Year--;
 			if(sDate.Year < 1)
 				sDate.Year = 1;
 			mRTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-			sprintf((char*)aShowDate, "%.2d/%.2d/20%.2d", sDate.Date, sDate.Month, sDate.Year);
+			sprintf((char*)aShowDate, "%.2d/%.2d/%.2d", sDate.Date, sDate.Month, sDate.Year);
 			break;
 		default:
 			break;
@@ -265,3 +265,4 @@ uint8_t CheckLeap(uint8_t year) {
 	else
 		return NOT_LEAP;
 }
+
