@@ -42,5 +42,9 @@ void KeyHand(void);
 void KeySetUpTimeDate(void);
 void KeySetDownTimeDate(void);
 uint8_t CheckLeap(uint8_t);
-
+void KeySetModeWork(void);
+void KeySetUpVar(void);
+void KeySetDownVar(void);
+void KeySetUpBoundTime(void);
+void KeySetDownBoundTime(void);
 #endif /* KEY_H_ */

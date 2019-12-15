@@ -69,16 +69,26 @@ extern uint8_t resultMeasureInside[3];
 extern uint8_t tempLcd[];
 extern stateElement startState;
 extern stateElement settingState;
+extern int16_t settedWorkTemp;
+extern int16_t settedWorkTimeTemp;
+extern int16_t settedSleepTimeTemp;
+extern char diagnosticChar[VARIABLE_CHAR_DATA_LENGTH];
 
 const char *dayOfWeek[7] = {
-		"Неділя",
-		"Понеділок",
-		"Вівторок",
-		"Середа",
-		"Четвер",
-		"Пятниця",
-		"Субота"
+		"Нд.",
+		"Пн.",
+		"Вт.",
+		"Ср.",
+		"Чт.",
+		"Пт.",
+		"Сб."
 	};
+
+const char *modeWorkText[2] = {
+	"Auto",
+	"Manual"
+};
+uint8_t modeWorkVar = AUTO_MODE_WORK;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -214,27 +224,37 @@ void ShowLcdMain(void)
 	LcdDrawText(rec, DT_LEFT | DT_VCENTER, Font, LCD_MODE_NORM, (const char*)tempLcd);
 	/* Show temperature outside */
 	TempOut(resultMeasureOutside);
-	RECT_SET(rec, 74, 20, LCD_X_RES - 76, 11);
+	RECT_SET(rec, 84, 19, LCD_X_RES - 86, 11);
 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, (const char*)tempLcd);
 	/* Show temperature water */
-	RECT_SET(rec, 74, LCD_Y_RES - 24, LCD_X_RES - 76, 11);
+	RECT_SET(rec, 84, LCD_Y_RES - 25, LCD_X_RES - 86, 11);
 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, (const char*)tempLcd);
 	/* Show frame */
-	LcdDrawFrame(73, LCD_X_RES - 1, 11, LCD_Y_RES - 13, LCD_MODE_NORM);
-	RECT_SET(rec, 73, 11, LCD_X_RES - 74, 9);
+	LcdDrawFrame(84, LCD_X_RES - 1, 10, LCD_Y_RES - 14, LCD_MODE_NORM);
+	RECT_SET(rec, 84, 10, LCD_X_RES - 85, 9);
 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial7, LCD_MODE_INVERSE, "Outside");
-	RECT_SET(rec, 73, 31, LCD_X_RES - 74, 9);
+	RECT_SET(rec, 84, 30, LCD_X_RES - 85, 9);
 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial7, LCD_MODE_INVERSE, "Coolant");
-	/* Show day of week */
-	RECT_SET(rec, 0, 0, 63, 10);
-	uint8_t dayWeek = mRTC_GetWeekDay(&hrtc);
-	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, dayOfWeek[dayWeek]);
 	/* Show date */
 	RECT_SET(rec, 64, 0, 63, 10);
 	LcdDrawText(rec, DT_RIGHT, Arial9_b, LCD_MODE_NORM, (const char*)aShowDate);
 	/* Show time */
-	RECT_SET(rec, 0, 53, 63, 10);
+	/* RECT_SET(rec, 0, 53, 63, 10); */
+	RECT_SET(rec, 0, 0, 50, 10);
 	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, (const char*)aShowTime);
+	/* Show day of week */
+	RECT_SET(rec, 55, 0, 20, 10);
+	uint8_t dayWeek = mRTC_GetWeekDay(&hrtc);
+	LcdDrawText(rec, DT_CENTER, Arial9_b, LCD_MODE_NORM, dayOfWeek[dayWeek]);
+	/* Show setted temperature */
+	RECT_SET(rec, 0, 53, 21, 10);
+	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, "Set:");
+	RECT_SET(rec, 22, 53, 24, 10);
+	VariableToLcd(&settedWorkTemp, diagnosticChar,  COMMA);
+	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, diagnosticChar);
+	/* Show mode work */
+	RECT_SET(rec, 84, 52, LCD_X_RES - 84 - 1, 11);
+	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_INVERSE, modeWorkText[modeWorkVar]);
 }
 void HAL_RTCEx_RTCEventCallback(RTC_HandleTypeDef* hrtc)
 {

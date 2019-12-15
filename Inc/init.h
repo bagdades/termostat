@@ -8,6 +8,9 @@
 #include "font.h"
 #include "m_rtc_2001.h"
 
+#define AUTO_MODE_WORK		0
+#define MANUAL_MODE_WORK	1
+
 /* Function prototypes */
 void InitMain(void);
 

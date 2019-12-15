@@ -22,6 +22,7 @@ const tFont* fontMenu;
 const tFont* fontDigital;
 uint8_t shiftRow;
 uint8_t lcdMode;
+char diagnosticChar[VARIABLE_CHAR_DATA_LENGTH];
 
 
 extern uint8_t ticksBlink;
@@ -727,21 +728,26 @@ void LcdDrawOneItem(void) {
 	uint8_t chr = ' ';
 	const tFont* itemFont;
 	char* ch = 0;
-	/* int16_t* data; */
+	int16_t* data;
 	if (CurrState->Parent != (void*) &NULL_ENTRY)
+	{
 		parElem = CurrState->Parent;
-	if (parElem->Parent != (void*) &NULL_ENTRY)
-		parElem1 = parElem->Parent;
+		if (parElem->Parent != (void*) &NULL_ENTRY)
+			parElem1 = parElem->Parent;
+	}
 	rowHeight = fontMenu->chars[0].image->height + 4;  // висота рядка
 	RECT_SET(rec, 0, 0, LCD_X_RES - 1, rowHeight);
 	LcdClear();
 	/* Текст діда */
-	LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem1->Text);
+	if((stateElement*)parElem1)
+		LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem1->Text);
+	else LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, CurrState->Text);
 	LcdDrawFrame(0, LCD_X_RES - 1, rowHeight, LCD_Y_RES - 1, lcdMode);
 	y = rowHeight + 3;
 	RECT_SET(rec, 1, y, LCD_X_RES - 3, rowHeight);
 	/* Текст тата */
-	LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem->Text);
+	if((stateElement*)parElem)
+		LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, lcdMode, parElem->Text);
 	y += rowHeight;
 	/* Відображення дня тиждня під час показу дати*/
 	/* if (CurrState == (stateElement*) &itemDate) { */
@@ -758,10 +764,10 @@ void LcdDrawOneItem(void) {
 				ch = CurrState->data->data;  //визначаємо вказівник на текст
 			} else {
 				/* Якщо цифрова інформація */
-				/* data = CurrState->data->data;  // вибираємо значення */
+				data = CurrState->data->data;  // вибираємо значення
 				chr = (CurrState->data->flag & COMMA) ? COMMA : NO_COMMA;
-				/* variableToLcd(data, chr);  // перетворємо значення для відображення на дисплеї */
-				/* ch = diagnosticChar;  //масив з перетвореним значенням	 */
+				VariableToLcd(data, diagnosticChar, chr);  // перетворємо значення для відображення на дисплеї
+				ch = diagnosticChar;  //масив з перетвореним значенням	
 			}
 			width = 0;
 			//Визначаємо довжину слова з проміжками між символами
@@ -850,4 +856,55 @@ void LcdDrawStrTwoRow(rect_t rec, tFont font, char* str) {
 	/* 	x = x + width + 1; */
 	/* 	str++; */
 	/* } */
+}
+
+void VariableToLcd(int16_t* data, char resChar[], uint8_t comma) {
+	int16_t tempData = *data;
+	if (tempData & 0x8000)
+	{
+		resChar[0] = '-';
+		tempData = 0xFFFF - tempData;
+	}
+	else
+		resChar[0] = ' ';
+	if (tempData > 100) {
+		resChar[1] = tempData / 100 + '0';
+		resChar[2] = (tempData / 10) % 10 + '0';
+		if (comma == COMMA) {
+			resChar[3] = '.';
+			resChar[4] = tempData % 10 + '0';
+			resChar[5] = 0;
+		} else {
+			resChar[3] = tempData % 10 + '0';
+			resChar[4] = 0;
+		}
+	} else {
+		if (tempData < 100) {
+			resChar[1] = resChar[0];
+			resChar[0] = ' ';
+			resChar[2] = tempData / 10 + '0';
+			if (comma == COMMA) {
+				resChar[3] = '.';
+				resChar[4] = tempData % 10 + '0';
+				resChar[5] = 0;
+			} else {
+				resChar[3] = tempData % 10 + '0';
+				resChar[4] = 0;
+			}
+		} else {
+			if (tempData < 10) {
+				resChar[2] = resChar[0];
+				resChar[0] = ' ';
+				resChar[1] = ' ';
+				if (comma == COMMA) {
+					resChar[3] = '0';
+					resChar[4] = tempData % 10 + '0';
+					resChar[5] = 0;
+				} else {
+					resChar[3] = tempData % 10 + '0';
+					resChar[4] = 0;
+				}
+			}
+		}
+	}
 }

@@ -69,7 +69,7 @@
 
 #define LCD_DELAY { int i=16; while(i) {__NOP(); i--;}; }
 
-#define DIAGNOSTIC_DATA_LENGTH		6
+#define VARIABLE_CHAR_DATA_LENGTH		6
 #define COMMA						0x80
 #define NO_COMMA					0
 #define MENU_ITEM_TEXT				0x40
@@ -144,5 +144,6 @@ void LcdMenuSelect(void);
 void LcdDrawOneItem(void);
 void LcdSetClock(void);
 void LcdDrawStrTwoRow(rect_t rec, tFont font, char* str);
+void VariableToLcd(int16_t* data, char resChar[], uint8_t comma);
 
 #endif /* LCDWG_H_ */

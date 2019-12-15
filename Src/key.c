@@ -11,11 +11,25 @@
 
 extern stateElement startState;
 extern stateElement setDay;
+extern stateElement startSetTemp;
+extern stateElement setWorkTime;
+extern stateElement setSleepTime;
 extern uint8_t aShowTime[TIME_BUFFER_LENGTH];
 extern uint8_t aShowDate[DATE_BUFFER_LENGTH];
 extern RTC_TimeTypeDef sTime;
 extern RTC_DateTypeDef sDate;
 extern RTC_HandleTypeDef hrtc;
+extern uint8_t modeWorkVar;
+extern stateData_t setModeWorkData;
+extern const char *modeWorkText[2];
+extern int16_t settedWorkTemp;
+extern uint8_t modeWorkVar;
+extern RTC_TimeTypeDef workTimeStart;
+extern RTC_TimeTypeDef workTimeStop;
+extern RTC_TimeTypeDef sleepTimeStart;
+extern RTC_TimeTypeDef sleepTimeStop;
+extern uint8_t aShowSetSleepTime[];
+extern uint8_t aShowSetWorkTime[];
 uint8_t keyPressed;
 /**
  * @name KeyInit
@@ -246,6 +260,143 @@ void KeySetDownTimeDate(void) {
 		default:
 			break;
 	}
+}
+
+void KeySetModeWork(void)
+{
+	if(modeWorkVar)	
+		modeWorkVar = AUTO_MODE_WORK;
+	else modeWorkVar = MANUAL_MODE_WORK;
+	setModeWorkData.data = (char*)modeWorkText[modeWorkVar];
+}
+
+void KeySetUpVar(void)
+{
+	if(CurrState == &startSetTemp)
+	{
+		modeWorkVar = MANUAL_MODE_WORK;
+		setModeWorkData.data = (char*)modeWorkText[modeWorkVar];
+	}
+	int16_t temp;
+	temp = *(int16_t*)CurrState->data->data;
+	temp++;
+	*(int16_t*)CurrState->data->data = temp;
+}
+
+void KeySetDownVar(void)
+{
+	if(CurrState == &startSetTemp)
+	{
+		modeWorkVar = MANUAL_MODE_WORK;
+		setModeWorkData.data = (char*)modeWorkText[modeWorkVar];
+	}
+	int16_t temp;
+	temp = *(int16_t*)CurrState->data->data;
+	temp--;
+	*(int16_t*)CurrState->data->data = temp;
+}
+
+void KeySetUpBoundTime(void)
+{
+	uint8_t idx = CurrState->Text[0] - '0';
+	uint8_t value = CurrState->Text[1] - '0';
+	RTC_TimeTypeDef* sTimeStart;	
+	RTC_TimeTypeDef* sTimeStop;
+	uint8_t *aShowSetTime;
+	if(CurrState->Parent == (void*)&setSleepTime)
+	{
+		sTimeStart = &sleepTimeStart;
+		sTimeStop = &sleepTimeStop;
+		aShowSetTime = aShowSetSleepTime;
+	} else {
+		sTimeStart = &workTimeStart;
+		sTimeStop = &workTimeStop;
+		aShowSetTime = aShowSetWorkTime;
+	}
+	switch (idx) 
+	{
+		case 0:
+			if (sTimeStart->Hours < value) 
+				sTimeStart->Hours++;
+			else if(sTimeStart->Hours >= value)
+				sTimeStart->Hours = 0;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+			break;
+		case 1:
+			if (sTimeStart->Minutes < value) 
+				sTimeStart->Minutes++;
+			else if(sTimeStart->Minutes >= value)
+				sTimeStart->Minutes = 0;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+			break;
+			case 3:
+			if (sTimeStop->Hours < value) 
+				sTimeStop->Hours++;
+			else if(sTimeStop->Hours >= value)
+				sTimeStop->Hours = 0;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+				break;
+				case 4:
+			if (sTimeStop->Minutes < value) 
+				sTimeStop->Minutes++;
+			else if(sTimeStop->Minutes >= value)
+				sTimeStop->Minutes = 0;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+					break;
+		default:
+			break;
+			
+	}
+}
+
+void KeySetDownBoundTime(void)
+{
+	uint8_t idx = CurrState->Text[0] - '0';
+	uint8_t value = CurrState->Text[1] - '0';
+	RTC_TimeTypeDef* sTimeStart;	
+	RTC_TimeTypeDef* sTimeStop;
+	uint8_t *aShowSetTime;
+	if(CurrState->Parent == (void*)&setSleepTime)
+	{
+		sTimeStart = &sleepTimeStart;
+		sTimeStop = &sleepTimeStop;
+		aShowSetTime = aShowSetSleepTime;
+	} else {
+		sTimeStart = &workTimeStart;
+		sTimeStop = &workTimeStop;
+		aShowSetTime = aShowSetWorkTime;
+	}
+	switch (idx) 
+	{
+		case 0:
+			sTimeStart->Hours--;
+			if(sTimeStart->Hours == 255)
+				sTimeStart->Hours = value;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+			break;
+		case 1:
+			sTimeStart->Minutes--;
+			if(sTimeStart->Minutes == 255)
+				sTimeStart->Minutes = value;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+			break;
+			case 3:
+			sTimeStop->Hours--;
+			if(sTimeStop->Hours == 255)
+				sTimeStop->Hours = value;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+				break;
+				case 4:
+			sTimeStop->Minutes--;
+			if(sTimeStop->Minutes == 255)
+				sTimeStop->Minutes = value;
+			sprintf((char*)aShowSetTime, "%02d:%02d - %02d:%02d", sTimeStart->Hours, sTimeStart->Minutes, sTimeStop->Hours, sTimeStop->Minutes);
+					break;
+		default:
+			break;
+			
+	}
+	
 }
 
 /**
