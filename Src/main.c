@@ -250,7 +250,8 @@ void ShowLcdMain(void)
 	RECT_SET(rec, 0, 53, 21, 10);
 	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, "Set:");
 	RECT_SET(rec, 22, 53, 24, 10);
-	VariableToLcd(&settedWorkTemp, diagnosticChar,  COMMA);
+	int16_t tempTemp = TermGetWorkTemp();
+	VariableToLcd(&tempTemp, diagnosticChar,  COMMA);
 	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, diagnosticChar);
 	/* Show mode work */
 	RECT_SET(rec, 84, 52, LCD_X_RES - 84 - 1, 11);

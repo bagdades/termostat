@@ -60,8 +60,8 @@ MAKE_STATE(setWorkTimeStartMinute, setWorkTimeStopHour, setWorkTimeStartHour, se
 MAKE_STATE(setWorkTimeStopHour, setWorkTimeStopMinute, setWorkTimeStartMinute, setWorkTime, NULL_ENTRY, KeySetUpBoundTime, KeySetDownBoundTime, ChangeParent, ChangeNext, LcdDrawOneItem, &setWorkTimeBoundary, "3G89");
 MAKE_STATE(setWorkTimeStopMinute, setWorkTimeStartHour, setWorkTimeStopHour, setWorkTime, NULL_ENTRY, KeySetUpBoundTime, KeySetDownBoundTime, ChangeParent, ChangeNext, LcdDrawOneItem, &setWorkTimeBoundary, "4k;<");
 /*========================================================================================*/
-MAKE_STATE(setWorkDays, setHoliDays, setWorkTime, settingTime, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Робочі дні тиждня");
-MAKE_STATE(setHoliDays, NULL_ENTRY, setWorkDays, settingTime, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Святкові дні");
+MAKE_STATE(setWorkDays, NULL_ENTRY, setWorkTime, settingTime, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Робочі дні тиждня");
+/* MAKE_STATE(setHoliDays, NULL_ENTRY, setWorkDays, settingTime, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Святкові дні"); */
 
 MAKE_STATE(settingTemp, settingSensors, settingTime, startState, setWorkTemp, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Температура.");
 /*========================================================================================*/

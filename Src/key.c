@@ -23,7 +23,6 @@ extern uint8_t modeWorkVar;
 extern stateData_t setModeWorkData;
 extern const char *modeWorkText[2];
 extern int16_t settedWorkTemp;
-extern uint8_t modeWorkVar;
 extern RTC_TimeTypeDef workTimeStart;
 extern RTC_TimeTypeDef workTimeStop;
 extern RTC_TimeTypeDef sleepTimeStart;

@@ -22,7 +22,7 @@
 #include <stdio.h>
 
 int16_t settedWorkTemp = 210;
-int16_t settedWorkTimeTemp = 180;
+int16_t settedWorkTimeTemp = 170;
 int16_t settedSleepTimeTemp = 180;
 
 RTC_TimeTypeDef workTimeStart;
@@ -33,6 +33,7 @@ RTC_TimeTypeDef sleepTimeStop;
 uint8_t aShowSetSleepTime[15] = {0};
 uint8_t aShowSetWorkTime[15] = {0};
 
+extern RTC_HandleTypeDef hrtc;
 extern const tFont* fontMenu;
 extern const tFont* fontDigital;
 const tFont* bigFont;
@@ -107,4 +108,30 @@ void InitMain(void)
 	setWorkTimeBoundary.data = (uint8_t*) aShowSetWorkTime;
 	setWorkTimeBoundary.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | DATE_BUFFER_LENGTH;
 	setWorkTimeBoundary.font = &fontDigital;
+}
+
+void Termostat(void)
+{
+}
+
+int16_t TermGetWorkTemp(void)
+{
+	RTC_TimeTypeDef time;	
+	uint16_t timeWorkStart, timeWorkStop, timeSleepStart, timeSleepStop;
+	uint16_t timeCurr;
+	mRTC_GetTime(&hrtc, &time, RTC_FORMAT_BIN);
+	timeCurr = (((uint16_t)time.Hours) << 8) | time.Minutes;
+	timeWorkStart = (((uint16_t)workTimeStart.Hours) << 8) | workTimeStart.Minutes;
+	timeWorkStop = (((uint16_t)workTimeStop.Hours) << 8) | workTimeStop.Minutes;
+	timeSleepStart = (((uint16_t)sleepTimeStart.Hours) << 8) | sleepTimeStart.Minutes;
+	timeSleepStop = (((uint16_t)sleepTimeStop.Hours) << 8) | sleepTimeStop.Minutes;
+	if (modeWorkVar == AUTO_MODE_WORK) 
+	{
+		if (timeCurr >= timeWorkStart && timeCurr < timeWorkStop) 
+			return settedWorkTimeTemp;
+		else if (timeCurr >= timeSleepStart || timeCurr < timeSleepStop) 
+				return settedSleepTimeTemp;
+		else return settedWorkTemp;
+	}
+	return settedWorkTemp;
 }

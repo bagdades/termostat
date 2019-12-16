@@ -13,5 +13,7 @@
 
 /* Function prototypes */
 void InitMain(void);
+void Termostat(void);
+int16_t TermGetWorkTemp(void);
 
 #endif   /* ----- #ifndef INIT_INC  ----- */

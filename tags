@@ -18852,6 +18852,10 @@ Tamper1EventCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  vo
 Tamper1EventCallback	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc_ex.c	/^      hrtc->Tamper1EventCallback(hrtc);$/;"	p	file:
 TempOut	Inc/ds18b20.h	/^void TempOut(uint8_t* resultMeasure);$/;"	p	signature:(uint8_t* resultMeasure)
 TempOut	Src/ds18b20.c	/^void TempOut(uint8_t* resultMeasure) {$/;"	f	signature:(uint8_t* resultMeasure)
+TermGetWorkTemp	Inc/init.h	/^int16_t TermGetWorkTemp(void);$/;"	p	signature:(void)
+TermGetWorkTemp	Src/init.c	/^int16_t TermGetWorkTemp(void)$/;"	f	signature:(void)
+Termostat	Inc/init.h	/^void Termostat(void);$/;"	p	signature:(void)
+Termostat	Src/init.c	/^void Termostat(void)$/;"	f	signature:(void)
 Text	Inc/menu.h	/^	char Text[];$/;"	m	struct:__anon291	access:public
 Trigger	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h	/^  uint32_t Trigger;   \/*!< The Exti Trigger to be configured. This parameter$/;"	m	struct:__anon40	access:public
 Trigger	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h	/^  uint32_t Trigger;                     \/*!< Specifies the Tamper Trigger.$/;"	m	struct:__anon37	access:public
@@ -26858,22 +26862,18 @@ seg25_0x39	Inc/seg25.h	/^static const tImage seg25_0x39 = { image_data_seg25_0x3
 seg25_array	Inc/seg25.h	/^static const tChar seg25_array[] = {$/;"	v
 setDataTime	Src/main.c	/^void setDataTime(void)$/;"	f	signature:(void)
 setDataTime	Src/main.c	/^void setDataTime(void);$/;"	p	file:	signature:(void)
-setDayData	Src/menu.c	/^stateData_t setDayData;$/;"	v
-setHourData	Src/menu.c	/^stateData_t setHourData;$/;"	v
-setMinData	Src/menu.c	/^stateData_t setMinData;$/;"	v
+setDateData	Src/menu.c	/^stateData_t setDateData;$/;"	v
 setModeWorkData	Src/menu.c	/^stateData_t setModeWorkData;$/;"	v
-setMonthData	Src/menu.c	/^stateData_t setMonthData;$/;"	v
-setSecData	Src/menu.c	/^stateData_t setSecData;$/;"	v
 setSleepTimeBoundary	Src/menu.c	/^stateData_t setSleepTimeBoundary;$/;"	v
 setSleepTimeTempData	Src/menu.c	/^stateData_t setSleepTimeTempData;$/;"	v
+setTimeData	Src/menu.c	/^stateData_t setTimeData;$/;"	v
 setWorkTempItemData	Src/menu.c	/^stateData_t setWorkTempItemData;$/;"	v
 setWorkTimeBoundary	Src/menu.c	/^stateData_t setWorkTimeBoundary;$/;"	v
 setWorkTimeTempData	Src/menu.c	/^stateData_t setWorkTimeTempData;$/;"	v
-setYearData	Src/menu.c	/^stateData_t setYearData;$/;"	v
 sets	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t sets;$/;"	l
 settedSleepTimeTemp	Src/init.c	/^int16_t settedSleepTimeTemp = 180;$/;"	v
 settedWorkTemp	Src/init.c	/^int16_t settedWorkTemp = 210;$/;"	v
-settedWorkTimeTemp	Src/init.c	/^int16_t settedWorkTimeTemp = 180;$/;"	v
+settedWorkTimeTemp	Src/init.c	/^int16_t settedWorkTimeTemp = 170;$/;"	v
 shiftRow	Src/lcdwg.c	/^uint8_t shiftRow;$/;"	v
 sign	Src/ds18b20.c	/^	uint8_t sign;$/;"	l
 sleepTimeStart	Src/init.c	/^RTC_TimeTypeDef sleepTimeStart;$/;"	v
@@ -26924,6 +26924,7 @@ temp1	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t temp1 =
 temp2	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t temp1 = 0x00U, temp2 = 0x00U;$/;"	l
 tempData	Src/lcdwg.c	/^	int16_t tempData = *data;$/;"	l
 tempLcd	Src/ds18b20.c	/^uint8_t tempLcd[] = { ' ', '0', '0', ',', '0', 0 };$/;"	v
+tempTemp	Src/main.c	/^	int16_t tempTemp = TermGetWorkTemp();$/;"	l
 temp_reg	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  uint32_t temp_reg = 0U, frequency = 0U;$/;"	l
 temp_reg	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  uint32_t tickstart = 0U, temp_reg = 0U;$/;"	l
 test_Image	Inc/font.h	/^  static const tImage test_Image = { image_data_test_Image, 20, 10};$/;"	v
@@ -26940,8 +26941,14 @@ tickstart	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t tick
 tickstart	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc_ex.c	/^  uint32_t tickstart = HAL_GetTick();$/;"	l
 tickstart	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t tickstart = 0U;$/;"	l
 tickstart	Src/m_rtc_2001.c	/^  uint32_t tickstart = 0U;$/;"	l
+time	Src/init.c	/^	RTC_TimeTypeDef time;	$/;"	l
 time	Src/m_rtc_2001.c	/^	uint32_t ace, counter_time, time;$/;"	l
+timeCurr	Src/init.c	/^	uint16_t timeCurr;$/;"	l
 timeData	Src/menu.c	/^stateData_t timeData;$/;"	v
+timeSleepStart	Src/init.c	/^	uint16_t timeWorkStart, timeWorkStop, timeSleepStart, timeSleepStop;$/;"	l
+timeSleepStop	Src/init.c	/^	uint16_t timeWorkStart, timeWorkStop, timeSleepStart, timeSleepStop;$/;"	l
+timeWorkStart	Src/init.c	/^	uint16_t timeWorkStart, timeWorkStop, timeSleepStart, timeSleepStop;$/;"	l
+timeWorkStop	Src/init.c	/^	uint16_t timeWorkStart, timeWorkStop, timeSleepStart, timeSleepStop;$/;"	l
 timecounter	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t timecounter = 0U;$/;"	l
 timecounter	Src/m_rtc_2001.c	/^  uint32_t timecounter = 0U;$/;"	l
 tmp	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c	/^  uint32_t tmp = 0U;$/;"	l
