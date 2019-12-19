@@ -21,7 +21,7 @@
 #include "init.h"
 #include <stdio.h>
 
-int16_t settedWorkTemp = 210;
+int16_t settedComfortTemp = 210;
 int16_t settedWorkTimeTemp = 170;
 int16_t settedSleepTimeTemp = 180;
 
@@ -32,6 +32,7 @@ RTC_TimeTypeDef sleepTimeStop;
 
 uint8_t aShowSetSleepTime[15] = {0};
 uint8_t aShowSetWorkTime[15] = {0};
+uint8_t workDaysOfWeek[7] = {0, 1, 1, 1, 1, 1, 0};
 
 extern RTC_HandleTypeDef hrtc;
 extern const tFont* fontMenu;
@@ -39,6 +40,7 @@ extern const tFont* fontDigital;
 const tFont* bigFont;
 extern stateElement startState;
 extern stateElement settingState;
+extern stateElement setWorkDays;
 extern uint8_t aShowTime[TIME_BUFFER_LENGTH];
 extern uint8_t aShowDate[DATE_BUFFER_LENGTH];
 extern stateData_t timeData;
@@ -51,6 +53,13 @@ extern stateData_t setWorkTimeTempData;
 extern stateData_t setSleepTimeTempData;
 extern stateData_t setSleepTimeBoundary;
 extern stateData_t setWorkTimeBoundary;
+extern stateData_t setSundayData;
+extern stateData_t setMondayData;
+extern stateData_t setTuesdayData;
+extern stateData_t setWednesdayData;
+extern stateData_t setThursdayData;
+extern stateData_t setFridayData;
+extern stateData_t setSaturdayData;
 extern RTC_TimeTypeDef sTime;
 extern RTC_DateTypeDef sDate;
 extern const char *modeWorkText[2];
@@ -89,7 +98,7 @@ void InitMain(void)
 	setModeWorkData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | DATE_BUFFER_LENGTH;
 	setModeWorkData.font = &fontMenu;
 
-	setWorkTempItemData.data = (int16_t*) &settedWorkTemp;
+	setWorkTempItemData.data = (int16_t*) &settedComfortTemp;
 	setWorkTempItemData.flag = MENU_ITEM_SETTING | DATE_BUFFER_LENGTH | COMMA;
 	setWorkTempItemData.font = &fontDigital;
 
@@ -108,6 +117,30 @@ void InitMain(void)
 	setWorkTimeBoundary.data = (uint8_t*) aShowSetWorkTime;
 	setWorkTimeBoundary.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | DATE_BUFFER_LENGTH;
 	setWorkTimeBoundary.font = &fontDigital;
+
+	setSundayData.text = "0";
+	setMondayData.text = "1";
+	setTuesdayData.text = "2";
+	setWednesdayData.text = "3";
+	setThursdayData.text = "4";
+	setFridayData.text = "5";
+	setSaturdayData.text = "6";
+
+	setSundayData.data = &workDaysOfWeek;
+	setMondayData.data = &workDaysOfWeek;
+	setTuesdayData.data = &workDaysOfWeek;
+	setWednesdayData.data = &workDaysOfWeek;
+	setThursdayData.data = &workDaysOfWeek;
+	setFridayData.data = &workDaysOfWeek;
+	setSaturdayData.data = &workDaysOfWeek;
+
+	setSundayData.flag = workDaysOfWeek[0];
+	setMondayData.flag = workDaysOfWeek[1];
+	setTuesdayData.flag = workDaysOfWeek[2];
+	setWednesdayData.flag = workDaysOfWeek[3];
+	setThursdayData.flag = workDaysOfWeek[4];
+	setFridayData.flag = workDaysOfWeek[5];
+	setSaturdayData.flag = workDaysOfWeek[6];
 }
 
 void Termostat(void)
@@ -119,7 +152,9 @@ int16_t TermGetWorkTemp(void)
 	RTC_TimeTypeDef time;	
 	uint16_t timeWorkStart, timeWorkStop, timeSleepStart, timeSleepStop;
 	uint16_t timeCurr;
+	uint8_t weekDay;
 	mRTC_GetTime(&hrtc, &time, RTC_FORMAT_BIN);
+	weekDay = mRTC_GetWeekDay(&hrtc);
 	timeCurr = (((uint16_t)time.Hours) << 8) | time.Minutes;
 	timeWorkStart = (((uint16_t)workTimeStart.Hours) << 8) | workTimeStart.Minutes;
 	timeWorkStop = (((uint16_t)workTimeStop.Hours) << 8) | workTimeStop.Minutes;
@@ -127,11 +162,11 @@ int16_t TermGetWorkTemp(void)
 	timeSleepStop = (((uint16_t)sleepTimeStop.Hours) << 8) | sleepTimeStop.Minutes;
 	if (modeWorkVar == AUTO_MODE_WORK) 
 	{
-		if (timeCurr >= timeWorkStart && timeCurr < timeWorkStop) 
+		if (timeCurr >= timeWorkStart && timeCurr < timeWorkStop && workDaysOfWeek[weekDay]) 
 			return settedWorkTimeTemp;
 		else if (timeCurr >= timeSleepStart || timeCurr < timeSleepStop) 
-				return settedSleepTimeTemp;
-		else return settedWorkTemp;
+			return settedSleepTimeTemp;
+		else return settedComfortTemp;
 	}
-	return settedWorkTemp;
+	return settedComfortTemp;
 }

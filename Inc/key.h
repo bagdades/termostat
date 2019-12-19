@@ -47,4 +47,5 @@ void KeySetUpVar(void);
 void KeySetDownVar(void);
 void KeySetUpBoundTime(void);
 void KeySetDownBoundTime(void);
+void KeyToogleState(void);
 #endif /* KEY_H_ */

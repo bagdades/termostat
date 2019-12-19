@@ -14,6 +14,8 @@ extern stateElement setDay;
 extern stateElement startSetTemp;
 extern stateElement setWorkTime;
 extern stateElement setSleepTime;
+extern stateElement setWorkDays;
+extern uint8_t workDaysOfWeek[7];
 extern uint8_t aShowTime[TIME_BUFFER_LENGTH];
 extern uint8_t aShowDate[DATE_BUFFER_LENGTH];
 extern RTC_TimeTypeDef sTime;
@@ -22,7 +24,7 @@ extern RTC_HandleTypeDef hrtc;
 extern uint8_t modeWorkVar;
 extern stateData_t setModeWorkData;
 extern const char *modeWorkText[2];
-extern int16_t settedWorkTemp;
+extern int16_t settedComfortTemp;
 extern RTC_TimeTypeDef workTimeStart;
 extern RTC_TimeTypeDef workTimeStop;
 extern RTC_TimeTypeDef sleepTimeStart;
@@ -396,6 +398,27 @@ void KeySetDownBoundTime(void)
 			
 	}
 	
+}
+
+void KeyToogleState(void)
+{
+	uint8_t idx;
+	if(CurrState->data == NULL_DATA)
+		return;
+	if (CurrState->Parent == (void*)&setWorkDays) 
+	{
+		idx = *CurrState->data->text - '0';
+		if(CurrState->data->flag)
+		{
+			CurrState->data->flag = 0;
+			workDaysOfWeek[idx] = 0;
+		}
+		else 
+		{
+			CurrState->data->flag = 1;
+			workDaysOfWeek[idx] = 1;
+		}
+	}
 }
 
 /**

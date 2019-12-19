@@ -696,15 +696,15 @@ void LcdDrawMenu(menuMode_t mode) {
 		} else
 			n = lcdMode;
 		LcdDrawText(rec, DT_LEFT | DT_VCENTER, *fontMenu, n, rowElement->Text);
-		/* if (mode == MENU_MODE_SELECT) { */
-		/* 	LcdDrawFrame((LENGTH_MENU_STRING - rowHeight - 2), (LENGTH_MENU_STRING - 5), */
-		/* 			(i * rowHeight) + 1, (i * rowHeight) + rowHeight - 2, n); */
-		/* 	if (rowElement->data->flag) { */
-		/* 		RECT_SET(rec, (LENGTH_MENU_STRING - rowHeight - 1), (i * rowHeight) + 2, */
-		/* 				rowHeight - 4, fontMenu->chars['X'].image->height); */
-		/* 		LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, n, "X"); */
-		/* 	} */
-		/* } */
+		if (mode == MENU_MODE_SELECT) {
+			LcdDrawFrame((LENGTH_MENU_STRING - rowHeight - 2), (LENGTH_MENU_STRING - 5),
+					(i * rowHeight) + 1, (i * rowHeight) + rowHeight - 2, n);
+			if (rowElement->data->flag) {
+				RECT_SET(rec, (LENGTH_MENU_STRING - rowHeight - 1), (i * rowHeight) + 2,
+						rowHeight - 4, fontMenu->chars['X'].image->height);
+				LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, n, "X");
+			}
+		}
 		if (rowElement->Next != (void*) &NULL_ENTRY)
 			rowElement = rowElement->Next;
 		else

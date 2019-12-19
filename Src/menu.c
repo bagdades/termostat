@@ -20,6 +20,13 @@ stateData_t setWorkTimeTempData;
 stateData_t setSleepTimeTempData;
 stateData_t setSleepTimeBoundary;
 stateData_t setWorkTimeBoundary;
+stateData_t setSundayData;
+stateData_t setMondayData;
+stateData_t setTuesdayData;
+stateData_t setWednesdayData;
+stateData_t setThursdayData;
+stateData_t setFridayData;
+stateData_t setSaturdayData;
 
 extern const char *modeWorkText[2];
 extern uint8_t modeWorkVar;
@@ -60,7 +67,14 @@ MAKE_STATE(setWorkTimeStartMinute, setWorkTimeStopHour, setWorkTimeStartHour, se
 MAKE_STATE(setWorkTimeStopHour, setWorkTimeStopMinute, setWorkTimeStartMinute, setWorkTime, NULL_ENTRY, KeySetUpBoundTime, KeySetDownBoundTime, ChangeParent, ChangeNext, LcdDrawOneItem, &setWorkTimeBoundary, "3G89");
 MAKE_STATE(setWorkTimeStopMinute, setWorkTimeStartHour, setWorkTimeStopHour, setWorkTime, NULL_ENTRY, KeySetUpBoundTime, KeySetDownBoundTime, ChangeParent, ChangeNext, LcdDrawOneItem, &setWorkTimeBoundary, "4k;<");
 /*========================================================================================*/
-MAKE_STATE(setWorkDays, NULL_ENTRY, setWorkTime, settingTime, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Робочі дні тиждня");
+MAKE_STATE(setWorkDays, NULL_ENTRY, setWorkTime, settingTime, setMonday, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Робочі дні тиждня");
+MAKE_STATE(setMonday, setTuesday, NULL_ENTRY, setWorkDays, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeyToogleState, LcdMenuSelect, &setMondayData, "Понеділок");
+MAKE_STATE(setTuesday, setWednesday, setMonday, setWorkDays, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeyToogleState, LcdMenuSelect, &setTuesdayData, "Вівторок");
+MAKE_STATE(setWednesday, setThursday, setTuesday, setWorkDays, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeyToogleState, LcdMenuSelect, &setWednesdayData, "Середа");
+MAKE_STATE(setThursday, setFriday, setWednesday, setWorkDays, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeyToogleState, LcdMenuSelect, &setThursdayData, "Четвер");
+MAKE_STATE(setFriday, setSaturday, setThursday, setWorkDays, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeyToogleState, LcdMenuSelect, &setFridayData, "Пятниця");
+MAKE_STATE(setSaturday, setSunday, setFriday, setWorkDays, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeyToogleState, LcdMenuSelect, &setSaturdayData, "Субота");
+MAKE_STATE(setSunday, NULL_ENTRY, setSaturday, setWorkDays, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeyToogleState, LcdMenuSelect, &setSundayData, "Неділя");
 /* MAKE_STATE(setHoliDays, NULL_ENTRY, setWorkDays, settingTime, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Святкові дні"); */
 
 MAKE_STATE(settingTemp, settingSensors, settingTime, startState, setWorkTemp, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Температура.");

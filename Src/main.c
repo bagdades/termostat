@@ -69,7 +69,7 @@ extern uint8_t resultMeasureInside[3];
 extern uint8_t tempLcd[];
 extern stateElement startState;
 extern stateElement settingState;
-extern int16_t settedWorkTemp;
+extern int16_t settedComfortTemp;
 extern int16_t settedWorkTimeTemp;
 extern int16_t settedSleepTimeTemp;
 extern char diagnosticChar[VARIABLE_CHAR_DATA_LENGTH];

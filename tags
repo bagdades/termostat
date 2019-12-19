@@ -11646,6 +11646,8 @@ KeySetUpTimeDate	Inc/key.h	/^void KeySetUpTimeDate(void);$/;"	p	signature:(void)
 KeySetUpTimeDate	Src/key.c	/^void KeySetUpTimeDate(void) {$/;"	f	signature:(void)
 KeySetUpVar	Inc/key.h	/^void KeySetUpVar(void);$/;"	p	signature:(void)
 KeySetUpVar	Src/key.c	/^void KeySetUpVar(void)$/;"	f	signature:(void)
+KeyToogleState	Inc/key.h	/^void KeyToogleState(void);$/;"	p	signature:(void)
+KeyToogleState	Src/key.c	/^void KeyToogleState(void)$/;"	f	signature:(void)
 LAR	Drivers/CMSIS/Include/core_armv8mbl.h	/^  __OM  uint32_t LAR;                    \/*!< Offset: 0xFB0 ( \/W)  Software Lock Access Register *\/$/;"	m	struct:__anon151	access:public
 LAR	Drivers/CMSIS/Include/core_armv8mml.h	/^  __OM  uint32_t LAR;                    \/*!< Offset: 0xFB0 ( \/W)  ITM Lock Access Register *\/$/;"	m	struct:__anon255	access:public
 LAR	Drivers/CMSIS/Include/core_armv8mml.h	/^  __OM  uint32_t LAR;                    \/*!< Offset: 0xFB0 ( \/W)  Software Lock Access Register *\/$/;"	m	struct:__anon258	access:public
@@ -26192,6 +26194,7 @@ i	Src/scheduler.c	/^	uint8_t i;$/;"	l
 icon	Inc/menu.h	/^	tImage* icon;$/;"	m	struct:__anon290	access:public
 id	Src/main.c	/^	uint8_t id[OW_ROMCODE_SIZE];$/;"	l
 idx	Src/key.c	/^	uint8_t idx = CurrState->Text[0] - '0';$/;"	l
+idx	Src/key.c	/^	uint8_t idx;$/;"	l
 ii	Src/scheduler.c	/^	uint8_t ii;$/;"	l
 image	Inc/font.h	/^	  const tImage *image;$/;"	m	struct:__anon293	access:public
 image_data_Arial25b_0x20	Inc/Arial25b.h	/^static const uint8_t image_data_Arial25b_0x20[57] = {$/;"	v
@@ -26863,16 +26866,23 @@ seg25_array	Inc/seg25.h	/^static const tChar seg25_array[] = {$/;"	v
 setDataTime	Src/main.c	/^void setDataTime(void)$/;"	f	signature:(void)
 setDataTime	Src/main.c	/^void setDataTime(void);$/;"	p	file:	signature:(void)
 setDateData	Src/menu.c	/^stateData_t setDateData;$/;"	v
+setFridayData	Src/menu.c	/^stateData_t setFridayData;$/;"	v
 setModeWorkData	Src/menu.c	/^stateData_t setModeWorkData;$/;"	v
+setMondayData	Src/menu.c	/^stateData_t setMondayData;$/;"	v
+setSaturdayData	Src/menu.c	/^stateData_t setSaturdayData;$/;"	v
 setSleepTimeBoundary	Src/menu.c	/^stateData_t setSleepTimeBoundary;$/;"	v
 setSleepTimeTempData	Src/menu.c	/^stateData_t setSleepTimeTempData;$/;"	v
+setSundayData	Src/menu.c	/^stateData_t setSundayData;$/;"	v
+setThursdayData	Src/menu.c	/^stateData_t setThursdayData;$/;"	v
 setTimeData	Src/menu.c	/^stateData_t setTimeData;$/;"	v
+setTuesdayData	Src/menu.c	/^stateData_t setTuesdayData;$/;"	v
+setWednesdayData	Src/menu.c	/^stateData_t setWednesdayData;$/;"	v
 setWorkTempItemData	Src/menu.c	/^stateData_t setWorkTempItemData;$/;"	v
 setWorkTimeBoundary	Src/menu.c	/^stateData_t setWorkTimeBoundary;$/;"	v
 setWorkTimeTempData	Src/menu.c	/^stateData_t setWorkTimeTempData;$/;"	v
 sets	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t sets;$/;"	l
+settedComfortTemp	Src/init.c	/^int16_t settedComfortTemp = 210;$/;"	v
 settedSleepTimeTemp	Src/init.c	/^int16_t settedSleepTimeTemp = 180;$/;"	v
-settedWorkTemp	Src/init.c	/^int16_t settedWorkTemp = 210;$/;"	v
 settedWorkTimeTemp	Src/init.c	/^int16_t settedWorkTimeTemp = 170;$/;"	v
 shiftRow	Src/lcdwg.c	/^uint8_t shiftRow;$/;"	v
 sign	Src/ds18b20.c	/^	uint8_t sign;$/;"	l
@@ -27091,6 +27101,7 @@ w64	Drivers/CMSIS/Include/cmsis_armclang.h	/^    uint64_t w64;$/;"	m	union:llreg
 w64	Drivers/CMSIS/Include/cmsis_gcc.h	/^    uint64_t w64;$/;"	m	union:llreg_u	access:public
 wait	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c	/^  uint32_t wait = Delay;$/;"	l
 ways	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t ways;$/;"	l
+weekDay	Src/init.c	/^	uint8_t weekDay;$/;"	l
 weekday	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t year = 0U, weekday = 0U;$/;"	l
 weekday	Src/m_rtc_2001.c	/^  uint32_t year = 0U, weekday = 0U;$/;"	l
 width	Inc/font.h	/^	 uint8_t width;$/;"	m	struct:__anon292	access:public
@@ -27098,6 +27109,7 @@ width	Src/lcdwg.c	/^	uint8_t width = 0;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t width = font.chars[chr].image->width;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t width = image.width;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t x, y, width, height;$/;"	l
+workDaysOfWeek	Src/init.c	/^uint8_t workDaysOfWeek[7] = {0, 1, 1, 1, 1, 1, 0};$/;"	v
 workTimeStart	Src/init.c	/^RTC_TimeTypeDef workTimeStart;$/;"	v
 workTimeStop	Src/init.c	/^RTC_TimeTypeDef workTimeStop;$/;"	v
 x	Inc/lcdwg.h	/^	uint8_t x;$/;"	m	struct:__anon288	access:public
