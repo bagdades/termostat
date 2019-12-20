@@ -32,7 +32,7 @@ extern const char *modeWorkText[2];
 extern uint8_t modeWorkVar;
 /* stateElement* startState; */
 
-MAKE_STATE(startState, startSetTemp, NULL_ENTRY, NULL_ENTRY, modeWork, ChangeNext, ChangeNext, ChangeParent, ChangeChild, ShowLcdMain, NULL_DATA, "Налаштування.");
+MAKE_STATE(startState, startSetTemp, NULL_ENTRY, NULL_ENTRY, modeWork, ChangeNext, ChangeNext, KeySetModeWork, ChangeChild, ShowLcdMain, NULL_DATA, "Налаштування.");
 /* Set temperature from main screen */
 MAKE_STATE(startSetTemp, NULL_ENTRY, startState, NULL_ENTRY, NULL_ENTRY, KeySetUpVar, KeySetDownVar, ChangePrev, ChangeChild, LcdDrawOneItem, &setWorkTempItemData, "Температура");
 /*========================================================================================*/

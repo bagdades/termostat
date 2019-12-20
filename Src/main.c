@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "rtc.h"
 #include "tim.h"
 #include "usart.h"
@@ -73,20 +74,11 @@ extern int16_t settedComfortTemp;
 extern int16_t settedWorkTimeTemp;
 extern int16_t settedSleepTimeTemp;
 extern char diagnosticChar[VARIABLE_CHAR_DATA_LENGTH];
-
-const char *dayOfWeek[7] = {
-		"Íä.",
-		"Ïí.",
-		"Âò.",
-		"Ñð.",
-		"×ò.",
-		"Ïò.",
-		"Ñá."
-	};
-
-const char *modeWorkText[2] = {
+extern const char *dayOfWeek[7];
+const char *modeWorkText[3] = {
 	"Auto",
-	"Manual"
+	"Manual",
+	"OFF"
 };
 uint8_t modeWorkVar = AUTO_MODE_WORK;
 /* USER CODE END PV */
@@ -114,33 +106,34 @@ void ReadMeasure(void);
   */
 int main(void)
 {
-	/* USER CODE BEGIN 1 */
+  /* USER CODE BEGIN 1 */
 
-	/* USER CODE END 1 */
+  /* USER CODE END 1 */
+  
 
+  /* MCU Configuration--------------------------------------------------------*/
 
-	/* MCU Configuration--------------------------------------------------------*/
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
 
-	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  /* USER CODE BEGIN Init */
 
-	/* USER CODE BEGIN Init */
+  /* USER CODE END Init */
 
-	/* USER CODE END Init */
+  /* Configure the system clock */
+  SystemClock_Config();
 
-	/* Configure the system clock */
-	SystemClock_Config();
+  /* USER CODE BEGIN SysInit */
 
-	/* USER CODE BEGIN SysInit */
+  /* USER CODE END SysInit */
 
-	/* USER CODE END SysInit */
-
-	/* Initialize all configured peripherals */
-	MX_GPIO_Init();
-	MX_RTC_Init();
-	MX_TIM1_Init();
-	MX_USART1_UART_Init();
-	/* USER CODE BEGIN 2 */
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_RTC_Init();
+  MX_TIM1_Init();
+  MX_USART1_UART_Init();
+  MX_I2C1_Init();
+  /* USER CODE BEGIN 2 */
 	InitMain();
 	HAL_RTCEx_SetSecond_IT(&hrtc);
 	/* setDataTime(); */
@@ -154,18 +147,18 @@ int main(void)
 	OS_AddTask(KeyHand, 0, 32);
 	LcdInit();
 	LcdShow();
-	/* USER CODE END 2 */
+  /* USER CODE END 2 */
 
-	/* Infinite loop */
-	/* USER CODE BEGIN WHILE */
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
 	while (1)
 	{
 		OS_Dispatch();
-		/* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
-		/* USER CODE BEGIN 3 */
+    /* USER CODE BEGIN 3 */
 	}
-	/* USER CODE END 3 */
+  /* USER CODE END 3 */
 }
 
 /**

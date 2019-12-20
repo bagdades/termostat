@@ -265,9 +265,11 @@ void KeySetDownTimeDate(void) {
 
 void KeySetModeWork(void)
 {
-	if(modeWorkVar)	
+	if(modeWorkVar == OFF_MODE_WORK)	
 		modeWorkVar = AUTO_MODE_WORK;
-	else modeWorkVar = MANUAL_MODE_WORK;
+	else if(modeWorkVar == AUTO_MODE_WORK)
+		modeWorkVar = MANUAL_MODE_WORK;
+	else modeWorkVar = OFF_MODE_WORK;
 	setModeWorkData.data = (char*)modeWorkText[modeWorkVar];
 }
 
@@ -282,6 +284,7 @@ void KeySetUpVar(void)
 	temp = *(int16_t*)CurrState->data->data;
 	temp++;
 	*(int16_t*)CurrState->data->data = temp;
+	OS_AddTask(WriteEepromValue, 3000, 0);
 }
 
 void KeySetDownVar(void)
@@ -295,6 +298,7 @@ void KeySetDownVar(void)
 	temp = *(int16_t*)CurrState->data->data;
 	temp--;
 	*(int16_t*)CurrState->data->data = temp;
+	OS_AddTask(WriteEepromValue, 3000, 0);
 }
 
 void KeySetUpBoundTime(void)
@@ -309,11 +313,14 @@ void KeySetUpBoundTime(void)
 		sTimeStart = &sleepTimeStart;
 		sTimeStop = &sleepTimeStop;
 		aShowSetTime = aShowSetSleepTime;
-	} else {
+	} 
+	else if(CurrState->Parent == (void*)&setWorkTime)
+	{
 		sTimeStart = &workTimeStart;
 		sTimeStop = &workTimeStop;
 		aShowSetTime = aShowSetWorkTime;
 	}
+	else return;
 	switch (idx) 
 	{
 		case 0:
@@ -348,6 +355,7 @@ void KeySetUpBoundTime(void)
 			break;
 			
 	}
+	OS_AddTask(WriteEepromValue, 3000, 0);
 }
 
 void KeySetDownBoundTime(void)
@@ -397,7 +405,7 @@ void KeySetDownBoundTime(void)
 			break;
 			
 	}
-	
+	OS_AddTask(WriteEepromValue, 3000, 0);
 }
 
 void KeyToogleState(void)
@@ -419,14 +427,9 @@ void KeyToogleState(void)
 			workDaysOfWeek[idx] = 1;
 		}
 	}
+	WriteEepromValue();
 }
 
-/**
- * @brief  Checks whether the passed year is Leap or not.
- * @param  None
- * @retval : 1: leap year
- *   0: not leap year
- */
 uint8_t CheckLeap(uint8_t year) {
 	uint16_t yearFull = 2000 + year;
 	if ((yearFull % 400) == 0)

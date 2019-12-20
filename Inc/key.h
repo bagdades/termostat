@@ -14,6 +14,7 @@
 #include "menu.h"
 #include "m_rtc_2001.h"
 #include "init.h"
+#include "scheduler.h"
 
 /*------------------KEY---------------------------------------*/
 /* #define KEY_UP    		0 */
