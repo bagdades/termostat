@@ -31,6 +31,10 @@ extern RTC_TimeTypeDef sleepTimeStart;
 extern RTC_TimeTypeDef sleepTimeStop;
 extern uint8_t aShowSetSleepTime[];
 extern uint8_t aShowSetWorkTime[];
+extern const char sensorWaitConnect[];
+extern const char sensorNotConnect[];
+extern uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];
+extern char owIDString[MAXSENSORS][17];
 uint8_t keyPressed;
 /**
  * @name KeyInit
@@ -427,7 +431,7 @@ void KeyToogleState(void)
 			workDaysOfWeek[idx] = 1;
 		}
 	}
-	WriteEepromValue();
+	OS_AddTask(WriteEepromValue, 3000, 0);
 }
 
 uint8_t CheckLeap(uint8_t year) {
@@ -442,3 +446,13 @@ uint8_t CheckLeap(uint8_t year) {
 		return NOT_LEAP;
 }
 
+void KeySearchSensor(void)
+{
+	uint8_t numSensor;
+	numSensor = search_sensors();
+	if (numSensor) 
+	{
+		CurrState->data->data = owIDString[0];
+	}
+	else CurrState->data->data = (char*)sensorNotConnect;
+}

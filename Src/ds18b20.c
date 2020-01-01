@@ -49,6 +49,7 @@ extern uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];
 
 uint8_t resultMeasureOutside[3];
 uint8_t resultMeasureInside[3];
+uint8_t resultMeasureCoolant[3];
 uint8_t tempLcd[] = { ' ', '0', '0', ',', '0', 0 };
 
 uint8_t DS18X20_meas_to_cel(uint8_t fc, uint8_t *sp, uint8_t* subzero,
@@ -348,3 +349,19 @@ uint8_t DS18X20_recall_E2( uint8_t id[] )
 	}
 }
 #endif
+
+uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[])
+{
+	uint8_t retVal = DS18X20_NO_SENSOR;
+	for (uint8_t j = 0; j < MAXSENSORS; j++) {
+		for (uint8_t i = 0; i < OW_ROMCODE_SIZE; i++) {
+			if(foundID[j][i] != storedID[i])
+				break;
+			if(i == OW_ROMCODE_SIZE - 1)
+				retVal = j;
+		}
+		if(retVal != DS18X20_NO_SENSOR)
+			break;
+	}
+	return retVal;
+}

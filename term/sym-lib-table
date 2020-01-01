@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name lcd)(type Legacy)(uri /home/vovan/projects/termostat/wg12864a/lcd.lib)(options "")(descr ""))
+)

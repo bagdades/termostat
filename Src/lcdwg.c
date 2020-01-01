@@ -695,14 +695,17 @@ void LcdDrawMenu(menuMode_t mode) {
 			n = (lcdMode == LCD_MODE_NORM) ? LCD_MODE_INVERSE : LCD_MODE_NORM;
 		} else
 			n = lcdMode;
-		LcdDrawText(rec, DT_LEFT | DT_VCENTER, *fontMenu, n, rowElement->Text);
+		if(rowElement->Text[0] == '#')
+			LcdDrawText(rec, DT_LEFT | DT_VCENTER, *fontMenu, n, rowElement->data->text);
+		else LcdDrawText(rec, DT_LEFT | DT_VCENTER, *fontMenu, n, rowElement->Text);
+		/* Mode select */
 		if (mode == MENU_MODE_SELECT) {
 			LcdDrawFrame((LENGTH_MENU_STRING - rowHeight - 2), (LENGTH_MENU_STRING - 5),
 					(i * rowHeight) + 1, (i * rowHeight) + rowHeight - 2, n);
 			if (rowElement->data->flag) {
 				RECT_SET(rec, (LENGTH_MENU_STRING - rowHeight - 1), (i * rowHeight) + 2,
-						rowHeight - 4, fontMenu->chars['X'].image->height);
-				LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, n, "X");
+						rowHeight - 4, fontMenu->chars['$'].image->height);
+				LcdDrawText(rec, DT_CENTER | DT_VCENTER, *fontMenu, n, "$");
 			}
 		}
 		if (rowElement->Next != (void*) &NULL_ENTRY)
@@ -771,17 +774,17 @@ void LcdDrawOneItem(void) {
 			}
 			width = 0;
 			//Визначаємо довжину слова з проміжками між символами
-			for (i = 0; i < (CurrState->data->flag & 0x1F) && ch[i] != 0; i++) {
+			for (i = 0; ch[i] != 0 && ch[i] != '\r'; i++) {
 				chr = ch[i] - itemFont->chars[0].code;
 				width += itemFont->chars[chr].image->width;
 			}
 			/* Додаємо проміжки між буквами (їх на один менше , ніж символів) */
-			width += (CurrState->data->flag & 0x1F) - 1;
+			width += i;
 			/* Визначаємо координати розміщення тексту */
 			x = (LCD_X_RES - width) / 2;
 			height = itemFont->chars[0].image->height;
 			y = (LCD_Y_RES - height - y - 1) / 2 + y;
-			for (i = 0; i < (CurrState->data->flag & 0x1F) && ch[i] != 0; i++) {
+			for (i = 0; ch[i] != 0; i++) {
 				/* Для меню налаштувань параметра (годиника , дати)
 				 * визначаємо позицію параметра для налаштування 
 				 * з коду тексту поточного меню 
@@ -794,20 +797,18 @@ void LcdDrawOneItem(void) {
 							chr = ' ';
 						else
 							chr = ch[i];
-					} else
-						chr = ch[i];
-				} else
-					chr = ch[i];  // для всіх інших звичайне відображення
+					} else chr = ch[i];
+				} else chr = ch[i];  // для всіх інших звичайне відображення
 				width = LcdDrawChar(x, y, *itemFont, lcdMode, chr);
 				x = x + width + 1;
 			}
 			/* Дописуємо текст після цифрового значення */
-			if (CurrState->Text != NULL_TEXT && (CurrState->data->flag & MENU_ITEM_SETTING) == 0) {
-				height = (fontMenu->chars[0].image->height * 2) + 3;
-				y = y + itemFont->chars[0].image->height - height;
-				RECT_SET(rec, x, y, LCD_X_RES - x, height);
-				LcdDrawStrTwoRow(rec, *fontMenu, (char*) &CurrState->Text);
-			}
+			/* if (CurrState->Text != NULL_TEXT && (CurrState->data->flag & MENU_ITEM_SETTING) == 0) { */
+			/* 	height = (fontMenu->chars[0].image->height * 2) + 3; */
+			/* 	y = y + itemFont->chars[0].image->height - height; */
+			/* 	RECT_SET(rec, x, y, LCD_X_RES - x, height); */
+			/* 	LcdDrawStrTwoRow(rec, *fontMenu, (char*) &CurrState->Text); */
+			/* } */
 		}
 	}
 }

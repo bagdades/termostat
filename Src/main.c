@@ -62,11 +62,16 @@ uint8_t aShowDate[DATE_BUFFER_LENGTH] = {0};
 RTC_TimeTypeDef sTime;
 RTC_DateTypeDef sDate;
 uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];
+char owIDString[MAXSENSORS][17];
 uint8_t nSensors;
 uint8_t ticksBlink = 0;
+sensorData_t sensorInside;
+sensorData_t sensorOutside;
+sensorData_t sensorCooland;
 /* uint8_t keyPressed; */
 extern uint8_t resultMeasureOutside[3];
 extern uint8_t resultMeasureInside[3];
+extern uint8_t resultMeasureCoolant[3];
 extern uint8_t tempLcd[];
 extern stateElement startState;
 extern stateElement settingState;
@@ -80,6 +85,7 @@ const char *modeWorkText[3] = {
 	"Manual",
 	"OFF"
 };
+const char noSensor[] = "---";
 uint8_t modeWorkVar = AUTO_MODE_WORK;
 /* USER CODE END PV */
 
@@ -134,13 +140,16 @@ int main(void)
   MX_USART1_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-	InitMain();
 	HAL_RTCEx_SetSecond_IT(&hrtc);
 	/* setDataTime(); */
 	mRTC_Begin(&hrtc);
 	Show_RTC_Calendar();
 	OW_Init();
 	nSensors = search_sensors();
+	InitMain();
+	sensorInside.present = 1;
+	sensorOutside.present = 0;
+	sensorCooland.present = 0;
 	OS_AddTask(LedBlink1, 0, 200);
 	OS_AddTask(LedBlink2, 100, 500);
 	OS_AddTask(StartMeasure, 0, 0);
@@ -212,16 +221,29 @@ void ShowLcdMain(void)
 	LcdClear();
 	rect_t rec;
 	/* Show temperature inside */
-	TempOut(resultMeasureInside);
 	RECT_SET(rec, 0, 11, 71, 35);
-	LcdDrawText(rec, DT_LEFT | DT_VCENTER, Font, LCD_MODE_NORM, (const char*)tempLcd);
+	if (sensorInside.present) 
+	{
+		TempOut(resultMeasureInside);
+		LcdDrawText(rec, DT_LEFT | DT_VCENTER, Font, LCD_MODE_NORM, (const char*)tempLcd);
+	}
+	else LcdDrawText(rec, DT_LEFT | DT_VCENTER, Font, LCD_MODE_NORM, noSensor);
 	/* Show temperature outside */
-	TempOut(resultMeasureOutside);
 	RECT_SET(rec, 84, 19, LCD_X_RES - 86, 11);
-	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, (const char*)tempLcd);
+	if (sensorOutside.present) 
+	{
+		TempOut(resultMeasureOutside);
+		LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, (const char*)tempLcd);
+	}
+	else LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, noSensor);
 	/* Show temperature water */
 	RECT_SET(rec, 84, LCD_Y_RES - 25, LCD_X_RES - 86, 11);
-	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, (const char*)tempLcd);
+	if (sensorCooland.present) 
+	{
+		TempOut(resultMeasureCoolant);
+		LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, (const char*)tempLcd);
+	}
+	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, noSensor);
 	/* Show frame */
 	LcdDrawFrame(84, LCD_X_RES - 1, 10, LCD_Y_RES - 14, LCD_MODE_NORM);
 	RECT_SET(rec, 84, 10, LCD_X_RES - 85, 9);
@@ -303,6 +325,12 @@ uint8_t search_sensors(void) {
 
 		nSensors++;
 	}
+	if(nSensors)
+	{
+		for (i = 0; i < nSensors; ++i) {
+			sprintf(owIDString[i], "%02X%02X%02X%02X%02X%02X%02X%02X", gSensorIDs[i][0], gSensorIDs[i][1], gSensorIDs[i][2], gSensorIDs[i][3], gSensorIDs[i][4], gSensorIDs[i][5], gSensorIDs[i][6], gSensorIDs[i][7]);
+		}
+	}
 	return nSensors;
 }
 
@@ -316,6 +344,7 @@ void ReadMeasure(void)
 {
 	DS18X20_read_meas(&gSensorIDs[0][0], resultMeasureOutside);
 	DS18X20_read_meas(&gSensorIDs[1][0], resultMeasureInside);
+	DS18X20_read_meas(&gSensorIDs[2][0], resultMeasureCoolant);
 	OS_AddTask(StartMeasure, 5000, 0);
 }
 

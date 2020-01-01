@@ -52,6 +52,7 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+uint8_t search_sensors(void);
 
 /* USER CODE BEGIN EFP */
 void ShowLcdMain(void);

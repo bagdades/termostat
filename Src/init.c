@@ -31,6 +31,8 @@ const char *dayOfWeek[7] = {
 		"Яђ.",
 		"бс."
 	};
+const char sensorWaitConnect[] = "Conn. sensor & press ok";
+const char sensorNotConnect[] = "No sensors";
 
 int16_t settedComfortTemp = 210;
 int16_t settedWorkTimeTemp = 170;
@@ -71,15 +73,29 @@ extern stateData_t setWednesdayData;
 extern stateData_t setThursdayData;
 extern stateData_t setFridayData;
 extern stateData_t setSaturdayData;
+extern stateData_t insideTempItemData;
+extern stateData_t outsideTempItemData;
+extern stateData_t coolantTempItemData;
 extern RTC_TimeTypeDef sTime;
 extern RTC_DateTypeDef sDate;
 extern const char *modeWorkText[3];
 extern uint8_t modeWorkVar;
+extern uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];
+extern uint8_t nSensors;
+extern char diagnosticChar[];
+extern char owIDString[MAXSENSORS][17];
+
+
+sensorID_t insideSensor;
+sensorID_t outsideSensor;
+sensorID_t coolantSensor;
+uint8_t numStoredSensors = 0;
 
 void InitMain(void)
 {
 	uint8_t saveBuf[21];
-	HAL_I2C_Mem_Read(&hi2c1, 0xA0, 0, I2C_MEMADD_SIZE_16BIT, saveBuf, sizeof(saveBuf), HAL_MAX_DELAY);
+	HAL_I2C_Mem_Read(&hi2c1, 0xA0, I2C_ADDR_SAVE_EEPROM, I2C_MEMADD_SIZE_16BIT, saveBuf, sizeof(saveBuf), HAL_MAX_DELAY);
+	while(HAL_I2C_IsDeviceReady(&hi2c1, 0xA0, 1, HAL_MAX_DELAY) != HAL_OK);
 	workTimeStart.Hours = saveBuf[0];
 	workTimeStart.Minutes = saveBuf[1];
 	workTimeStop.Hours = saveBuf[2];
@@ -101,6 +117,7 @@ void InitMain(void)
 	setThursdayData.flag = saveBuf[18];
 	setFridayData.flag = saveBuf[19];
 	setSaturdayData.flag = saveBuf[20];
+	/* numStoredSensors == saveBuf[21]; */
 	/* modeWorkVar */
 	/* workTimeStart.Hooours */
 	/* workTimeStart.Minutes */
@@ -140,35 +157,35 @@ void InitMain(void)
 
 
 	setTimeData.data = (uint8_t*) aShowTime;
-	setTimeData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | TIME_BUFFER_LENGTH;
+	setTimeData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING;
 	setTimeData.font = &fontDigital;
 
 	setDateData.data = (uint8_t*) aShowDate;
-	setDateData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | DATE_BUFFER_LENGTH;
+	setDateData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING;
 	setDateData.font = &fontDigital;
 
 	setModeWorkData.data = (char*)modeWorkText[modeWorkVar];
-	setModeWorkData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | DATE_BUFFER_LENGTH;
+	setModeWorkData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING;
 	setModeWorkData.font = &fontMenu;
 
 	setWorkTempItemData.data = (int16_t*) &settedComfortTemp;
-	setWorkTempItemData.flag = MENU_ITEM_SETTING | DATE_BUFFER_LENGTH | COMMA;
+	setWorkTempItemData.flag = MENU_ITEM_SETTING | COMMA;
 	setWorkTempItemData.font = &fontDigital;
 
 	setWorkTimeTempData.data = (int16_t*) &settedWorkTimeTemp;
-	setWorkTimeTempData.flag = MENU_ITEM_SETTING | DATE_BUFFER_LENGTH | COMMA;
+	setWorkTimeTempData.flag = MENU_ITEM_SETTING | COMMA;
 	setWorkTimeTempData.font = &fontDigital;
 
 	setSleepTimeTempData.data = (int16_t*) &settedSleepTimeTemp;
-	setSleepTimeTempData.flag = MENU_ITEM_SETTING | DATE_BUFFER_LENGTH | COMMA;
+	setSleepTimeTempData.flag = MENU_ITEM_SETTING | COMMA;
 	setSleepTimeTempData.font = &fontDigital;
 
 	setSleepTimeBoundary.data = (uint8_t*) aShowSetSleepTime;
-	setSleepTimeBoundary.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | DATE_BUFFER_LENGTH;
+	setSleepTimeBoundary.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING;
 	setSleepTimeBoundary.font = &fontDigital;
 
 	setWorkTimeBoundary.data = (uint8_t*) aShowSetWorkTime;
-	setWorkTimeBoundary.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING | DATE_BUFFER_LENGTH;
+	setWorkTimeBoundary.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING;
 	setWorkTimeBoundary.font = &fontDigital;
 
 	setSundayData.text = "0";
@@ -194,6 +211,12 @@ void InitMain(void)
 	/* setThursdayData.flag = workDaysOfWeek[4]; */
 	/* setFridayData.flag = workDaysOfWeek[5]; */
 	/* setSaturdayData.flag = workDaysOfWeek[6]; */
+	insideTempItemData.font = &fontMenu;
+	insideTempItemData.flag = MENU_ITEM_TEXT;
+	insideTempItemData.data = (char*)sensorWaitConnect;
+	insideTempItemData.text = owIDString[0];
+	outsideTempItemData.text = owIDString[1];
+	coolantTempItemData.text = owIDString[2];
 }
 
 void Termostat(void)
@@ -226,7 +249,7 @@ int16_t TermGetWorkTemp(void)
 
 void WriteEepromValue(void)
 {
-	uint8_t saveBuf[21];
+	uint8_t saveBuf[22];
 	saveBuf[0] = workTimeStart.Hours;
 	saveBuf[1] = workTimeStart.Minutes;
 	saveBuf[2] = workTimeStop.Hours;
@@ -248,6 +271,7 @@ void WriteEepromValue(void)
 	saveBuf[18] = setThursdayData.flag;
 	saveBuf[19] = setFridayData.flag;
 	saveBuf[20] = setSaturdayData.flag;
-	HAL_I2C_Mem_Write(&hi2c1, 0xA0, 0, I2C_MEMADD_SIZE_16BIT, saveBuf, sizeof(saveBuf), HAL_MAX_DELAY);
+	saveBuf[21] = numStoredSensors;
+	HAL_I2C_Mem_Write(&hi2c1, 0xA0, I2C_ADDR_SAVE_EEPROM, I2C_MEMADD_SIZE_16BIT, saveBuf, sizeof(saveBuf), HAL_MAX_DELAY);
 	while(HAL_I2C_IsDeviceReady(&hi2c1, 0xA0, 1, HAL_MAX_DELAY) != HAL_OK);
 }

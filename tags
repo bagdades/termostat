@@ -1314,7 +1314,7 @@ ASFLAGS	Makefile	/^ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdat
 ASM_SOURCES	Makefile	/^ASM_SOURCES =  \\$/;"	m
 AS_DEFS	Makefile	/^AS_DEFS = $/;"	m
 AS_INCLUDES	Makefile	/^AS_INCLUDES = $/;"	m
-AUTO_MODE_WORK	Inc/init.h	12;"	d
+AUTO_MODE_WORK	Inc/init.h	14;"	d
 AWD1_EVENT	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	62;"	d
 AWD2_EVENT	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	63;"	d
 AWD3_EVENT	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	64;"	d
@@ -1377,7 +1377,7 @@ Arial7_0x20	Inc/arial7.h	/^static const tImage Arial7_0x20 = { image_data_Arial7
 Arial7_0x21	Inc/arial7.h	/^static const tImage Arial7_0x21 = { image_data_Arial7_0x21, 2, 7};\/\/'!'$/;"	v
 Arial7_0x22	Inc/arial7.h	/^static const tImage Arial7_0x22 = { image_data_Arial7_0x22, 3, 7};\/\/'"'$/;"	v
 Arial7_0x23	Inc/arial7.h	/^static const tImage Arial7_0x23 = { image_data_Arial7_0x23, 5, 7};\/\/'#'$/;"	v
-Arial7_0x24	Inc/arial7.h	/^static const tImage Arial7_0x24 = { image_data_Arial7_0x24, 5, 7};\/\/'$'$/;"	v
+Arial7_0x24	Inc/arial7.h	/^static const tImage Arial7_0x24 = { image_data_Arial7_0x24, 6, 7};\/\/'$'$/;"	v
 Arial7_0x25	Inc/arial7.h	/^static const tImage Arial7_0x25 = { image_data_Arial7_0x25, 6, 7};\/\/'%'$/;"	v
 Arial7_0x26	Inc/arial7.h	/^static const tImage Arial7_0x26 = { image_data_Arial7_0x26, 5, 7};\/\/'&'$/;"	v
 Arial7_0x27	Inc/arial7.h	/^static const tImage Arial7_0x27 = { image_data_Arial7_0x27, 2, 7};\/\/'''$/;"	v
@@ -6770,44 +6770,45 @@ DR6	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t DR
 DR7	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t DR7;$/;"	m	struct:__anon57	access:public
 DR8	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t DR8;$/;"	m	struct:__anon57	access:public
 DR9	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t DR9;$/;"	m	struct:__anon57	access:public
-DS18B20_10_BIT	Inc/ds18b20.h	37;"	d
-DS18B20_10_BIT_UNDF	Inc/ds18b20.h	43;"	d
-DS18B20_11_BIT	Inc/ds18b20.h	38;"	d
-DS18B20_11_BIT_UNDF	Inc/ds18b20.h	44;"	d
-DS18B20_12_BIT	Inc/ds18b20.h	39;"	d
-DS18B20_12_BIT_UNDF	Inc/ds18b20.h	45;"	d
-DS18B20_9_BIT	Inc/ds18b20.h	36;"	d
-DS18B20_9_BIT_UNDF	Inc/ds18b20.h	42;"	d
-DS18B20_CONF_REG	Inc/ds18b20.h	35;"	d
-DS18B20_ID	Inc/ds18b20.h	26;"	d
-DS18B20_TCONV_10BIT	Inc/ds18b20.h	50;"	d
-DS18B20_TCONV_11BIT	Inc/ds18b20.h	49;"	d
-DS18B20_TCONV_12BIT	Inc/ds18b20.h	48;"	d
-DS18B20_TCONV_9BIT	Inc/ds18b20.h	51;"	d
-DS18S20_ID	Inc/ds18b20.h	25;"	d
-DS18S20_TCONV	Inc/ds18b20.h	52;"	d
-DS18X20_CONVERT_T	Inc/ds18b20.h	28;"	d
-DS18X20_COPYSP_DELAY	Inc/ds18b20.h	63;"	d
-DS18X20_COPY_SCRATCHPAD	Inc/ds18b20.h	61;"	d
-DS18X20_EE_RECALL	Inc/ds18b20.h	32;"	d
-DS18X20_EE_WRITE	Inc/ds18b20.h	31;"	d
-DS18X20_ERROR	Inc/ds18b20.h	17;"	d
-DS18X20_ERROR_CRC	Inc/ds18b20.h	19;"	d
-DS18X20_FRACCONV	Inc/ds18b20.h	55;"	d
+DS18B20_10_BIT	Inc/ds18b20.h	40;"	d
+DS18B20_10_BIT_UNDF	Inc/ds18b20.h	46;"	d
+DS18B20_11_BIT	Inc/ds18b20.h	41;"	d
+DS18B20_11_BIT_UNDF	Inc/ds18b20.h	47;"	d
+DS18B20_12_BIT	Inc/ds18b20.h	42;"	d
+DS18B20_12_BIT_UNDF	Inc/ds18b20.h	48;"	d
+DS18B20_9_BIT	Inc/ds18b20.h	39;"	d
+DS18B20_9_BIT_UNDF	Inc/ds18b20.h	45;"	d
+DS18B20_CONF_REG	Inc/ds18b20.h	38;"	d
+DS18B20_ID	Inc/ds18b20.h	29;"	d
+DS18B20_TCONV_10BIT	Inc/ds18b20.h	53;"	d
+DS18B20_TCONV_11BIT	Inc/ds18b20.h	52;"	d
+DS18B20_TCONV_12BIT	Inc/ds18b20.h	51;"	d
+DS18B20_TCONV_9BIT	Inc/ds18b20.h	54;"	d
+DS18S20_ID	Inc/ds18b20.h	28;"	d
+DS18S20_TCONV	Inc/ds18b20.h	55;"	d
+DS18X20_CONVERT_T	Inc/ds18b20.h	31;"	d
+DS18X20_COPYSP_DELAY	Inc/ds18b20.h	66;"	d
+DS18X20_COPY_SCRATCHPAD	Inc/ds18b20.h	64;"	d
+DS18X20_EE_RECALL	Inc/ds18b20.h	35;"	d
+DS18X20_EE_WRITE	Inc/ds18b20.h	34;"	d
+DS18X20_ERROR	Inc/ds18b20.h	20;"	d
+DS18X20_ERROR_CRC	Inc/ds18b20.h	22;"	d
+DS18X20_FRACCONV	Inc/ds18b20.h	58;"	d
 DS18X20_H_	Inc/ds18b20.h	2;"	d
-DS18X20_OK	Inc/ds18b20.h	16;"	d
-DS18X20_POWER_EXTERN	Inc/ds18b20.h	22;"	d
-DS18X20_POWER_PARASITE	Inc/ds18b20.h	21;"	d
-DS18X20_READ	Inc/ds18b20.h	29;"	d
-DS18X20_READ_POWER_SUPPLY	Inc/ds18b20.h	33;"	d
-DS18X20_RECALL_E2	Inc/ds18b20.h	62;"	d
-DS18X20_SP_SIZE	Inc/ds18b20.h	57;"	d
-DS18X20_START_FAIL	Inc/ds18b20.h	18;"	d
-DS18X20_TH_REG	Inc/ds18b20.h	64;"	d
-DS18X20_TL_REG	Inc/ds18b20.h	65;"	d
-DS18X20_VERBOSE	Inc/ds18b20.h	13;"	d
-DS18X20_WRITE	Inc/ds18b20.h	30;"	d
-DS18X20_WRITE_SCRATCHPAD	Inc/ds18b20.h	60;"	d
+DS18X20_NO_SENSOR	Inc/ds18b20.h	16;"	d
+DS18X20_OK	Inc/ds18b20.h	19;"	d
+DS18X20_POWER_EXTERN	Inc/ds18b20.h	25;"	d
+DS18X20_POWER_PARASITE	Inc/ds18b20.h	24;"	d
+DS18X20_READ	Inc/ds18b20.h	32;"	d
+DS18X20_READ_POWER_SUPPLY	Inc/ds18b20.h	36;"	d
+DS18X20_RECALL_E2	Inc/ds18b20.h	65;"	d
+DS18X20_SP_SIZE	Inc/ds18b20.h	60;"	d
+DS18X20_START_FAIL	Inc/ds18b20.h	21;"	d
+DS18X20_TH_REG	Inc/ds18b20.h	67;"	d
+DS18X20_TL_REG	Inc/ds18b20.h	68;"	d
+DS18X20_VERBOSE	Inc/ds18b20.h	14;"	d
+DS18X20_WRITE	Inc/ds18b20.h	33;"	d
+DS18X20_WRITE_SCRATCHPAD	Inc/ds18b20.h	63;"	d
 DS18X20_copy_scratchpad	Inc/ds18b20.h	/^uint8_t DS18X20_copy_scratchpad( uint8_t with_power_extern, uint8_t id[] );$/;"	p	signature:( uint8_t with_power_extern, uint8_t id[] )
 DS18X20_copy_scratchpad	Src/ds18b20.c	/^uint8_t DS18X20_copy_scratchpad( uint8_t with_power_extern,$/;"	f	signature:( uint8_t with_power_extern, uint8_t id[] )
 DS18X20_find_sensor	Inc/ds18b20.h	/^extern void DS18X20_find_sensor(uint8_t *diff, uint8_t id[]);$/;"	p	signature:(uint8_t *diff, uint8_t id[])
@@ -6823,6 +6824,8 @@ DS18X20_read_scratchpad	Inc/ds18b20.h	/^uint8_t DS18X20_read_scratchpad( uint8_t
 DS18X20_read_scratchpad	Src/ds18b20.c	/^uint8_t DS18X20_read_scratchpad( uint8_t id[], uint8_t sp[] )$/;"	f	signature:( uint8_t id[], uint8_t sp[] )
 DS18X20_recall_E2	Inc/ds18b20.h	/^uint8_t DS18X20_recall_E2( uint8_t id[] );$/;"	p	signature:( uint8_t id[] )
 DS18X20_recall_E2	Src/ds18b20.c	/^uint8_t DS18X20_recall_E2( uint8_t id[] )$/;"	f	signature:( uint8_t id[] )
+DS18X20_searchID	Inc/ds18b20.h	/^uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[]);$/;"	p	signature:(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[])
+DS18X20_searchID	Src/ds18b20.c	/^uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[])$/;"	f	signature:(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[])
 DS18X20_start_meas	Inc/ds18b20.h	/^extern uint8_t DS18X20_start_meas( uint8_t with_external, uint8_t id[]);$/;"	p	signature:( uint8_t with_external, uint8_t id[])
 DS18X20_start_meas	Src/ds18b20.c	/^uint8_t DS18X20_start_meas(uint8_t with_power_extern, uint8_t id[]) {$/;"	f	signature:(uint8_t with_power_extern, uint8_t id[])
 DS18X20_temp_cmp	Inc/ds18b20.h	/^extern int8_t DS18X20_temp_cmp(uint8_t subzero1, uint16_t cel1, uint8_t subzero2, uint16_t cel2);$/;"	p	signature:(uint8_t subzero1, uint16_t cel1, uint8_t subzero2, uint16_t cel2)
@@ -10656,6 +10659,8 @@ I2C_7BIT_ADD_READ	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	663;"	d
 I2C_7BIT_ADD_WRITE	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	662;"	d
 I2C_ADDRESSINGMODE_10BIT	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	295;"	d
 I2C_ADDRESSINGMODE_7BIT	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	294;"	d
+I2C_ADDR_1WIRE_SENSOR_CODE	Inc/init.h	18;"	d
+I2C_ADDR_SAVE_EEPROM	Inc/init.h	19;"	d
 I2C_ANALOGFILTER_DISABLED	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	752;"	d
 I2C_ANALOGFILTER_ENABLED	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	751;"	d
 I2C_CCR_CALCULATION	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	653;"	d
@@ -11080,6 +11085,7 @@ IC_MspDeInitCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  vo
 IC_MspDeInitCallback	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c	/^  htim->IC_MspDeInitCallback(htim);$/;"	p	file:
 IC_MspInitCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  void (* IC_MspInitCallback)(struct __TIM_HandleTypeDef *htim);                \/*!< TIM IC Msp Init Callback                                *\/$/;"	m	struct:__TIM_HandleTypeDef	access:public
 IC_MspInitCallback	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c	/^    htim->IC_MspInitCallback(htim);$/;"	p	file:
+ID	Inc/ds18b20.h	/^	uint8_t ID[OW_ROMCODE_SIZE];$/;"	m	struct:_sensorData_t	access:public
 IDCODE	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t IDCODE;$/;"	m	struct:__anon63	access:public
 IDCODE_DEVID_MASK	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c	67;"	d	file:
 IDR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t IDR;$/;"	m	struct:__anon69	access:public
@@ -12160,7 +12166,7 @@ MAIR1	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IOM uint32_t MAIR1;           
 MAIR1	Drivers/CMSIS/Include/core_cm23.h	/^  __IOM uint32_t MAIR1;                  \/*!< Offset: 0x034 (R\/W)  MPU Memory Attribute Indirection Register 1 *\/$/;"	m	struct:__anon115::__anon116::__anon117	access:public
 MAIR1	Drivers/CMSIS/Include/core_cm33.h	/^  __IOM uint32_t MAIR1;                  \/*!< Offset: 0x034 (R\/W)  MPU Memory Attribute Indirection Register 1 *\/$/;"	m	struct:__anon136::__anon137::__anon138	access:public
 MAKE_STATE	Inc/menu.h	60;"	d
-MANUAL_MODE_WORK	Inc/init.h	13;"	d
+MANUAL_MODE_WORK	Inc/init.h	15;"	d
 MAPR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t MAPR;$/;"	m	struct:__anon70	access:public
 MAPR2	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t MAPR2;  $/;"	m	struct:__anon70	access:public
 MASK0	Drivers/CMSIS/Include/core_cm3.h	/^  __IOM uint32_t MASK0;                  \/*!< Offset: 0x024 (R\/W)  Mask Register 0 *\/$/;"	m	struct:__anon175	access:public
@@ -12179,7 +12185,7 @@ MASK3	Drivers/CMSIS/Include/core_cm3.h	/^  __IOM uint32_t MASK3;                
 MASK3	Drivers/CMSIS/Include/core_cm4.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon283	access:public
 MASK3	Drivers/CMSIS/Include/core_cm7.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon206	access:public
 MASK3	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon98	access:public
-MAXSENSORS	Inc/ds18b20.h	8;"	d
+MAXSENSORS	Inc/ds18b20.h	9;"	d
 MAXTASKS	Inc/scheduler.h	10;"	d
 MAX_ETH_PAYLOAD	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1223;"	d
 MCO1_CLK_ENABLE	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	89;"	d	file:
@@ -13261,7 +13267,7 @@ OC_MspInitCallback	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c	/^    ht
 ODEN_BitNumber	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1475;"	d
 ODR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t ODR;$/;"	m	struct:__anon69	access:public
 ODSWEN_BitNumber	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1476;"	d
-OFF_MODE_WORK	Inc/init.h	14;"	d
+OFF_MODE_WORK	Inc/init.h	16;"	d
 OK	Inc/lcdwg.h	32;"	d
 OK_WITH_WRAP	Inc/lcdwg.h	34;"	d
 OPAMP_INVERTINGINPUT_VINM	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	871;"	d
@@ -26393,6 +26399,13 @@ _reserved1	Drivers/CMSIS/Include/core_sc000.h	/^    uint32_t _reserved1:30;     
 _reserved1	Drivers/CMSIS/Include/core_sc000.h	/^    uint32_t _reserved1:3;               \/*!< bit: 25..27  Reserved *\/$/;"	m	struct:__anon183::__anon184	access:public
 _reserved1	Drivers/CMSIS/Include/core_sc300.h	/^    uint32_t _reserved1:30;              \/*!< bit:  2..31  Reserved *\/$/;"	m	struct:__anon90::__anon91	access:public
 _reserved1	Drivers/CMSIS/Include/core_sc300.h	/^    uint32_t _reserved1:8;               \/*!< bit: 16..23  Reserved *\/$/;"	m	struct:__anon88::__anon89	access:public
+_sensorData_t	Inc/ds18b20.h	/^typedef struct _sensorData_t {$/;"	s
+_sensorData_t::ID	Inc/ds18b20.h	/^	uint8_t ID[OW_ROMCODE_SIZE];$/;"	m	struct:_sensorData_t	access:public
+_sensorData_t::index	Inc/ds18b20.h	/^	uint8_t index;$/;"	m	struct:_sensorData_t	access:public
+_sensorData_t::present	Inc/ds18b20.h	/^	uint8_t present;$/;"	m	struct:_sensorData_t	access:public
+_sensorID_t	Inc/init.h	/^typedef struct _sensorID_t {$/;"	s
+_sensorID_t::idx	Inc/init.h	/^	uint8_t idx;$/;"	m	struct:_sensorID_t	access:public
+_sensorID_t::romcode	Inc/init.h	/^	uint8_t romcode[OW_ROMCODE_SIZE];$/;"	m	struct:_sensorID_t	access:public
 _task	Inc/scheduler.h	/^typedef struct _task {$/;"	s
 _task::delay	Inc/scheduler.h	/^	uint16_t delay;$/;"	m	struct:_task	access:public
 _task::period	Inc/scheduler.h	/^	uint16_t period;$/;"	m	struct:_task	access:public
@@ -26409,9 +26422,9 @@ aPredivFactorTable	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	/^  cons
 aPredivFactorTable	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  const uint8_t aPredivFactorTable[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};$/;"	l
 aPredivFactorTable	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  const uint8_t aPredivFactorTable[2] = {1, 2};$/;"	l
 aShowDate	Src/main.c	/^uint8_t aShowDate[DATE_BUFFER_LENGTH] = {0};$/;"	v
-aShowSetSleepTime	Src/init.c	/^uint8_t aShowSetSleepTime[15] = {0};$/;"	v
+aShowSetSleepTime	Src/init.c	/^uint8_t aShowSetSleepTime[20] = {0};$/;"	v
 aShowSetTime	Src/key.c	/^	uint8_t *aShowSetTime;$/;"	l
-aShowSetWorkTime	Src/init.c	/^uint8_t aShowSetWorkTime[15] = {0};$/;"	v
+aShowSetWorkTime	Src/init.c	/^uint8_t aShowSetWorkTime[20] = {0};$/;"	v
 aShowTime	Src/main.c	/^uint8_t aShowTime[TIME_BUFFER_LENGTH] = {0};$/;"	v
 ace	Src/m_rtc_2001.c	/^	uint32_t ace, counter_time, time;$/;"	l
 address	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c	/^  uint32_t address = 0U;$/;"	l
@@ -26507,6 +26520,8 @@ code	Inc/font.h	/^	  long int code;$/;"	m	struct:__anon297	access:public
 column	Src/lcdwg.c	/^	uint8_t row, column;$/;"	l
 config	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t config = 0x00u;$/;"	l
 configregister	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  __IO uint32_t *configregister; \/* Store the address of CRL or CRH register based on pin number *\/$/;"	l
+coolantSensor	Src/init.c	/^sensorID_t coolantSensor;$/;"	v
+coolantTempItemData	Src/menu.c	/^stateData_t coolantTempItemData;$/;"	v
 count	Drivers/CMSIS/Include/cmsis_iccarm.h	/^      uint32_t count = 0U;$/;"	l
 count	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c	/^  __IO uint32_t count      = 0x00U;$/;"	l
 count	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c	/^  __IO uint32_t count = 0U;$/;"	l
@@ -26623,6 +26638,7 @@ i	Src/scheduler.c	/^	uint8_t i; $/;"	l
 i	Src/scheduler.c	/^	uint8_t i;$/;"	l
 icon	Inc/menu.h	/^	tImage* icon;$/;"	m	struct:__anon294	access:public
 id	Src/main.c	/^	uint8_t id[OW_ROMCODE_SIZE];$/;"	l
+idx	Inc/init.h	/^	uint8_t idx;$/;"	m	struct:_sensorID_t	access:public
 idx	Src/key.c	/^	uint8_t idx = CurrState->Text[0] - '0';$/;"	l
 idx	Src/key.c	/^	uint8_t idx;$/;"	l
 ii	Src/scheduler.c	/^	uint8_t ii;$/;"	l
@@ -26658,7 +26674,7 @@ image_data_Arial7_0x20	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x2
 image_data_Arial7_0x21	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x21[2] = {$/;"	v
 image_data_Arial7_0x22	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x22[3] = {$/;"	v
 image_data_Arial7_0x23	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x23[5] = {$/;"	v
-image_data_Arial7_0x24	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x24[5] = {$/;"	v
+image_data_Arial7_0x24	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x24[6] = {$/;"	v
 image_data_Arial7_0x25	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x25[6] = {$/;"	v
 image_data_Arial7_0x26	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x26[5] = {$/;"	v
 image_data_Arial7_0x27	Inc/arial7.h	/^static const uint8_t image_data_Arial7_0x27[2] = {$/;"	v
@@ -27023,6 +27039,9 @@ image_data_seg25_0x38	Inc/seg25.h	/^static const uint8_t image_data_seg25_0x38[5
 image_data_seg25_0x39	Inc/seg25.h	/^static const uint8_t image_data_seg25_0x39[50] = {$/;"	v
 image_data_test_Image	Inc/font.h	/^  static const uint8_t image_data_test_Image[25] = {$/;"	v
 index	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint8_t index = 0;$/;"	l
+index	Inc/ds18b20.h	/^	uint8_t index;$/;"	m	struct:_sensorData_t	access:public
+insideSensor	Src/init.c	/^sensorID_t insideSensor;$/;"	v
+insideTempItemData	Src/menu.c	/^stateData_t insideTempItemData;$/;"	v
 iocurrent	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t iocurrent;$/;"	l
 ioposition	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t ioposition;$/;"	l
 isrflags	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t isrflags   = READ_REG(huart->Instance->SR);$/;"	l
@@ -27165,6 +27184,8 @@ nSensors	Src/main.c	/^uint8_t nSensors;$/;"	v
 nbiterations	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint8_t nbiterations = 0;$/;"	l
 need_rounding	Src/ds18b20.c	/^	uint8_t need_rounding[] = { 1, 3, 4, 6, 9, 11, 12, 14 };$/;"	l
 next_diff	Src/onewire.c	/^	uint8_t i, j, next_diff;$/;"	l
+noSensor	Src/main.c	/^const char noSensor[] = "---";$/;"	v
+numStoredSensors	Src/init.c	/^uint8_t numStoredSensors = 0;$/;"	v
 numberItem	Src/lcdwg.c	/^	uint8_t numberItem = 0;$/;"	l
 numberRow	Src/lcdwg.c	/^	uint8_t numberRow;$/;"	l
 op_addr	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t op_addr = (uint32_t) addr;$/;"	l
@@ -27172,6 +27193,9 @@ op_addr	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t op_addr = (uint32_t)addr
 op_size	Drivers/CMSIS/Include/core_cm7.h	/^     int32_t op_size = dsize;$/;"	l
 orderedCpy	Drivers/CMSIS/Include/mpu_armv7.h	/^__STATIC_INLINE void orderedCpy(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)$/;"	f	signature:(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)
 orderedCpy	Drivers/CMSIS/Include/mpu_armv8.h	/^__STATIC_INLINE void orderedCpy(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)$/;"	f	signature:(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)
+outsideSensor	Src/init.c	/^sensorID_t outsideSensor;$/;"	v
+outsideTempItemData	Src/menu.c	/^stateData_t outsideTempItemData;$/;"	v
+owIDString	Src/main.c	/^char owIDString[MAXSENSORS][17];$/;"	v
 pBuffPtr	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	/^  uint8_t                    *pBuffPtr;      \/*!< Pointer to I2C transfer buffer           *\/$/;"	m	struct:__I2C_HandleTypeDef	access:public
 pFlash	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^FLASH_ProcessTypeDef pFlash;$/;"	v
 pFunc	Src/key.c	/^	FuncPtr pFunc;$/;"	l
@@ -27217,6 +27241,7 @@ prediv2	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	/^  uint32_t prediv
 prediv2	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c	/^  uint32_t pll2mul = 0U, pll3mul = 0U, prediv2 = 0U;$/;"	l
 prediv2factor	Src/system_stm32f1xx.c	/^  uint32_t prediv1source = 0U, prediv1factor = 0U, prediv2factor = 0U, pll2mull = 0U;$/;"	l
 prescaler	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t prescaler = 0U;$/;"	l
+present	Inc/ds18b20.h	/^	uint8_t present;$/;"	m	struct:_sensorData_t	access:public
 prioritygroup	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c	/^  uint32_t prioritygroup = 0x00U;$/;"	l
 psr	Src/stm32f1xx_it.c	/^enum {r0, r1, r2 ,r3, r12, lr, pc, psr};$/;"	e	enum:__anon1	file:
 putchar	Src/printf-stdarg.c	29;"	d	file:
@@ -27258,12 +27283,14 @@ result	Drivers/CMSIS/Include/cmsis_gcc.h	/^  int32_t result;$/;"	l
 result	Drivers/CMSIS/Include/cmsis_gcc.h	/^  uint32_t result;$/;"	l
 result	Drivers/CMSIS/Include/cmsis_gcc.h	/^ int32_t result;$/;"	l
 result	Drivers/CMSIS/Include/cmsis_iccarm.h	/^      uint32_t result;$/;"	l
+resultMeasureCoolant	Src/ds18b20.c	/^uint8_t resultMeasureCoolant[3];$/;"	v
 resultMeasureInside	Src/ds18b20.c	/^uint8_t resultMeasureInside[3];$/;"	v
 resultMeasureOutside	Src/ds18b20.c	/^uint8_t resultMeasureOutside[3];$/;"	v
+retVal	Src/ds18b20.c	/^	uint8_t retVal = DS18X20_NO_SENSOR;$/;"	l
 retVal	Src/scheduler.c	/^	uint8_t retVal = FALSE;$/;"	l
-rmsg	Src/init.c	/^	char rmsg[20];$/;"	l
 rnrBase	Drivers/CMSIS/Include/mpu_armv8.h	/^    uint32_t rnrBase   = rnr & ~(MPU_TYPE_RALIASES-1U);$/;"	l
 rnrOffset	Drivers/CMSIS/Include/mpu_armv8.h	/^    uint32_t rnrOffset = rnr % MPU_TYPE_RALIASES;$/;"	l
+romcode	Inc/init.h	/^	uint8_t romcode[OW_ROMCODE_SIZE];$/;"	m	struct:_sensorID_t	access:public
 row	Src/lcdwg.c	/^	uint8_t row, column;$/;"	l
 rowElement	Src/lcdwg.c	/^	stateElement* rowElement;$/;"	l
 rowEnd	Src/lcdwg.c	/^	uint8_t rowEnd;$/;"	l
@@ -27286,6 +27313,7 @@ sTimeStart	Src/key.c	/^	RTC_TimeTypeDef* sTimeStart;	$/;"	l
 sTimeStop	Src/key.c	/^	RTC_TimeTypeDef* sTimeStop;$/;"	l
 sTxMailBox	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  CAN_TxMailBox_TypeDef sTxMailBox[3];$/;"	m	struct:__anon61	access:public
 saveBuf	Src/init.c	/^	uint8_t saveBuf[21];$/;"	l
+saveBuf	Src/init.c	/^	uint8_t saveBuf[22];$/;"	l
 sc	Drivers/CMSIS/Include/cmsis_iccarm.h	/^      uint8_t sc = 31U;$/;"	l
 search_sensors	Src/main.c	/^uint8_t search_sensors(void) {$/;"	f	signature:(void)
 search_sensors	Src/main.c	/^uint8_t search_sensors(void);$/;"	p	file:	signature:(void)
@@ -27301,6 +27329,11 @@ seg25_0x37	Inc/seg25.h	/^static const tImage seg25_0x37 = { image_data_seg25_0x3
 seg25_0x38	Inc/seg25.h	/^static const tImage seg25_0x38 = { image_data_seg25_0x38, 16, 25};\/\/'8'$/;"	v
 seg25_0x39	Inc/seg25.h	/^static const tImage seg25_0x39 = { image_data_seg25_0x39, 16, 25};\/\/'9'$/;"	v
 seg25_array	Inc/seg25.h	/^static const tChar seg25_array[] = {$/;"	v
+sensorCooland	Src/main.c	/^sensorData_t sensorCooland;$/;"	v
+sensorData_t	Inc/ds18b20.h	/^} sensorData_t;$/;"	t	typeref:struct:_sensorData_t
+sensorID_t	Inc/init.h	/^} sensorID_t;$/;"	t	typeref:struct:_sensorID_t
+sensorInside	Src/main.c	/^sensorData_t sensorInside;$/;"	v
+sensorOutside	Src/main.c	/^sensorData_t sensorOutside;$/;"	v
 setDataTime	Src/main.c	/^void setDataTime(void)$/;"	f	signature:(void)
 setDataTime	Src/main.c	/^void setDataTime(void);$/;"	p	file:	signature:(void)
 setDateData	Src/menu.c	/^stateData_t setDateData;$/;"	v
@@ -27560,7 +27593,6 @@ width	Src/lcdwg.c	/^	uint8_t width = 0;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t width = font.chars[chr].image->width;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t width = image.width;$/;"	l
 width	Src/lcdwg.c	/^	uint8_t x, y, width, height;$/;"	l
-wmsg	Src/init.c	/^	char wmsg[] = "Hello, stm!";$/;"	l
 workDaysOfWeek	Src/init.c	/^uint8_t workDaysOfWeek[7] = {0, 1, 1, 1, 1, 1, 0};$/;"	v
 workTimeStart	Src/init.c	/^RTC_TimeTypeDef workTimeStart;$/;"	v
 workTimeStop	Src/init.c	/^RTC_TimeTypeDef workTimeStop;$/;"	v

@@ -15,6 +15,7 @@
 #include "m_rtc_2001.h"
 #include "init.h"
 #include "scheduler.h"
+#include "main.h"
 
 /*------------------KEY---------------------------------------*/
 /* #define KEY_UP    		0 */
@@ -49,4 +50,5 @@ void KeySetDownVar(void);
 void KeySetUpBoundTime(void);
 void KeySetDownBoundTime(void);
 void KeyToogleState(void);
+void KeySearchSensor(void);
 #endif /* KEY_H_ */

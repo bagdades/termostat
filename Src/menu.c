@@ -27,6 +27,9 @@ stateData_t setWednesdayData;
 stateData_t setThursdayData;
 stateData_t setFridayData;
 stateData_t setSaturdayData;
+stateData_t insideTempItemData;
+stateData_t outsideTempItemData;
+stateData_t coolantTempItemData;
 
 extern const char *modeWorkText[2];
 extern uint8_t modeWorkVar;
@@ -89,7 +92,13 @@ MAKE_STATE(setWorkTimeTempItem, NULL_ENTRY, NULL_ENTRY, setTempWorkTime, NULL_EN
 MAKE_STATE(setTempSleepTime, NULL_ENTRY, setTempWorkTime, settingTemp, setSleepTimeTempItem, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Сонний час");
 MAKE_STATE(setSleepTimeTempItem, NULL_ENTRY, NULL_ENTRY, setTempSleepTime, NULL_ENTRY, KeySetUpVar, KeySetDownVar, ChangeParent, ChangeChild, LcdDrawOneItem, &setSleepTimeTempData, NULL_TEXT);
 /*========================================================================================*/
-MAKE_STATE(settingSensors, NULL_ENTRY, settingTemp, startState, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Сенсори");
+MAKE_STATE(settingSensors, NULL_ENTRY, settingTemp, startState, insideTemp, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Сенсори");
+MAKE_STATE(insideTemp, outsideTemp, NULL_ENTRY, settingSensors, insideTempItem, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Приміщення");
+MAKE_STATE(insideTempItem, outsideTempItem, NULL_ENTRY, insideTemp, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, KeySearchSensor, LcdDrawOneItem, &insideTempItemData, "#");
+MAKE_STATE(outsideTemp, coolantTemp, insideTemp, settingSensors, outsideTempItem, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Двір");
+MAKE_STATE(outsideTempItem, coolantTempItem, insideTempItem, outsideTemp, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuSelect, &outsideTempItemData, "#");
+MAKE_STATE(coolantTemp, NULL_ENTRY, outsideTemp, settingSensors, coolantTempItem, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuList, NULL_DATA, "Теплоносій");
+MAKE_STATE(coolantTempItem, NULL_ENTRY, outsideTempItem, coolantTemp, NULL_ENTRY, ChangePrev, ChangeNext, ChangeParent, ChangeChild, LcdMenuSelect, &coolantTempItemData, "#");
 
 void ChangeState(stateElement* NewState){
 	if((void*)NewState==(void*)&(NullState))

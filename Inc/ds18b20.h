@@ -4,13 +4,16 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #include "stm32f1xx_hal.h"
+#include "onewire.h"
 
-#define MAXSENSORS		2
+#define MAXSENSORS		3
 // enable DS18x20 EERPROM support
 //#define DS18X20_EEPROMSUPPORT
 
 // enable extended output via UART by defining:
 #define DS18X20_VERBOSE
+
+#define DS18X20_NO_SENSOR	(MAXSENSORS + 1)
 
 /* return values */
 #define DS18X20_OK          0x00
@@ -64,6 +67,13 @@
 #define DS18X20_TH_REG      2
 #define DS18X20_TL_REG      3
 
+typedef struct _sensorData_t {
+	uint8_t present;
+	uint8_t index;
+	uint8_t ID[OW_ROMCODE_SIZE];
+} sensorData_t;
+
+
 
 /* for description of functions see ds18x20.c */
 
@@ -77,6 +87,7 @@ extern uint8_t DS18X20_read_meas_single(uint8_t familycode, uint8_t *subzero, ui
 extern uint8_t DS18X20_meas_to_cel( uint8_t fc, uint8_t *sp, uint8_t* subzero, uint8_t* cel, uint8_t* cel_frac_bits);
 extern uint16_t DS18X20_temp_to_decicel(uint8_t res_meas[]);
 extern int8_t DS18X20_temp_cmp(uint8_t subzero1, uint16_t cel1, uint8_t subzero2, uint16_t cel2);
+uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[]);
 /* void StartMeasure(void); */
 /* void ReadMeasure(void); */
 void TempOut(uint8_t* resultMeasure);
@@ -91,7 +102,4 @@ uint8_t DS18X20_copy_scratchpad( uint8_t with_power_extern, uint8_t id[] );
 // copy values from DS18x20 eeprom to scratchpad
 uint8_t DS18X20_recall_E2( uint8_t id[] );
 #endif
-
-
-
 #endif
