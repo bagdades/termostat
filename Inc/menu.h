@@ -45,6 +45,26 @@ typedef const struct{
 //externs
 extern stateElement NullState;
 extern stateElement* CurrState;
+extern stateData_t timeData;
+extern stateData_t dateData;
+extern stateData_t setTimeData;
+extern stateData_t setDateData;
+extern stateData_t setModeWorkData;
+extern stateData_t setWorkTempItemData;
+extern stateData_t setWorkTimeTempData;
+extern stateData_t setSleepTimeTempData;
+extern stateData_t setSleepTimeBoundary;
+extern stateData_t setWorkTimeBoundary;
+extern stateData_t setSundayData;
+extern stateData_t setMondayData;
+extern stateData_t setTuesdayData;
+extern stateData_t setWednesdayData;
+extern stateData_t setThursdayData;
+extern stateData_t setFridayData;
+extern stateData_t setSaturdayData;
+extern stateData_t insideTempItemData;
+extern stateData_t outsideTempItemData;
+extern stateData_t coolantTempItemData;
 
 //defines and macros
 #define NULL_ENTRY NullState

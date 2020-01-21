@@ -22,7 +22,7 @@ const tFont* fontMenu;
 const tFont* fontDigital;
 uint8_t shiftRow;
 uint8_t lcdMode;
-char diagnosticChar[VARIABLE_CHAR_DATA_LENGTH];
+char variableChar[VARIABLE_CHAR_DATA_LENGTH];
 
 
 extern uint8_t ticksBlink;
@@ -769,8 +769,8 @@ void LcdDrawOneItem(void) {
 				/* Якщо цифрова інформація */
 				data = CurrState->data->data;  // вибираємо значення
 				chr = (CurrState->data->flag & COMMA) ? COMMA : NO_COMMA;
-				VariableToLcd(data, diagnosticChar, chr);  // перетворємо значення для відображення на дисплеї
-				ch = diagnosticChar;  //масив з перетвореним значенням	
+				VariableToLcd(data, variableChar, chr);  // перетворємо значення для відображення на дисплеї
+				ch = variableChar;  //масив з перетвореним значенням	
 			}
 			width = 0;
 			//Визначаємо довжину слова з проміжками між символами

@@ -91,6 +91,7 @@ uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t s
 /* void StartMeasure(void); */
 /* void ReadMeasure(void); */
 void TempOut(uint8_t* resultMeasure);
+uint8_t DS18X20_search_sensors(uint8_t sensorID[][OW_ROMCODE_SIZE]);
 
 #ifdef DS18X20_EEPROMSUPPORT
 // write th, tl and config-register to scratchpad (config ignored on S20)

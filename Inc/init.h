@@ -15,19 +15,17 @@
 #define MANUAL_MODE_WORK	1
 #define OFF_MODE_WORK		2
 
-#define I2C_ADDR_1WIRE_SENSOR_CODE	0x32
-#define I2C_ADDR_SAVE_EEPROM		0x0
-
-typedef struct _sensorID_t {
-	uint8_t idx;
-	uint8_t romcode[OW_ROMCODE_SIZE];
-} sensorID_t;
-
+#define I2C_ADDR_SAVE_EEPROM			0x0
+#define I2C_ADDR_1WIRE_SENSOR_CODE		0x20
+#define I2C_ADDR_INSIDE_SENSOR_CODE		0x20
+#define I2C_ADDR_OUTSIDE_SENSOR_CODE	0x28
+#define I2C_ADDR_COOLANT_SENSOR_CODE	0x30
 
 /* Function prototypes */
 void InitMain(void);
 void Termostat(void);
 int16_t TermGetWorkTemp(void);
 void WriteEepromValue(void);
+void WriteEepromSensor(uint8_t addr);
 
 #endif   /* ----- #ifndef INIT_INC  ----- */

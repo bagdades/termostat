@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name lcd)(type Legacy)(uri /home/vovan/projects/termostat/wg12864a/lcd.lib)(options "")(descr ""))
+  (lib (name "lcd")(type "Legacy")(uri "/home/vovan/projects/termostat/wg12864a/lcd.lib")(options "")(descr ""))
+  (lib (name "stm-board")(type "Legacy")(uri "/home/vovan/projects/term1/term/stm32f103c8t6-module-china.lib")(options "")(descr ""))
 )

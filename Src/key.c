@@ -449,10 +449,15 @@ uint8_t CheckLeap(uint8_t year) {
 void KeySearchSensor(void)
 {
 	uint8_t numSensor;
-	numSensor = search_sensors();
+	uint8_t addr;
+	numSensor = DS18X20_search_sensors(gSensorIDs);
 	if (numSensor) 
 	{
+		sprintf(owIDString[0], "%02X%02X%02X%02X%02X%02X%02X%02X", gSensorIDs[0][0], gSensorIDs[0][1], gSensorIDs[0][2], gSensorIDs[0][3], gSensorIDs[0][4], gSensorIDs[0][5], gSensorIDs[0][6], gSensorIDs[0][7]);
 		CurrState->data->data = owIDString[0];
+		addr = (CurrState->Text[0] - '0') << 4;
+		addr |= CurrState->Text[1] - '0';
+		WriteEepromSensor(addr);
 	}
 	else CurrState->data->data = (char*)sensorNotConnect;
 }

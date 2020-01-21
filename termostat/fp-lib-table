@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "stm32-board")(type "KiCad")(uri "/home/vovan/projects/term1/termostat/board.pretty")(options "")(descr ""))
+)

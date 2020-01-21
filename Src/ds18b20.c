@@ -18,6 +18,7 @@
 #include "ds18b20.h"
 #include "onewire.h"
 #include "crc8.h"
+#include <stdio.h>
 
 /* #ifdef DS18X20_EEPROMSUPPORT */
 /* // for 10ms delay in copy scratchpad */
@@ -46,10 +47,8 @@
  */
 
 extern uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];
+extern char owIDString[MAXSENSORS][17];
 
-uint8_t resultMeasureOutside[3];
-uint8_t resultMeasureInside[3];
-uint8_t resultMeasureCoolant[3];
 uint8_t tempLcd[] = { ' ', '0', '0', ',', '0', 0 };
 
 uint8_t DS18X20_meas_to_cel(uint8_t fc, uint8_t *sp, uint8_t* subzero,
@@ -364,4 +363,36 @@ uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t s
 			break;
 	}
 	return retVal;
+}
+
+uint8_t DS18X20_search_sensors(uint8_t sensorID[][OW_ROMCODE_SIZE]) 
+{
+	uint8_t i;
+	uint8_t id[OW_ROMCODE_SIZE];
+	uint8_t diff, numSensors;
+
+	numSensors = 0;
+
+	for (diff = OW_SEARCH_FIRST;
+			diff != OW_LAST_DEVICE && numSensors < MAXSENSORS;) {
+		DS18X20_find_sensor(&diff, &id[0]);
+
+		if (diff == OW_PRESENCE_ERR) {
+			break;
+		}
+		if (diff == OW_DATA_ERR) {
+			break;
+		}
+		for (i = 0; i < OW_ROMCODE_SIZE; i++)
+			sensorID[numSensors][i] = id[i];
+
+		numSensors++;
+	}
+	if(numSensors)
+	{
+		for (i = 0; i < numSensors; ++i) {
+			sprintf(owIDString[i], "%02X%02X%02X%02X%02X%02X%02X%02X", gSensorIDs[i][0], gSensorIDs[i][1], gSensorIDs[i][2], gSensorIDs[i][3], gSensorIDs[i][4], gSensorIDs[i][5], gSensorIDs[i][6], gSensorIDs[i][7]);
+		}
+	}
+	return numSensors;
 }

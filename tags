@@ -5283,7 +5283,7 @@ CF_SECTOR_NUMBER	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	914;
 CF_STATUS_CMD	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	918;"	d
 CF_STATUS_CMD_ALTERNATE	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	919;"	d
 CF_WRITE_SECTOR_CMD	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	924;"	d
-CHILD	Inc/menu.h	58;"	d
+CHILD	Inc/menu.h	78;"	d
 CID0	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IM  uint32_t CID0;                   \/*!< Offset: 0xFF0 (R\/ )  ITM Component  Identification Register #0 *\/$/;"	m	struct:__anon259	access:public
 CID0	Drivers/CMSIS/Include/core_cm3.h	/^  __IM  uint32_t CID0;                   \/*!< Offset: 0xFF0 (R\/ )  ITM Component  Identification Register #0 *\/$/;"	m	struct:__anon173	access:public
 CID0	Drivers/CMSIS/Include/core_cm33.h	/^  __IM  uint32_t CID0;                   \/*!< Offset: 0xFF0 (R\/ )  ITM Component  Identification Register #0 *\/$/;"	m	struct:__anon132	access:public
@@ -6394,8 +6394,8 @@ DCRSR	Drivers/CMSIS/Include/core_cm7.h	/^  __OM  uint32_t DCRSR;                
 DCRSR	Drivers/CMSIS/Include/core_sc300.h	/^  __OM  uint32_t DCRSR;                  \/*!< Offset: 0x004 ( \/W)  Debug Core Register Selector Register *\/$/;"	m	struct:__anon101	access:public
 DEBUG	Makefile	/^DEBUG = 1$/;"	m
 DELAY_H_	Inc/delay.h	9;"	d
-DELAY_LONG	Inc/key.h	27;"	d
-DELAY_SHORT	Inc/key.h	26;"	d
+DELAY_LONG	Inc/key.h	28;"	d
+DELAY_SHORT	Inc/key.h	27;"	d
 DEMCR	Drivers/CMSIS/Include/core_armv8mbl.h	/^  __IOM uint32_t DEMCR;                  \/*!< Offset: 0x00C (R\/W)  Debug Exception and Monitor Control Register *\/$/;"	m	struct:__anon160	access:public
 DEMCR	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IOM uint32_t DEMCR;                  \/*!< Offset: 0x00C (R\/W)  Debug Exception and Monitor Control Register *\/$/;"	m	struct:__anon268	access:public
 DEMCR	Drivers/CMSIS/Include/core_cm23.h	/^  __IOM uint32_t DEMCR;                  \/*!< Offset: 0x00C (R\/W)  Debug Exception and Monitor Control Register *\/$/;"	m	struct:__anon119	access:public
@@ -6826,6 +6826,9 @@ DS18X20_recall_E2	Inc/ds18b20.h	/^uint8_t DS18X20_recall_E2( uint8_t id[] );$/;"
 DS18X20_recall_E2	Src/ds18b20.c	/^uint8_t DS18X20_recall_E2( uint8_t id[] )$/;"	f	signature:( uint8_t id[] )
 DS18X20_searchID	Inc/ds18b20.h	/^uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[]);$/;"	p	signature:(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[])
 DS18X20_searchID	Src/ds18b20.c	/^uint8_t DS18X20_searchID(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[])$/;"	f	signature:(uint8_t foundID[MAXSENSORS][OW_ROMCODE_SIZE], uint8_t storedID[])
+DS18X20_search_sensors	Inc/ds18b20.h	/^uint8_t DS18X20_search_sensors(uint8_t sensorID[][OW_ROMCODE_SIZE]);$/;"	p	signature:(uint8_t sensorID[][OW_ROMCODE_SIZE])
+DS18X20_search_sensors	Src/ds18b20.c	/^uint8_t DS18X20_search_sensors(uint8_t sensorID[][OW_ROMCODE_SIZE]) $/;"	f	signature:(uint8_t sensorID[][OW_ROMCODE_SIZE])
+DS18X20_search_sensors	Src/main.c	/^uint8_t DS18X20_search_sensors(uint8_t sensorID[][OW_ROMCODE_SIZE]);$/;"	p	file:	signature:(uint8_t sensorID[][OW_ROMCODE_SIZE])
 DS18X20_start_meas	Inc/ds18b20.h	/^extern uint8_t DS18X20_start_meas( uint8_t with_external, uint8_t id[]);$/;"	p	signature:( uint8_t with_external, uint8_t id[])
 DS18X20_start_meas	Src/ds18b20.c	/^uint8_t DS18X20_start_meas(uint8_t with_power_extern, uint8_t id[]) {$/;"	f	signature:(uint8_t with_power_extern, uint8_t id[])
 DS18X20_temp_cmp	Inc/ds18b20.h	/^extern int8_t DS18X20_temp_cmp(uint8_t subzero1, uint16_t cel1, uint8_t subzero2, uint16_t cel2);$/;"	p	signature:(uint8_t subzero1, uint16_t cel1, uint8_t subzero2, uint16_t cel2)
@@ -10659,8 +10662,11 @@ I2C_7BIT_ADD_READ	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	663;"	d
 I2C_7BIT_ADD_WRITE	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	662;"	d
 I2C_ADDRESSINGMODE_10BIT	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	295;"	d
 I2C_ADDRESSINGMODE_7BIT	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	294;"	d
-I2C_ADDR_1WIRE_SENSOR_CODE	Inc/init.h	18;"	d
-I2C_ADDR_SAVE_EEPROM	Inc/init.h	19;"	d
+I2C_ADDR_1WIRE_SENSOR_CODE	Inc/init.h	19;"	d
+I2C_ADDR_COOLANT_SENSOR_CODE	Inc/init.h	22;"	d
+I2C_ADDR_INSIDE_SENSOR_CODE	Inc/init.h	20;"	d
+I2C_ADDR_OUTSIDE_SENSOR_CODE	Inc/init.h	21;"	d
+I2C_ADDR_SAVE_EEPROM	Inc/init.h	18;"	d
 I2C_ANALOGFILTER_DISABLED	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	752;"	d
 I2C_ANALOGFILTER_ENABLED	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	751;"	d
 I2C_CCR_CALCULATION	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	653;"	d
@@ -11960,6 +11966,8 @@ KeyHand	Inc/key.h	/^void KeyHand(void);$/;"	p	signature:(void)
 KeyHand	Src/key.c	/^void KeyHand(void) {$/;"	f	signature:(void)
 KeyScan	Inc/key.h	/^void KeyScan(void);$/;"	p	signature:(void)
 KeyScan	Src/key.c	/^void KeyScan(void)$/;"	f	signature:(void)
+KeySearchSensor	Inc/key.h	/^void KeySearchSensor(void);$/;"	p	signature:(void)
+KeySearchSensor	Src/key.c	/^void KeySearchSensor(void)$/;"	f	signature:(void)
 KeySetDownBoundTime	Inc/key.h	/^void KeySetDownBoundTime(void);$/;"	p	signature:(void)
 KeySetDownBoundTime	Src/key.c	/^void KeySetDownBoundTime(void)$/;"	f	signature:(void)
 KeySetDownTimeDate	Inc/key.h	/^void KeySetDownTimeDate(void);$/;"	p	signature:(void)
@@ -12019,7 +12027,7 @@ LCD_Y_RES_REAL	Inc/lcdwg.h	39;"	d
 LCKR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t LCKR;$/;"	m	struct:__anon69	access:public
 LDFLAGS	Makefile	/^LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)\/$(TARGET).map,--cref -Wl,--gc-sections$/;"	m
 LDSCRIPT	Makefile	/^LDSCRIPT = STM32F103C8Tx_FLASH.ld$/;"	m
-LEAP	Inc/key.h	28;"	d
+LEAP	Inc/key.h	29;"	d
 LED1_GPIO_Port	Inc/main.h	62;"	d
 LED1_Pin	Inc/main.h	61;"	d
 LED2_GPIO_Port	Inc/main.h	64;"	d
@@ -12165,7 +12173,7 @@ MAIR1	Drivers/CMSIS/Include/core_armv8mbl.h	/^  __IOM uint32_t MAIR1;           
 MAIR1	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IOM uint32_t MAIR1;                  \/*!< Offset: 0x034 (R\/W)  MPU Memory Attribute Indirection Register 1 *\/$/;"	m	struct:__anon263::__anon264::__anon265	access:public
 MAIR1	Drivers/CMSIS/Include/core_cm23.h	/^  __IOM uint32_t MAIR1;                  \/*!< Offset: 0x034 (R\/W)  MPU Memory Attribute Indirection Register 1 *\/$/;"	m	struct:__anon115::__anon116::__anon117	access:public
 MAIR1	Drivers/CMSIS/Include/core_cm33.h	/^  __IOM uint32_t MAIR1;                  \/*!< Offset: 0x034 (R\/W)  MPU Memory Attribute Indirection Register 1 *\/$/;"	m	struct:__anon136::__anon137::__anon138	access:public
-MAKE_STATE	Inc/menu.h	60;"	d
+MAKE_STATE	Inc/menu.h	80;"	d
 MANUAL_MODE_WORK	Inc/init.h	15;"	d
 MAPR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t MAPR;$/;"	m	struct:__anon70	access:public
 MAPR2	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t MAPR2;  $/;"	m	struct:__anon70	access:public
@@ -12760,8 +12768,6 @@ MX_I2C1_Init	Inc/i2c.h	/^void MX_I2C1_Init(void);$/;"	p	signature:(void)
 MX_I2C1_Init	Src/i2c.c	/^void MX_I2C1_Init(void)$/;"	f	signature:(void)
 MX_RTC_Init	Inc/rtc.h	/^void MX_RTC_Init(void);$/;"	p	signature:(void)
 MX_RTC_Init	Src/rtc.c	/^void MX_RTC_Init(void)$/;"	f	signature:(void)
-MX_SYS_Init	Inc/sys.h	/^void MX_SYS_Init(void);$/;"	p	signature:(void)
-MX_SYS_Init	Src/sys.c	/^void MX_SYS_Init(void)$/;"	f	signature:(void)
 MX_TIM1_Init	Inc/tim.h	/^void MX_TIM1_Init(void);$/;"	p	signature:(void)
 MX_TIM1_Init	Src/tim.c	/^void MX_TIM1_Init(void)$/;"	f	signature:(void)
 MX_USART1_UART_Init	Inc/usart.h	/^void MX_USART1_UART_Init(void);$/;"	p	signature:(void)
@@ -12834,7 +12840,7 @@ N	Drivers/CMSIS/Include/core_sc000.h	/^    uint32_t N:1;                        
 N	Drivers/CMSIS/Include/core_sc300.h	/^    uint32_t N:1;                        \/*!< bit:     31  Negative condition code flag *\/$/;"	m	struct:__anon84::__anon85	access:public
 N	Drivers/CMSIS/Include/core_sc300.h	/^    uint32_t N:1;                        \/*!< bit:     31  Negative condition code flag *\/$/;"	m	struct:__anon88::__anon89	access:public
 NAND_AddressTypedef	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	822;"	d
-NEXT	Inc/menu.h	55;"	d
+NEXT	Inc/menu.h	75;"	d
 NMI_Handler	Inc/stm32f1xx_it.h	/^void NMI_Handler(void);$/;"	p	signature:(void)
 NMI_Handler	Src/stm32f1xx_it.c	/^void NMI_Handler(void)$/;"	f	signature:(void)
 NOR_ERROR	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	839;"	d
@@ -12842,14 +12848,14 @@ NOR_ONGOING	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	838;"	d
 NOR_SUCCESS	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	837;"	d
 NOR_StatusTypedef	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	836;"	d
 NOR_TIMEOUT	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	840;"	d
-NOT_LEAP	Inc/key.h	29;"	d
+NOT_LEAP	Inc/key.h	30;"	d
 NO_COMMA	Inc/lcdwg.h	74;"	d
 NSACR	Drivers/CMSIS/Include/core_armv8mml.h	/^  __IOM uint32_t NSACR;                  \/*!< Offset: 0x08C (R\/W)  Non-Secure Access Control Register *\/$/;"	m	struct:__anon256	access:public
 NSACR	Drivers/CMSIS/Include/core_cm33.h	/^  __IOM uint32_t NSACR;                  \/*!< Offset: 0x08C (R\/W)  Non-Secure Access Control Register *\/$/;"	m	struct:__anon129	access:public
-NULL_DATA	Inc/menu.h	53;"	d
-NULL_ENTRY	Inc/menu.h	50;"	d
-NULL_FUNC	Inc/menu.h	51;"	d
-NULL_TEXT	Inc/menu.h	52;"	d
+NULL_DATA	Inc/menu.h	73;"	d
+NULL_ENTRY	Inc/menu.h	70;"	d
+NULL_FUNC	Inc/menu.h	71;"	d
+NULL_TEXT	Inc/menu.h	72;"	d
 NVIC	Drivers/CMSIS/Include/core_armv8mbl.h	1124;"	d
 NVIC	Drivers/CMSIS/Include/core_armv8mml.h	1985;"	d
 NVIC	Drivers/CMSIS/Include/core_cm0.h	541;"	d
@@ -13356,7 +13362,7 @@ OverSampling	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  uint32_t 
 OwnAddress1	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	/^  uint32_t OwnAddress1;      \/*!< Specifies the first device own address.$/;"	m	struct:__anon25	access:public
 OwnAddress2	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	/^  uint32_t OwnAddress2;      \/*!< Specifies the second device own address if dual addressing mode is selected$/;"	m	struct:__anon25	access:public
 PAGESIZE	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	402;"	d
-PARENT	Inc/menu.h	57;"	d
+PARENT	Inc/menu.h	77;"	d
 PCCARD_ERROR	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	931;"	d
 PCCARD_ONGOING	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	930;"	d
 PCCARD_SUCCESS	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	929;"	d
@@ -13478,7 +13484,7 @@ PR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t PR;
 PR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t PR;$/;"	m	struct:__anon66	access:public
 PREFETCH_ENABLE	Inc/stm32f1xx_hal_conf.h	133;"	d
 PREFIX	Makefile	/^PREFIX = arm-none-eabi-$/;"	m
-PREVIOUS	Inc/menu.h	56;"	d
+PREVIOUS	Inc/menu.h	76;"	d
 PRINTFSTDARG_INC	Inc/printf-stdarg.h	2;"	d
 PRLH	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t PRLH;$/;"	m	struct:__anon75	access:public
 PRLL	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t PRLL;$/;"	m	struct:__anon75	access:public
@@ -20497,6 +20503,8 @@ WWDG_TypeDef	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^} WWDG_Ty
 WakeupCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  void (* WakeupCallback)(struct __UART_HandleTypeDef *huart);            \/*!< UART Wakeup Callback                  *\/$/;"	m	struct:__UART_HandleTypeDef	access:public
 WeekDay	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  uint8_t WeekDay;  \/*!< Specifies the RTC Date WeekDay (not necessary for HAL_RTC_SetDate).$/;"	m	struct:__anon52	access:public
 WordLength	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  uint32_t WordLength;                \/*!< Specifies the number of data bits transmitted or received in a frame.$/;"	m	struct:__anon29	access:public
+WriteEepromSensor	Inc/init.h	/^void WriteEepromSensor(uint8_t addr);$/;"	p	signature:(uint8_t addr)
+WriteEepromSensor	Src/init.c	/^void WriteEepromSensor(uint8_t addr)$/;"	f	signature:(uint8_t addr)
 WriteEepromValue	Inc/init.h	/^void WriteEepromValue(void);$/;"	p	signature:(void)
 WriteEepromValue	Src/init.c	/^void WriteEepromValue(void)$/;"	f	signature:(void)
 XferAbortCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h	/^  void                  (* XferAbortCallback)( struct __DMA_HandleTypeDef * hdma);    \/*!< DMA transfer abort callback            *\/  $/;"	m	struct:__DMA_HandleTypeDef	access:public
@@ -26324,7 +26332,6 @@ __set_PSPLIM	Drivers/CMSIS/Include/cmsis_gcc.h	/^__STATIC_FORCEINLINE void __set
 __set_PSPLIM	Drivers/CMSIS/Include/cmsis_iccarm.h	/^    __IAR_FT void   __set_PSPLIM(uint32_t value)$/;"	f	signature:(uint32_t value)
 __set_PSPLIM	Drivers/CMSIS/Include/cmsis_iccarm.h	324;"	d
 __set_PSPLIM	Drivers/CMSIS/Include/cmsis_iccarm.h	326;"	d
-__sys_H	Inc/sys.h	21;"	d
 __tim_H	Inc/tim.h	21;"	d
 __usart_H	Inc/usart.h	21;"	d
 __weak	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h	113;"	d
@@ -26403,9 +26410,6 @@ _sensorData_t	Inc/ds18b20.h	/^typedef struct _sensorData_t {$/;"	s
 _sensorData_t::ID	Inc/ds18b20.h	/^	uint8_t ID[OW_ROMCODE_SIZE];$/;"	m	struct:_sensorData_t	access:public
 _sensorData_t::index	Inc/ds18b20.h	/^	uint8_t index;$/;"	m	struct:_sensorData_t	access:public
 _sensorData_t::present	Inc/ds18b20.h	/^	uint8_t present;$/;"	m	struct:_sensorData_t	access:public
-_sensorID_t	Inc/init.h	/^typedef struct _sensorID_t {$/;"	s
-_sensorID_t::idx	Inc/init.h	/^	uint8_t idx;$/;"	m	struct:_sensorID_t	access:public
-_sensorID_t::romcode	Inc/init.h	/^	uint8_t romcode[OW_ROMCODE_SIZE];$/;"	m	struct:_sensorID_t	access:public
 _task	Inc/scheduler.h	/^typedef struct _task {$/;"	s
 _task::delay	Inc/scheduler.h	/^	uint16_t delay;$/;"	m	struct:_task	access:public
 _task::period	Inc/scheduler.h	/^	uint16_t period;$/;"	m	struct:_task	access:public
@@ -26427,6 +26431,7 @@ aShowSetTime	Src/key.c	/^	uint8_t *aShowSetTime;$/;"	l
 aShowSetWorkTime	Src/init.c	/^uint8_t aShowSetWorkTime[20] = {0};$/;"	v
 aShowTime	Src/main.c	/^uint8_t aShowTime[TIME_BUFFER_LENGTH] = {0};$/;"	v
 ace	Src/m_rtc_2001.c	/^	uint32_t ace, counter_time, time;$/;"	l
+addr	Src/key.c	/^	uint8_t addr;$/;"	l
 address	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c	/^  uint32_t address = 0U;$/;"	l
 addresstmp	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint32_t addresstmp = 0U;$/;"	l
 assert_failed	Inc/stm32f1xx_hal_conf.h	/^void assert_failed(uint8_t* file, uint32_t line);$/;"	p	signature:(uint8_t* file, uint32_t line)
@@ -26520,7 +26525,6 @@ code	Inc/font.h	/^	  long int code;$/;"	m	struct:__anon297	access:public
 column	Src/lcdwg.c	/^	uint8_t row, column;$/;"	l
 config	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t config = 0x00u;$/;"	l
 configregister	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  __IO uint32_t *configregister; \/* Store the address of CRL or CRH register based on pin number *\/$/;"	l
-coolantSensor	Src/init.c	/^sensorID_t coolantSensor;$/;"	v
 coolantTempItemData	Src/menu.c	/^stateData_t coolantTempItemData;$/;"	v
 count	Drivers/CMSIS/Include/cmsis_iccarm.h	/^      uint32_t count = 0U;$/;"	l
 count	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c	/^  __IO uint32_t count      = 0x00U;$/;"	l
@@ -26566,8 +26570,7 @@ dayWeek	Src/main.c	/^	uint8_t dayWeek = mRTC_GetWeekDay(&hrtc);$/;"	l
 days_elapsed	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c	/^  uint32_t counter_time = 0U, counter_alarm = 0U, days_elapsed = 0U, hours = 0U;$/;"	l
 decicelsius	Src/ds18b20.c	/^	uint16_t decicelsius;$/;"	l
 delay	Inc/scheduler.h	/^	uint16_t delay;$/;"	m	struct:_task	access:public
-diagnosticChar	Src/lcdwg.c	/^char diagnosticChar[VARIABLE_CHAR_DATA_LENGTH];$/;"	v
-diff	Src/main.c	/^	uint8_t diff, nSensors;$/;"	l
+diff	Src/ds18b20.c	/^	uint8_t diff, numSensors;$/;"	l
 dmarequest	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t dmarequest = 0x00U;$/;"	l
 dmaxferstatus	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c	/^  HAL_StatusTypeDef dmaxferstatus;$/;"	l
 enableIT	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c	/^  uint32_t enableIT = (I2C_IT_EVT | I2C_IT_BUF | I2C_IT_ERR);$/;"	l
@@ -26622,6 +26625,7 @@ i	Drivers/CMSIS/Include/mpu_armv7.h	/^  uint32_t i;$/;"	l
 i	Drivers/CMSIS/Include/mpu_armv8.h	/^  uint32_t i;$/;"	l
 i	Src/ds18b20.c	/^	uint8_t i;$/;"	l
 i	Src/ds18b20.c	/^{	uint8_t i;$/;"	l
+i	Src/init.c	/^	uint8_t i;$/;"	l
 i	Src/lcdwg.c	/^	uint16_t i = 0;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t _x, _y, i, j, bit;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t i, j, n, m, bit;$/;"	l
@@ -26630,15 +26634,13 @@ i	Src/lcdwg.c	/^	uint8_t i, j;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t i, n = 0;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t i;$/;"	l
 i	Src/lcdwg.c	/^	uint8_t rowHeight, i;$/;"	l
-i	Src/main.c	/^	uint8_t i;$/;"	l
 i	Src/onewire.c	/^	uint8_t i = 8, j;$/;"	l
 i	Src/onewire.c	/^	uint8_t i, j, next_diff;$/;"	l
 i	Src/onewire.c	/^	uint8_t i;$/;"	l
 i	Src/scheduler.c	/^	uint8_t i; $/;"	l
 i	Src/scheduler.c	/^	uint8_t i;$/;"	l
 icon	Inc/menu.h	/^	tImage* icon;$/;"	m	struct:__anon294	access:public
-id	Src/main.c	/^	uint8_t id[OW_ROMCODE_SIZE];$/;"	l
-idx	Inc/init.h	/^	uint8_t idx;$/;"	m	struct:_sensorID_t	access:public
+id	Src/ds18b20.c	/^	uint8_t id[OW_ROMCODE_SIZE];$/;"	l
 idx	Src/key.c	/^	uint8_t idx = CurrState->Text[0] - '0';$/;"	l
 idx	Src/key.c	/^	uint8_t idx;$/;"	l
 ii	Src/scheduler.c	/^	uint8_t ii;$/;"	l
@@ -27040,7 +27042,6 @@ image_data_seg25_0x39	Inc/seg25.h	/^static const uint8_t image_data_seg25_0x39[5
 image_data_test_Image	Inc/font.h	/^  static const uint8_t image_data_test_Image[25] = {$/;"	v
 index	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint8_t index = 0;$/;"	l
 index	Inc/ds18b20.h	/^	uint8_t index;$/;"	m	struct:_sensorData_t	access:public
-insideSensor	Src/init.c	/^sensorID_t insideSensor;$/;"	v
 insideTempItemData	Src/menu.c	/^stateData_t insideTempItemData;$/;"	v
 iocurrent	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t iocurrent;$/;"	l
 ioposition	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c	/^  uint32_t ioposition;$/;"	l
@@ -27048,6 +27049,7 @@ isrflags	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c	/^  uint32_t isrf
 itemFont	Src/lcdwg.c	/^	const tFont* itemFont;$/;"	l
 itsources	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c	/^  uint32_t itsources                = READ_REG(hi2c->Instance->CR2);$/;"	l
 itsources	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c	/^  uint32_t itsources  = READ_REG(hi2c->Instance->CR2);$/;"	l
+j	Src/init.c	/^	uint8_t j;$/;"	l
 j	Src/lcdwg.c	/^	uint8_t _x, _y, i, j, bit;$/;"	l
 j	Src/lcdwg.c	/^	uint8_t i, j, n, m, bit;$/;"	l
 j	Src/lcdwg.c	/^	uint8_t i, j, n, m;$/;"	l
@@ -27179,12 +27181,13 @@ nPRIV	Drivers/CMSIS/Include/core_cm33.h	/^    uint32_t nPRIV:1;                 
 nPRIV	Drivers/CMSIS/Include/core_cm4.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon275::__anon276	access:public
 nPRIV	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon198::__anon199	access:public
 nPRIV	Drivers/CMSIS/Include/core_sc300.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon90::__anon91	access:public
-nSensors	Src/main.c	/^	uint8_t diff, nSensors;$/;"	l
 nSensors	Src/main.c	/^uint8_t nSensors;$/;"	v
 nbiterations	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c	/^  uint8_t nbiterations = 0;$/;"	l
 need_rounding	Src/ds18b20.c	/^	uint8_t need_rounding[] = { 1, 3, 4, 6, 9, 11, 12, 14 };$/;"	l
 next_diff	Src/onewire.c	/^	uint8_t i, j, next_diff;$/;"	l
 noSensor	Src/main.c	/^const char noSensor[] = "---";$/;"	v
+numSensor	Src/key.c	/^	uint8_t numSensor;$/;"	l
+numSensors	Src/ds18b20.c	/^	uint8_t diff, numSensors;$/;"	l
 numStoredSensors	Src/init.c	/^uint8_t numStoredSensors = 0;$/;"	v
 numberItem	Src/lcdwg.c	/^	uint8_t numberItem = 0;$/;"	l
 numberRow	Src/lcdwg.c	/^	uint8_t numberRow;$/;"	l
@@ -27193,7 +27196,6 @@ op_addr	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t op_addr = (uint32_t)addr
 op_size	Drivers/CMSIS/Include/core_cm7.h	/^     int32_t op_size = dsize;$/;"	l
 orderedCpy	Drivers/CMSIS/Include/mpu_armv7.h	/^__STATIC_INLINE void orderedCpy(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)$/;"	f	signature:(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)
 orderedCpy	Drivers/CMSIS/Include/mpu_armv8.h	/^__STATIC_INLINE void orderedCpy(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)$/;"	f	signature:(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)
-outsideSensor	Src/init.c	/^sensorID_t outsideSensor;$/;"	v
 outsideTempItemData	Src/menu.c	/^stateData_t outsideTempItemData;$/;"	v
 owIDString	Src/main.c	/^char owIDString[MAXSENSORS][17];$/;"	v
 pBuffPtr	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	/^  uint8_t                    *pBuffPtr;      \/*!< Pointer to I2C transfer buffer           *\/$/;"	m	struct:__I2C_HandleTypeDef	access:public
@@ -27283,14 +27285,13 @@ result	Drivers/CMSIS/Include/cmsis_gcc.h	/^  int32_t result;$/;"	l
 result	Drivers/CMSIS/Include/cmsis_gcc.h	/^  uint32_t result;$/;"	l
 result	Drivers/CMSIS/Include/cmsis_gcc.h	/^ int32_t result;$/;"	l
 result	Drivers/CMSIS/Include/cmsis_iccarm.h	/^      uint32_t result;$/;"	l
-resultMeasureCoolant	Src/ds18b20.c	/^uint8_t resultMeasureCoolant[3];$/;"	v
-resultMeasureInside	Src/ds18b20.c	/^uint8_t resultMeasureInside[3];$/;"	v
-resultMeasureOutside	Src/ds18b20.c	/^uint8_t resultMeasureOutside[3];$/;"	v
+resultMeasureCoolant	Src/main.c	/^uint8_t resultMeasureCoolant[3];$/;"	v
+resultMeasureInside	Src/main.c	/^uint8_t resultMeasureInside[3];$/;"	v
+resultMeasureOutside	Src/main.c	/^uint8_t resultMeasureOutside[3];$/;"	v
 retVal	Src/ds18b20.c	/^	uint8_t retVal = DS18X20_NO_SENSOR;$/;"	l
 retVal	Src/scheduler.c	/^	uint8_t retVal = FALSE;$/;"	l
 rnrBase	Drivers/CMSIS/Include/mpu_armv8.h	/^    uint32_t rnrBase   = rnr & ~(MPU_TYPE_RALIASES-1U);$/;"	l
 rnrOffset	Drivers/CMSIS/Include/mpu_armv8.h	/^    uint32_t rnrOffset = rnr % MPU_TYPE_RALIASES;$/;"	l
-romcode	Inc/init.h	/^	uint8_t romcode[OW_ROMCODE_SIZE];$/;"	m	struct:_sensorID_t	access:public
 row	Src/lcdwg.c	/^	uint8_t row, column;$/;"	l
 rowElement	Src/lcdwg.c	/^	stateElement* rowElement;$/;"	l
 rowEnd	Src/lcdwg.c	/^	uint8_t rowEnd;$/;"	l
@@ -27303,6 +27304,7 @@ s	Drivers/CMSIS/Include/cmsis_armcc.h	/^  result <<= s;                        \
 s	Drivers/CMSIS/Include/cmsis_armcc.h	/^  uint32_t s = (4U \/*sizeof(v)*\/ * 8U) - 1U; \/* extra shift needed at end *\/$/;"	l
 s	Drivers/CMSIS/Include/cmsis_gcc.h	/^  result <<= s;                        \/* shift when v's highest bits are zero *\/$/;"	l
 s	Drivers/CMSIS/Include/cmsis_gcc.h	/^  uint32_t s = (4U \/*sizeof(v)*\/ * 8U) - 1U; \/* extra shift needed at end *\/$/;"	l
+sBuf	Src/init.c	/^	uint8_t sBuf[OW_ROMCODE_SIZE];$/;"	l
 sClockSourceConfig	Src/tim.c	/^  TIM_ClockConfigTypeDef sClockSourceConfig = {0};$/;"	l
 sDate	Src/main.c	/^RTC_DateTypeDef sDate;$/;"	v
 sFIFOMailBox	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  CAN_FIFOMailBox_TypeDef sFIFOMailBox[2];$/;"	m	struct:__anon61	access:public
@@ -27312,11 +27314,8 @@ sTime	Src/main.c	/^RTC_TimeTypeDef sTime;$/;"	v
 sTimeStart	Src/key.c	/^	RTC_TimeTypeDef* sTimeStart;	$/;"	l
 sTimeStop	Src/key.c	/^	RTC_TimeTypeDef* sTimeStop;$/;"	l
 sTxMailBox	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  CAN_TxMailBox_TypeDef sTxMailBox[3];$/;"	m	struct:__anon61	access:public
-saveBuf	Src/init.c	/^	uint8_t saveBuf[21];$/;"	l
 saveBuf	Src/init.c	/^	uint8_t saveBuf[22];$/;"	l
 sc	Drivers/CMSIS/Include/cmsis_iccarm.h	/^      uint8_t sc = 31U;$/;"	l
-search_sensors	Src/main.c	/^uint8_t search_sensors(void) {$/;"	f	signature:(void)
-search_sensors	Src/main.c	/^uint8_t search_sensors(void);$/;"	p	file:	signature:(void)
 seg25	Inc/seg25.h	/^static const tFont seg25 = { 10, seg25_array };$/;"	v
 seg25_0x30	Inc/seg25.h	/^static const tImage seg25_0x30 = { image_data_seg25_0x30, 16, 25};\/\/'0'$/;"	v
 seg25_0x31	Inc/seg25.h	/^static const tImage seg25_0x31 = { image_data_seg25_0x31, 16, 25};\/\/'1'$/;"	v
@@ -27331,9 +27330,10 @@ seg25_0x39	Inc/seg25.h	/^static const tImage seg25_0x39 = { image_data_seg25_0x3
 seg25_array	Inc/seg25.h	/^static const tChar seg25_array[] = {$/;"	v
 sensorCooland	Src/main.c	/^sensorData_t sensorCooland;$/;"	v
 sensorData_t	Inc/ds18b20.h	/^} sensorData_t;$/;"	t	typeref:struct:_sensorData_t
-sensorID_t	Inc/init.h	/^} sensorID_t;$/;"	t	typeref:struct:_sensorID_t
 sensorInside	Src/main.c	/^sensorData_t sensorInside;$/;"	v
+sensorNotConnect	Src/init.c	/^const char sensorNotConnect[] = "No sensors";$/;"	v
 sensorOutside	Src/main.c	/^sensorData_t sensorOutside;$/;"	v
+sensorWaitConnect	Src/init.c	/^const char sensorWaitConnect[] = "Conn. sensor & press ok";$/;"	v
 setDataTime	Src/main.c	/^void setDataTime(void)$/;"	f	signature:(void)
 setDataTime	Src/main.c	/^void setDataTime(void);$/;"	p	file:	signature:(void)
 setDateData	Src/menu.c	/^stateData_t setDateData;$/;"	v
@@ -27518,6 +27518,7 @@ value	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c	/^  uint32_t val
 value	Src/key.c	/^	uint8_t value = CurrState->Text[1] - '0';$/;"	l
 varClrBitBB	Inc/lcdwg.h	121;"	d
 varSetBitBB	Inc/lcdwg.h	123;"	d
+variableChar	Src/lcdwg.c	/^char variableChar[VARIABLE_CHAR_DATA_LENGTH];$/;"	v
 vectors	Drivers/CMSIS/Include/core_armv8mbl.h	/^  uint32_t *vectors = (uint32_t *)SCB->VTOR;$/;"	l
 vectors	Drivers/CMSIS/Include/core_armv8mml.h	/^  uint32_t *vectors = (uint32_t *)SCB->VTOR;$/;"	l
 vectors	Drivers/CMSIS/Include/core_cm0.h	/^  uint32_t *vectors = (uint32_t *)0x0U;$/;"	l

@@ -46,54 +46,35 @@ RTC_TimeTypeDef sleepTimeStop;
 uint8_t aShowSetSleepTime[20] = {0};
 uint8_t aShowSetWorkTime[20] = {0};
 uint8_t workDaysOfWeek[7] = {0, 1, 1, 1, 1, 1, 0};
+const tFont* bigFont;
 
 extern RTC_HandleTypeDef hrtc;
 extern const tFont* fontMenu;
 extern const tFont* fontDigital;
-const tFont* bigFont;
 extern stateElement startState;
 extern stateElement settingState;
 extern stateElement setWorkDays;
 extern uint8_t aShowTime[TIME_BUFFER_LENGTH];
 extern uint8_t aShowDate[DATE_BUFFER_LENGTH];
-extern stateData_t timeData;
-extern stateData_t dateData;
-extern stateData_t setTimeData;
-extern stateData_t setDateData;
-extern stateData_t setModeWorkData;
-extern stateData_t setWorkTempItemData;
-extern stateData_t setWorkTimeTempData;
-extern stateData_t setSleepTimeTempData;
-extern stateData_t setSleepTimeBoundary;
-extern stateData_t setWorkTimeBoundary;
-extern stateData_t setSundayData;
-extern stateData_t setMondayData;
-extern stateData_t setTuesdayData;
-extern stateData_t setWednesdayData;
-extern stateData_t setThursdayData;
-extern stateData_t setFridayData;
-extern stateData_t setSaturdayData;
-extern stateData_t insideTempItemData;
-extern stateData_t outsideTempItemData;
-extern stateData_t coolantTempItemData;
 extern RTC_TimeTypeDef sTime;
 extern RTC_DateTypeDef sDate;
 extern const char *modeWorkText[3];
 extern uint8_t modeWorkVar;
 extern uint8_t gSensorIDs[MAXSENSORS][OW_ROMCODE_SIZE];
 extern uint8_t nSensors;
-extern char diagnosticChar[];
+extern char variableChar[];
 extern char owIDString[MAXSENSORS][17];
 
 
-sensorID_t insideSensor;
-sensorID_t outsideSensor;
-sensorID_t coolantSensor;
+extern sensorData_t sensorInside;
+extern sensorData_t sensorOutside;
+extern sensorData_t sensorCooland;
 uint8_t numStoredSensors = 0;
 
 void InitMain(void)
 {
-	uint8_t saveBuf[21];
+	uint8_t saveBuf[22];
+	uint8_t i;
 	HAL_I2C_Mem_Read(&hi2c1, 0xA0, I2C_ADDR_SAVE_EEPROM, I2C_MEMADD_SIZE_16BIT, saveBuf, sizeof(saveBuf), HAL_MAX_DELAY);
 	while(HAL_I2C_IsDeviceReady(&hi2c1, 0xA0, 1, HAL_MAX_DELAY) != HAL_OK);
 	workTimeStart.Hours = saveBuf[0];
@@ -117,44 +98,13 @@ void InitMain(void)
 	setThursdayData.flag = saveBuf[18];
 	setFridayData.flag = saveBuf[19];
 	setSaturdayData.flag = saveBuf[20];
-	/* numStoredSensors == saveBuf[21]; */
-	/* modeWorkVar */
-	/* workTimeStart.Hooours */
-	/* workTimeStart.Minutes */
-	/* workTimeStop.Hours */
-	/* workTimeStop.Minutes */
-	/* sleepTimeStart.Hours */
-	/* sleepTimeStart.Minutes */
-	/* sleepTimeStop.Hours */
-	/* sleepTimeStop.Minutes */
-	/* settedComfortTemp */
-	/* settedSleepTimeTemp */
-	/* settedWorkTimeTemp */
-	/* setSundayData.flag = workDaysOfWeek[0]; */
-	/* setMondayData.flag = workDaysOfWeek[1]; */
-	/* setTuesdayData.flag = workDaysOfWeek[2]; */
-	/* setWednesdayData.flag = workDaysOfWeek[3]; */
-	/* setThursdayData.flag = workDaysOfWeek[4]; */
-	/* setFridayData.flag = workDaysOfWeek[5]; */
-	/* setSaturdayData.flag = workDaysOfWeek[6]; */
+	numStoredSensors = saveBuf[21];
 	fontMenu = &Arial7;	
 	fontDigital = &Arial9_b;
 	bigFont = &Font;
-
 	CurrState = (stateElement*)&startState;
-
-	/* workTimeStart.Hours = 8; */
-	/* workTimeStart.Minutes = 0; */
-	/* workTimeStop.Hours = 16; */
-	/* workTimeStop.Minutes = 0; */
 	sprintf((char*)aShowSetWorkTime, "%02d:%02d - %02d:%02d", workTimeStart.Hours, workTimeStart.Minutes, workTimeStop.Hours, workTimeStop.Minutes);
-
-	/* sleepTimeStart.Hours = 23; */
-	/* sleepTimeStart.Minutes = 0; */
-	/* sleepTimeStop.Hours = 6; */
-	/* sleepTimeStop.Minutes = 0; */
 	sprintf((char*)aShowSetSleepTime, "%02d:%02d - %02d:%02d", sleepTimeStart.Hours, sleepTimeStart.Minutes, sleepTimeStop.Hours, sleepTimeStop.Minutes);
-
 
 	setTimeData.data = (uint8_t*) aShowTime;
 	setTimeData.flag = MENU_ITEM_TEXT | MENU_ITEM_SETTING;
@@ -204,19 +154,52 @@ void InitMain(void)
 	setFridayData.data = &workDaysOfWeek;
 	setSaturdayData.data = &workDaysOfWeek;
 
-	/* setSundayData.flag = workDaysOfWeek[0]; */
-	/* setMondayData.flag = workDaysOfWeek[1]; */
-	/* setTuesdayData.flag = workDaysOfWeek[2]; */
-	/* setWednesdayData.flag = workDaysOfWeek[3]; */
-	/* setThursdayData.flag = workDaysOfWeek[4]; */
-	/* setFridayData.flag = workDaysOfWeek[5]; */
-	/* setSaturdayData.flag = workDaysOfWeek[6]; */
 	insideTempItemData.font = &fontMenu;
 	insideTempItemData.flag = MENU_ITEM_TEXT;
 	insideTempItemData.data = (char*)sensorWaitConnect;
+	outsideTempItemData.font = &fontMenu;
+	outsideTempItemData.flag = MENU_ITEM_TEXT;
+	outsideTempItemData.data = (char*)sensorWaitConnect;
+	coolantTempItemData.font = &fontMenu;
+	coolantTempItemData.flag = MENU_ITEM_TEXT;
+	coolantTempItemData.data = (char*)sensorWaitConnect;
 	insideTempItemData.text = owIDString[0];
 	outsideTempItemData.text = owIDString[1];
 	coolantTempItemData.text = owIDString[2];
+
+	uint8_t j;
+	for (i = 0; i < MAXSENSORS; ++i) {
+		HAL_I2C_Mem_Read(&hi2c1, 0xA0, I2C_ADDR_INSIDE_SENSOR_CODE + (i * OW_ROMCODE_SIZE), I2C_MEMADD_SIZE_16BIT, saveBuf, OW_ROMCODE_SIZE, HAL_MAX_DELAY);
+		switch (i) 
+		{
+			case 0:
+				for (j = 0; j < OW_ROMCODE_SIZE; j++) {
+					sensorInside.ID[j] = saveBuf[j];
+				}
+				sensorInside.index = DS18X20_searchID(gSensorIDs, sensorInside.ID);
+				if(sensorInside.index != DS18X20_NO_SENSOR)
+					sensorInside.present = TRUE;
+				break;
+			case 1:
+				for (j = 0; j < OW_ROMCODE_SIZE; j++) {
+					sensorOutside.ID[j] = saveBuf[j];
+				}
+				sensorOutside.index = DS18X20_searchID(gSensorIDs, sensorOutside.ID);
+				if(sensorOutside.index != DS18X20_NO_SENSOR)
+					sensorOutside.present = TRUE;
+				break;
+			case 2:
+				for (j = 0; j < OW_ROMCODE_SIZE; j++) {
+					sensorCooland.ID[j] = saveBuf[j];
+				}
+				sensorCooland.index = DS18X20_searchID(gSensorIDs, sensorCooland.ID);
+				if(sensorCooland.index != DS18X20_NO_SENSOR)
+					sensorCooland.present = TRUE;
+				break;
+			default:
+				break;
+		}
+	}
 }
 
 void Termostat(void)
@@ -244,6 +227,8 @@ int16_t TermGetWorkTemp(void)
 			return settedSleepTimeTemp;
 		else return settedComfortTemp;
 	}
+	else if(modeWorkVar == OFF_MODE_WORK)
+		return 0;
 	return settedComfortTemp;
 }
 
@@ -274,4 +259,15 @@ void WriteEepromValue(void)
 	saveBuf[21] = numStoredSensors;
 	HAL_I2C_Mem_Write(&hi2c1, 0xA0, I2C_ADDR_SAVE_EEPROM, I2C_MEMADD_SIZE_16BIT, saveBuf, sizeof(saveBuf), HAL_MAX_DELAY);
 	while(HAL_I2C_IsDeviceReady(&hi2c1, 0xA0, 1, HAL_MAX_DELAY) != HAL_OK);
+}
+
+void WriteEepromSensor(uint8_t addr)
+{
+	uint8_t i;
+	uint8_t sBuf[OW_ROMCODE_SIZE];
+	for (i = 0; i < OW_ROMCODE_SIZE; i++) {
+		sBuf[i] = gSensorIDs[0][i];
+	}
+	HAL_I2C_Mem_Write(&hi2c1, 0xA0, addr, I2C_MEMADD_SIZE_16BIT, sBuf, OW_ROMCODE_SIZE, HAL_MAX_DELAY);
+	while (HAL_I2C_IsDeviceReady(&hi2c1, 0xA0, 1, HAL_MAX_DELAY) != HAL_OK); 
 }

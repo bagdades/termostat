@@ -69,16 +69,16 @@ sensorData_t sensorInside;
 sensorData_t sensorOutside;
 sensorData_t sensorCooland;
 /* uint8_t keyPressed; */
-extern uint8_t resultMeasureOutside[3];
-extern uint8_t resultMeasureInside[3];
-extern uint8_t resultMeasureCoolant[3];
+uint8_t resultMeasureOutside[3];
+uint8_t resultMeasureInside[3];
+uint8_t resultMeasureCoolant[3];
 extern uint8_t tempLcd[];
 extern stateElement startState;
 extern stateElement settingState;
 extern int16_t settedComfortTemp;
 extern int16_t settedWorkTimeTemp;
 extern int16_t settedSleepTimeTemp;
-extern char diagnosticChar[VARIABLE_CHAR_DATA_LENGTH];
+extern char variableChar[VARIABLE_CHAR_DATA_LENGTH];
 extern const char *dayOfWeek[7];
 const char *modeWorkText[3] = {
 	"Auto",
@@ -94,7 +94,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void Show_RTC_Calendar(void);
 void setDataTime(void);
-uint8_t search_sensors(void);
+uint8_t DS18X20_search_sensors(uint8_t sensorID[][OW_ROMCODE_SIZE]);
 void LedBlink1(void);
 void LedBlink2(void);
 void StartMeasure(void);
@@ -145,11 +145,9 @@ int main(void)
 	mRTC_Begin(&hrtc);
 	Show_RTC_Calendar();
 	OW_Init();
-	nSensors = search_sensors();
+	nSensors = DS18X20_search_sensors(gSensorIDs);
 	InitMain();
-	sensorInside.present = 1;
-	sensorOutside.present = 0;
-	sensorCooland.present = 0;
+	/* sensorInside.present = 1; */
 	OS_AddTask(LedBlink1, 0, 200);
 	OS_AddTask(LedBlink2, 100, 500);
 	OS_AddTask(StartMeasure, 0, 0);
@@ -157,6 +155,8 @@ int main(void)
 	LcdInit();
 	LcdShow();
   /* USER CODE END 2 */
+ 
+ 
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -243,7 +243,7 @@ void ShowLcdMain(void)
 		TempOut(resultMeasureCoolant);
 		LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, (const char*)tempLcd);
 	}
-	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, noSensor);
+	else LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_NORM, noSensor);
 	/* Show frame */
 	LcdDrawFrame(84, LCD_X_RES - 1, 10, LCD_Y_RES - 14, LCD_MODE_NORM);
 	RECT_SET(rec, 84, 10, LCD_X_RES - 85, 9);
@@ -266,8 +266,12 @@ void ShowLcdMain(void)
 	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, "Set:");
 	RECT_SET(rec, 22, 53, 24, 10);
 	int16_t tempTemp = TermGetWorkTemp();
-	VariableToLcd(&tempTemp, diagnosticChar,  COMMA);
-	LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, diagnosticChar);
+	if (tempTemp) 
+	{
+		VariableToLcd(&tempTemp, variableChar,  COMMA);
+		LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, variableChar);
+	}
+	else LcdDrawText(rec, DT_LEFT, Arial9_b, LCD_MODE_NORM, " ---");
 	/* Show mode work */
 	RECT_SET(rec, 84, 52, LCD_X_RES - 84 - 1, 11);
 	LcdDrawText(rec, DT_CENTER | DT_VCENTER, Arial9_b, LCD_MODE_INVERSE, modeWorkText[modeWorkVar]);
@@ -303,36 +307,7 @@ void setDataTime(void)
 	}
 }
 
-uint8_t search_sensors(void) {
-	uint8_t i;
-	uint8_t id[OW_ROMCODE_SIZE];
-	uint8_t diff, nSensors;
 
-	nSensors = 0;
-
-	for (diff = OW_SEARCH_FIRST;
-			diff != OW_LAST_DEVICE && nSensors < MAXSENSORS;) {
-		DS18X20_find_sensor(&diff, &id[0]);
-
-		if (diff == OW_PRESENCE_ERR) {
-			break;
-		}
-		if (diff == OW_DATA_ERR) {
-			break;
-		}
-		for (i = 0; i < OW_ROMCODE_SIZE; i++)
-			gSensorIDs[nSensors][i] = id[i];
-
-		nSensors++;
-	}
-	if(nSensors)
-	{
-		for (i = 0; i < nSensors; ++i) {
-			sprintf(owIDString[i], "%02X%02X%02X%02X%02X%02X%02X%02X", gSensorIDs[i][0], gSensorIDs[i][1], gSensorIDs[i][2], gSensorIDs[i][3], gSensorIDs[i][4], gSensorIDs[i][5], gSensorIDs[i][6], gSensorIDs[i][7]);
-		}
-	}
-	return nSensors;
-}
 
 void StartMeasure(void)
 {
@@ -342,9 +317,12 @@ void StartMeasure(void)
 
 void ReadMeasure(void) 
 {
-	DS18X20_read_meas(&gSensorIDs[0][0], resultMeasureOutside);
-	DS18X20_read_meas(&gSensorIDs[1][0], resultMeasureInside);
-	DS18X20_read_meas(&gSensorIDs[2][0], resultMeasureCoolant);
+	if(sensorInside.present)
+		DS18X20_read_meas(&gSensorIDs[sensorInside.index][0], resultMeasureInside);
+	if(sensorOutside.present)
+		DS18X20_read_meas(&gSensorIDs[sensorOutside.index][0], resultMeasureOutside);
+	if(sensorCooland.present)
+		DS18X20_read_meas(&gSensorIDs[sensorCooland.index][0], resultMeasureCoolant);
 	OS_AddTask(StartMeasure, 5000, 0);
 }
 
